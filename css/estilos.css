@@ -1,0 +1,102 @@
+.titulo{
+  font-family:Agency FB;
+  font-size:20px;
+  color:#FFFF;
+  text-decoration:none;
+  font-weight: bold;
+
+}
+
+.tituloBlogs{
+  font-family: Arial;
+  font-size:20px;
+  color:#FFFF;
+}
+.HardLevel{
+  font-family:Agency FB;
+  font-size:40px;
+}
+.subt{
+  font-family:Agency FB;
+  font-size:20px;
+  color:#ffff;
+}
+.boton{
+  text-decoration: none;
+  padding: 1px;
+  font-family: calibri;
+  text-transform: uppercase;
+  padding-left: 1px;
+  padding-right: 1px;
+  font-weight: 800;
+  width:130px;
+  height:45px;
+  font-size: 25px;
+  text-align:center;
+  color: white;
+  background-color: #0B0B3B;
+  border:0;
+
+}
+.boton2{
+  text-decoration: none;
+  padding: 1px;
+  font-family: calibri;
+  text-transform: uppercase;
+  padding-left: 1px;
+  padding-right: 1px;
+  font-weight: 800;
+  width:150px;
+  height:45px;
+  font-size: 25px;
+  text-align:center;
+  color: white;
+  background-color: green;
+  border:0;
+}
+.boton3{
+  text-decoration: none;
+  padding: 1px;
+  font-family: calibri;
+  text-transform: uppercase;
+  padding-left: 1px;
+  padding-right: 1px;
+  font-weight: 800;
+  width:150px;
+  height:45px;
+  font-size: 25px;
+  text-align:center;
+  color: white;
+  background-color: red;
+  border:0;
+}
+.titulo2{
+  font-family:Agency FB;
+  font-size:30px;
+  color:#FFFF;
+}
+.creditos{
+  font-family:Arial;
+  font-size: 15px;
+  color:white;
+
+  text-align: right;
+  width: 100%;
+  bottom: 0px;
+  width: 100%;
+}
+.btnReg{
+  text-decoration: none;
+  padding: 4px;
+  font-family:Arial;
+  text-transform: uppercase;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-weight: 800;
+  width:150px;
+  height:45px;
+  font-size: 25px;
+  text-align:center;
+  color: red;
+  background-color: red;
+}
