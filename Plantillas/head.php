@@ -7,10 +7,18 @@
    <link rel="stylesheet" href="css/estilos.css">
    <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
-   
+   <?php
+   if(!isset($titulo)||empty($title))
+   {
+
+     $titulo="Hard Level";
+     ?>
+     <title><?php echo $titulo; ?></title>
+     <?php
+
+  }
+  
+     ?>
+
  </head>
 </html>
-
-<?php
-
-?>

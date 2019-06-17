@@ -1,4 +1,3 @@
-<?
-
+<?php
+  include_once "Plantillas/head.php";
 ?>
-HARD LEVEL
