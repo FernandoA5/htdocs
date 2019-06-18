@@ -6,9 +6,10 @@ class barColores
   {
     if($P==0)
     {
+
       echo '<li><a href="HardLevelSolutions.php" title="Hard Level Solutions">Solutions</a></li>';
       echo '<li><a href="HardLevelGames.php" title="Hard Level Games">Games</a></li>';
-      echo '<li><a href="../Plantillas/Learning.php" title="Hard Level Learning">Learning</a></li>';
+      echo '<li><a href="Plantillas/Learning.php" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="Blogs.php" title="Blogs">Blogs</a></li>';
     }
     if($P==1)

@@ -16,7 +16,6 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <?php
-      $P=0;
       include_once "Plantillas/barcolores.php";
       barColores::Bcolores($P);
        ?>
