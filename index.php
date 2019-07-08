@@ -1,16 +1,38 @@
 <?php
-$page;
-$page=$_SERVER["REQUEST_URI"];
+include_once "app/config.inc.php";
 
-if($page=="/")
+$page = parse_url($_SERVER["REQUEST_URI"]);
+$ruta=$page["path"];
+$partesRuta=explode("/", $ruta);
+//echo $partesRuta[1];
+if($partesRuta[1]=="")
 {
-  include_once "Plantillas/home.php";
+  include_once "vistas/home.php";
 }
-if($page=="Plantillas/Learning.php")
+if($partesRuta[1]=="Learning")
 {
-  echo "HOLI";
+  include_once "vistas/Learning.php";
 }
-  include_once "Plantillas/home.php";
+if($partesRuta[1]=="Solutions")
+{
+  include_once "vistas/Solutions.php";
+}
+if($partesRuta[1]=="Games")
+{
+  include_once "vistas/Games.php";
+}
+if($partesRuta[1]=="Blogs")
+{
+  include_once "vistas/Blogs.php";
+}
+if($partesRuta[1]=="Registrar")
+{
+  include_once "vistas/Registrar.php";
+}
+if($partesRuta[1]=="RegistroA")
+{
+  include_once "vistas/RegistroA.php";
+}
 
   ?>
 

@@ -9,18 +9,40 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" style="color:white" href="#" title="Hard Level">
+    <a class="navbar-brand" style="color:white" href="<?php echo SERVIDOR; ?>" title="Hard Level">
       Hard Level
     </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <?php
-      include_once "Plantillas/barcolores.php";
-      barColores::Bcolores($P);
+      include_once "app/conexion.inc.php";
+      conexion::openConection();
+
+      include_once "app/repositorioUsuario.inc.php";
+        include_once "Plantillas/barcolores.php";
+        barColores::Bcolores($P);
+        conexion::closeConection();
        ?>
     </ul>
-
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>
+          <?php
+          include_once "app/conexion.inc.php";
+          conexion::openConection();
+          include_once "app/repositorioUsuario.inc.php";
+          $TotUsers=RepositorioUsuario::getUsers(conexion::getConection());
+          echo "USUARIOS: " . $TotUsers;
+          conexion::closeConection();
+           ?>
+      </a></li>
+      <li><a href="<?php echo REGISTRAR; ?>">
+        Registrar
+      </a></li>
+      <li><a href="">
+        Entrar
+      </a></li>
+    </ul>
   </div>
 </div>
 
