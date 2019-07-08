@@ -5,6 +5,8 @@ class ValidadorRegistro
   private $avisoCierre;
   private $nombre;
   private $email;
+  private $clave;
+
 
   private $error_n;
   private $error_e;
@@ -17,10 +19,15 @@ class ValidadorRegistro
     $this -> avisoCierre="</div>";
     $this -> nombre ="";
     $this -> email="";
+    $this -> clave="";
     $this -> error_n = $this ->validarNombre($nombre);
     $this -> error_e =$this ->validarEmail($email);
     $this -> error_p1 =$this ->validarClave1($pass1);
     $this -> error_p2 =$this ->validarClave2($pass1, $pass2);
+    if($this -> error_p1 ==="" && $this -> error_p2 ==="")
+    {
+      $this -> clave =$pass1;
+    }
   }
   private function VariableIniciada($variable)
   {
@@ -61,6 +68,7 @@ class ValidadorRegistro
     }
     return "";
   }
+
   private function validarClave1($pass1)
   {
     if(!$this ->VariableIniciada($pass1))
@@ -92,6 +100,10 @@ class ValidadorRegistro
   public function getEmail()
   {
     return $this -> email;
+  }
+  public function getPass()
+  {
+    return $this -> clave;
   }
   public function getFailName()
   {
@@ -133,23 +145,34 @@ class ValidadorRegistro
   }
   public function showErrorEmail()
   {
-    if($this -> error_e !="")
+    if($this -> error_e !=="")
     {
       echo $this -> avisoInicio . $this -> error_e . $this -> avisoCierre;
     }
   }
   public function showErrorClave1()
   {
-    if($this -> error_p1 !="")
+    if($this -> error_p1 !=="")
     {
       echo $this -> avisoInicio . $this -> error_p1 . $this -> avisoCierre;
     }
   }
   public function showErrorClave2()
   {
-    if($this -> error_p2 !="")
+    if($this -> error_p2 !=="")
     {
       echo $this -> avisoInicio . $this -> error_p2 . $this -> avisoCierre;
+    }
+  }
+  public function registroValido()
+  {
+    if($this -> error_n ==="" && $this -> error_e ==="" && $this -> error_p1 ==="" && $this -> error_p2 ==="")
+    {
+      return true;
+    }
+    else
+    {
+      return false;
     }
   }
 }

@@ -3,12 +3,25 @@
   $titulo="Registrar";
   include_once "Plantillas/head.php";
   include_once "Plantillas/bar.php";
-
+  include_once "app/conexion.inc.php";
+  include_once "app/repositorioUsuario.inc.php";
+  include_once "app/usuario.inc.php";
   include_once "app/validadorR.inc.php";
 
   if (isset($_POST["send"]))
   {
-  $validador = new ValidadorRegistro($_POST["nombre"], $_POST["email"], $_POST["pass1"], $_POST["pass2"]);
+    conexion:: openConection();
+    $validador = new ValidadorRegistro($_POST["nombre"], $_POST["email"], $_POST["pass1"], $_POST["pass2"]);
+    if($validador ->registroValido())
+    {
+      $usuario = new Usuario("", $validador ->getName(), $validador ->getEmail(), $validador ->getPass(), "", "", "");
+      $usuarioInsertado = RepositorioUsuario :: insertarUsuario(conexion :: getConection(), $usuario);
+      if($usuarioInsertado)
+      {
+        //
+      }
+    }
+    conexion:: closeConection();
   }
 ?>
 

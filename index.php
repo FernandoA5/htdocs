@@ -33,6 +33,10 @@ if($partesRuta[1]=="RegistroA")
 {
   include_once "vistas/RegistroA.php";
 }
+if($partesRuta[1]=="Login")
+{
+  include_once "vistas/Login.php";
+}
 
   ?>
 

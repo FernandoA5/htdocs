@@ -8,8 +8,9 @@ class conexion
     try {
       if(!isset($conection))
       {
-        //self::$conection =new PDO("mysql:host=" . NameServer . "dbname=" . DBName, NameUser, Password);
-        self::$conection =new PDO("mysql:host=localhost; dbname=hldb", NameUser, Password);
+        self::$conection =new PDO("mysql:host=" . NameServer . ";dbname=" . DBName, NameUser, Password);
+        //self::$conection =new PDO("mysql:host=localhost; dbname=hldb", NameUser, Password);
+
         self::$conection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         self::$conection->exec("SET CHARACTER SET utf8");
         //echo HOLI;

@@ -13,6 +13,7 @@ define("GAMES", "/Games");
 define("BLOGS", "/Blogs");
 define("REGISTRAR", "/Registrar");
 define("REGISTROA", "/RegistroA");
+define("LOGIN", "/Login");
 
 
 
@@ -22,6 +23,7 @@ define("RUTAJS", SERVIDOR . "/js/");
 define("RUTAIMAGENES", SERVIDOR . "/imagenes/");
 define("RUTAPLANTILLAS", SERVIDOR .  "/Plantillas/");
 define("RUTAAPP", SERVIDOR . "/app/");
+
 //define("REGISTRAR", SERVIDOR . "/Plantillas/");
 
 define("HOLI", "HOLI");

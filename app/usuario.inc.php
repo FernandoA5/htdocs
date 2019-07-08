@@ -3,11 +3,12 @@ class Usuario
 {
     private $id;
     private $nombre;
+    private $email;
     private $password;
     private $fecha_registro;
     private $activo;
     private $suscripcion;
-    public function __construc($id, $nombre, $email, $password, $fecha_registro, $activo, $suscripcion)
+    public function __construct($id, $nombre, $email, $password, $fecha_registro, $activo, $suscripcion)
     {
       $this -> id=$id;
       $this -> nombre=$nombre;
@@ -29,6 +30,10 @@ class Usuario
     {
       return $this -> password;
     }
+    public function obtenerEmail()
+    {
+      return $this -> email;
+    }
     public function obtenerFechaRegistro()
     {
       return $this -> fecha_registro;
@@ -48,6 +53,10 @@ class Usuario
     public function changePassword()
     {
       $this -> password =$password;
+    }
+    public function changeEmail()
+    {
+      $this -> email =$email;
     }
     public function changeActivo()
     {
