@@ -12,7 +12,7 @@ define("SOLUTIONS", "/Solutions");
 define("GAMES", "/Games");
 define("BLOGS", "/Blogs");
 define("REGISTRAR", "/Registrar");
-define("REGISTROA", "/RegistroA");
+define("REGISTROCORRECTO", "/RegistroCorrecto");
 define("LOGIN", "/Login");
 
 

@@ -1,5 +1,6 @@
 <?php
 $P=0;
+$titulo="Hard Level";
   include_once "Plantillas/head.php";
   include_once "Plantillas/bar.php";
 

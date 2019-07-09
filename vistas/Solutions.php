@@ -1,5 +1,6 @@
 <?php
 $P=1;
+$titulo=" Registro Correcto";
 include_once "Plantillas/head.php";
 include_once "Plantillas/bar.php";
 //echo HOLI;
@@ -14,7 +15,7 @@ include_once "Plantillas/bar.php";
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      
+
     </div>
   </div>
   </div>

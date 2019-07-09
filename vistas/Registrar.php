@@ -8,6 +8,7 @@
   include_once "app/repositorioUsuario.inc.php";
   include_once "app/usuario.inc.php";
   include_once "app/validadorR.inc.php";
+  include_once "app/redireccion.inc.php";
 
   if (isset($_POST["send"]))
   {
@@ -19,7 +20,7 @@
       $usuarioInsertado = RepositorioUsuario :: insertarUsuario(conexion :: getConection(), $usuario);
       if($usuarioInsertado)
       {
-        header("location:" . LOGIN);
+        redireccion::redirigir(REGISTROCORRECTO . "?nombre=". $usuario->obtenerNombre());
       }
     }
     conexion:: closeConection();

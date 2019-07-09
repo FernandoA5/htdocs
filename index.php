@@ -36,9 +36,9 @@ if($partesRuta[1]=="Registrar")
   include_once "vistas/Registrar.php";
   $encontrada=1;
 }
-if($partesRuta[1]=="RegistroA")
+if($partesRuta[1]=="RegistroCorrecto")
 {
-  include_once "vistas/RegistroA.php";
+  include_once "vistas/RegistroCorrecto.php";
   $encontrada=1;
 }
 if($partesRuta[1]=="Login")

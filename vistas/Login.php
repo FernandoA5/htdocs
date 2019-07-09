@@ -6,6 +6,5 @@ include_once "Plantillas/bar.php";
 
  ?>
  <?php
-
-   include_once "Plantillas/cierre.php";
-    ?>
+ include_once "Plantillas/cierre.php";
+  ?>
