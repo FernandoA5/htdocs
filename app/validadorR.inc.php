@@ -1,4 +1,7 @@
 <?php
+include_once "repositorioUsuario.inc.php";
+include_once "conexion.inc.php";
+
 class ValidadorRegistro
 {
   private $avisoInicio;
@@ -13,15 +16,15 @@ class ValidadorRegistro
   private $error_p1;
   private $error_p2;
 
-  public function __construct($nombre, $email, $pass1, $pass2)
+  public function __construct($nombre, $email, $pass1, $pass2, $conection)
   {
     $this -> avisoInicio="<br><div class='alert-danger' role='alert'>";
     $this -> avisoCierre="</div>";
     $this -> nombre ="";
     $this -> email="";
     $this -> clave="";
-    $this -> error_n = $this ->validarNombre($nombre);
-    $this -> error_e =$this ->validarEmail($email);
+    $this -> error_n = $this ->validarNombre($conection, $nombre);
+    $this -> error_e =$this ->validarEmail($conection, $email);
     $this -> error_p1 =$this ->validarClave1($pass1);
     $this -> error_p2 =$this ->validarClave2($pass1, $pass2);
     if($this -> error_p1 ==="" && $this -> error_p2 ==="")
@@ -38,7 +41,7 @@ class ValidadorRegistro
       return false;
     }
   }
-  private function validarNombre($nombre)
+  private function validarNombre($conection, $nombre)
   {
     if(!$this -> VariableIniciada($nombre))
     {
@@ -46,7 +49,12 @@ class ValidadorRegistro
     }
     else {
       $this -> nombre =$nombre;
-    }/*
+    }
+    if(RepositorioUsuario::nombreExiste($conection, $nombre))
+    {
+      return "¡Epa! Este Nombre ya está en uso";
+    }
+    /*
     if(strlen($nombre)<6)
     {
       return "El nombre debe tener mas de 3 caracteres";
@@ -57,7 +65,8 @@ class ValidadorRegistro
     }*/
     return "";
   }
-  private function validarEmail($email)
+
+  private function validarEmail($conection, $email)
   {
     if(!$this -> VariableIniciada($email))
     {
@@ -65,6 +74,10 @@ class ValidadorRegistro
     }
     else {
       $this -> email=$email;
+    }
+    if(RepositorioUsuario::emailExiste($conection, $email))
+    {
+      return "¡Epa! Este Email ya fue utilizado <a href='#'>¿Olvidaste tu contraseña?</a>";
     }
     return "";
   }

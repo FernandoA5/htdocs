@@ -11,7 +11,7 @@
   if (isset($_POST["send"]))
   {
     conexion:: openConection();
-    $validador = new ValidadorRegistro($_POST["nombre"], $_POST["email"], $_POST["pass1"], $_POST["pass2"]);
+    $validador = new ValidadorRegistro($_POST["nombre"], $_POST["email"], $_POST["pass1"], $_POST["pass2"], conexion::getConection());
     if($validador ->registroValido())
     {
       $usuario = new Usuario("", $validador ->getName(), $validador ->getEmail(), $validador ->getPass(), "", "", "");
@@ -44,7 +44,6 @@
                 include_once "Plantillas/registroVacio.inc.php";
               }
                ?>
-          </div>
           </form>
         <br>
           <div class="row">
@@ -53,7 +52,7 @@
                 <a href="#">¿Ya tienes cuenta?</a>
               </div><br>
               <div class="text-center">
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="#">¿Olvidaste tu contraseña?</a><br><br>
               </div>
             </div>
           </div>

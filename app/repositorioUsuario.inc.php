@@ -1,4 +1,5 @@
 <?php
+include_once "usuario.inc.php";
 class RepositorioUsuario
 {
   public static function getAll($conection)
@@ -72,6 +73,58 @@ class RepositorioUsuario
       }
       return $usuarioInsertado;
 
+    }
+  }
+  public static function nombreExiste($conection, $nombre)
+  {
+    $nombreExiste=true;
+    if(isset($conection))
+    {
+      try {
+        include_once "usuario.inc.php";
+        $sql="SELECT * FROM usuarios WHERE nombre = :nombre";
+        $sentencia =$conection ->prepare($sql);
+
+        $sentencia ->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+        $sentencia ->execute();
+        $resultado =$sentencia ->fetchAll();
+        if(count($resultado))
+        {
+          $nombreExiste=true;
+        }
+        else {
+          $nombreExiste=false;
+        }
+      } catch (PDOException $ex) {
+        print HOLIERROR . $ex ->getMessage();
+      }
+      return $nombreExiste;
+    }
+  }
+  public static function emailExiste($conection, $email)
+  {
+    $emailExiste=true;
+    if(isset($conection))
+    {
+      try {
+      $sql="SELECT * FROM usuarios WHERE email = :email";
+      $sentencia =$conection ->prepare($sql);
+
+      $sentencia ->bindParam(":email", $email, PDO::PARAM_STR);
+      $sentencia ->execute();
+      $resultado= $sentencia ->fetchAll();
+      if(count($resultado))
+      {
+        $emailExiste=true;
+      }
+      else{
+        $emailExiste=false;
+      }
+
+      } catch (PDOException $ex) {
+        print HOLIERROR . $ex ->getMessage();
+      }
+      return $emailExiste;
     }
   }
 }

@@ -27,3 +27,4 @@
 </div>
   <div align="center">
     <button type="submit" class="btn btn-primary" name="send">Registrar</button>
+  </div>
