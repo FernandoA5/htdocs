@@ -39,7 +39,7 @@
       <li><a href="<?php echo REGISTRAR; ?>">
         Registrar
       </a></li>
-      <li><a href="">
+      <li><a href=" <?php echo LOGIN; ?>">
         Entrar
       </a></li>
     </ul>
