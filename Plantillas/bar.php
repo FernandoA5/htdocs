@@ -36,12 +36,28 @@
           conexion::closeConection();
            ?>
       </a></li>
-      <li><a href="<?php echo REGISTRAR; ?>">
-        Registrar
-      </a></li>
-      <li><a href=" <?php echo LOGIN; ?>">
-        Entrar
-      </a></li>
+      <?php
+      include_once "app/controlSesion.inc.php";
+      if(!controlSesion::sesionIniciada())
+      {
+        ?>
+        <li><a href="<?php echo REGISTRAR; ?>">
+          Registrar
+        </a></li>
+        <li><a href=" <?php echo LOGIN; ?>">
+          Entrar
+        </a></li>
+        <?php
+      }
+      else {
+        ?>
+        <li><a href="<?php echo MYBLOG; ?>">
+          <?php echo $_SESSION["nombre_usuario"] ?>
+        </a></li>
+
+        <?php
+      } ?>
+
     </ul>
   </div>
 </div>

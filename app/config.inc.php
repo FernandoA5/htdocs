@@ -14,6 +14,7 @@ define("BLOGS", "/Blogs");
 define("REGISTRAR", "/Registrar");
 define("REGISTROCORRECTO", "/RegistroCorrecto");
 define("LOGIN", "/Login");
+define("MYBLOG", "/MyBlog");
 
 
 
@@ -26,6 +27,6 @@ define("RUTAAPP", SERVIDOR . "/app/");
 
 //define("REGISTRAR", SERVIDOR . "/Plantillas/");
 
-define("HOLI", "HOLI");
-define("HOLIERROR", "HOLI, HAY UN ERROR:");
+define("HOLI", "HOLI: ");
+define("HOLIERROR", "HOLI, QUE MAL PLAN: ");
  ?>
