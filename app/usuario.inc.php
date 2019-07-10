@@ -8,7 +8,10 @@ class Usuario
     private $fecha_registro;
     private $activo;
     private $suscripcion;
-    public function __construct($id, $nombre, $email, $password, $fecha_registro, $activo, $suscripcion)
+    private $puntos;
+    private $avatar;
+    
+    public function __construct($id, $nombre, $email, $password, $fecha_registro, $activo, $suscripcion, $puntos, $avatar)
     {
       $this -> id=$id;
       $this -> nombre=$nombre;
@@ -17,6 +20,8 @@ class Usuario
       $this -> fecha_registro=$fecha_registro;
       $this -> activo=$activo;
       $this -> suscripcion=$suscripcion;
+      $this -> puntos=$puntos;
+      $this -> avatar=$avatar;
     }
     public function obtenerId()
     {
@@ -46,6 +51,14 @@ class Usuario
     {
       return $this -> suscripcion;
     }
+    public function obtenerPuntos()
+    {
+      return $this -> puntos;
+    }
+    public function obtenerAvatar()
+    {
+      return $this -> avatar;
+    }
     public function changeNombre()
     {
       $this -> nombre =$nombre;
@@ -65,6 +78,14 @@ class Usuario
     public function changeSuscripcion()
     {
       $this -> suscripcion =$suscripcion;
+    }
+    public function changePuntos()
+    {
+      $this -> puntos =$puntos;
+    }
+    public function changeAvatar()
+    {
+      $this -> avatar=$avatar;
     }
 
 }

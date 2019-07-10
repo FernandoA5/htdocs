@@ -17,7 +17,7 @@ class RepositorioUsuario
         {
           foreach($resultado as $fila)
           {
-            $usuarios[]= new Usuario($fila["id"], $fila["nombre"], $fila["email"], $fila["password"], $fila["fechaRegistro"], $fila["activo"], $fila["suscripcion"]);
+            $usuarios[]= new Usuario($fila["id"], $fila["nombre"], $fila["email"], $fila["password"], $fila["fechaRegistro"], $fila["activo"], $fila["suscripcion"], $fila["puntos"], $fila["avatar"]);
           }
         }
         else
@@ -142,7 +142,7 @@ class RepositorioUsuario
 
         if(!empty($resultado))
         {
-          $usuario = new Usuario($resultado["id"], $resultado["nombre"], $resultado["email"], $resultado["password"], $resultado["fechaRegistro"], $resultado["activo"], $resultado["suscripcion"]);
+          $usuario = new Usuario($resultado["id"], $resultado["nombre"], $resultado["email"], $resultado["password"], $resultado["fechaRegistro"], $resultado["activo"], $resultado["suscripcion"], $resultado["puntos"], $resultado["avatar"]);
         }
       } catch (PDOException $ex) {
         print HOLIERROR . $ex ->getMessage();

@@ -16,7 +16,7 @@
     $validador = new ValidadorRegistro($_POST["nombre"], $_POST["email"], $_POST["pass1"], $_POST["pass2"], conexion::getConection());
     if($validador ->registroValido())
     {
-      $usuario = new Usuario("", $validador ->getName(), $validador ->getEmail(), password_hash($validador ->getPass(), PASSWORD_DEFAULT) , "", "", "");
+      $usuario = new Usuario("", $validador ->getName(), $validador ->getEmail(), password_hash($validador ->getPass(), PASSWORD_DEFAULT) , "", "", "", "", "");
       $usuarioInsertado = RepositorioUsuario :: insertarUsuario(conexion :: getConection(), $usuario);
       if($usuarioInsertado)
       {
