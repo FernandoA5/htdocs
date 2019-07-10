@@ -2,7 +2,7 @@
 class barColores
 {
   public $P;
-  public function Bcolores($P)
+  public static function Bcolores($P)
   {
 
 

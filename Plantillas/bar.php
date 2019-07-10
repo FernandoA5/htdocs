@@ -51,10 +51,14 @@
       }
       else {
         ?>
-        <li><a href="<?php echo MYBLOG; ?>">
-          <?php echo $_SESSION["nombre_usuario"] ?>
-        </a></li>
+        <li class="dopdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo MYBLOG; ?>"><span class="glyphicon glyphicon-user"></span><?php echo " " . $_SESSION["nombre_usuario"] ?></a></li>
+            <li><a href="<?php echo LOGOUT; ?>"><span class="glyphicon glyphicon-off"> </span>  Cerrar Sessión</a></li>
 
+          </ul>
+        </a></li>
         <?php
       } ?>
 

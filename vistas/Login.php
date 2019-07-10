@@ -18,7 +18,7 @@ if(isset($_POST["login"]))
     redireccion::redirigir(SERVIDOR);
   }
   else{
-    echo HOLIERROR . ": NO SE HA INICIADO SESIÓN";
+    echo HOLIERROR . " NO SE HA INICIADO SESIÓN";
   }
   conexion::closeConection();
 }

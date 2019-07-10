@@ -1,6 +1,6 @@
 <?php
 include_once "usuario.inc.php";
-include_once "RepositorioUsuario.inc.php";
+include_once "repositorioUsuario.inc.php";
 
 class validadorLogin
 {
@@ -17,10 +17,10 @@ class validadorLogin
       }
       else {
         $this ->usuario = RepositorioUsuario::obtenerUsuarioPorEmail($conection, $email);
-        
+
         if(is_null($this-> usuario) || !password_verify($clave, $this ->usuario ->obtenerPassword()))
         {
-          $this-> error ="Datos Incorrectos<br>" . $email . $clave;
+          $this-> error ="Datos Incorrectos<br>";
 
         }
       }

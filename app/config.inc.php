@@ -15,6 +15,7 @@ define("REGISTRAR", "/Registrar");
 define("REGISTROCORRECTO", "/RegistroCorrecto");
 define("LOGIN", "/Login");
 define("MYBLOG", "/MyBlog");
+define("LOGOUT", "/Logout");
 
 
 

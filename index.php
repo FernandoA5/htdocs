@@ -51,6 +51,11 @@ if($partesRuta[1]=="MyBlog")
   include_once "vistas/MyBlog.php";
   $encontrada=1;
 }
+if($partesRuta[1]=="Logout")
+{
+  include_once "vistas/cerrarSesion.php";
+  $encontrada=1;
+}
 
 
 
