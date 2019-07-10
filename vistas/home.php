@@ -9,7 +9,7 @@ $titulo="Hard Level";
     <div class="row">
       <div class="col-md-12" style="background-color:#0B0B3B" align="center">
         <a href="#">
-        <img src="<?php echo RUTAIMAGENES; ?>PortadaF.png" width="100%" class="center-block"/>
+        <img src="<?php echo RUTAIMAGENES; ?>portadaF.png" width="100%" class="center-block"/>
       </a>
       </div>
     </div>
