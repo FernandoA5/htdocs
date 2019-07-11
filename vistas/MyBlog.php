@@ -27,9 +27,17 @@ if(!isset($_SESSION["nombre_usuario"]))
       $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
       //echo "<br>" . $minTemp;
        ?>
-       <img src="<?php echo $minTemp; ?>" alt="<?php echo HOLIERROR. "No encontrada"; ?>" width="100%"><br>
-       <h3 class="text-center" style="color:#0B0B61"><?php echo $usuario->obtenerNombre(); ?></h3>
-       <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
+       <div class="col-md-1">
+
+       </div>
+       <div class="col-md-10">
+         <img src="<?php echo $minTemp; ?>" alt="<?php echo HOLIERROR. "No encontrada"; ?>" width="100%"><br>
+         <h3 class="text-center" style="color:#0B0B61"><?php echo $usuario->obtenerNombre(); ?></h3>
+         <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
+       </div>
+       <div class="col-md-1">
+
+       </div>
     </div>
     <div class="col-md-7">
       <div class="panel panel-primary">

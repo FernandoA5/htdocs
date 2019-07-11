@@ -100,3 +100,25 @@
   color: red;
   background-color: red;
 }
+.dropdown-menu{
+  background-color:#0B0B3B !important;
+}
+.open>a{
+  background-color:#0B0B3B !important;
+}
+.open a{
+  color:white !important;
+}
+.open a:hover{
+  background-color:#B40404 !important;
+}
+.panel-heading{
+  background-color:#0B0B3B !important;
+}
+.navbar
+{
+  background-color:#0B0B3B !important;
+}
+.btn-primary{
+  background-color:#0B0B3B !important;
+}

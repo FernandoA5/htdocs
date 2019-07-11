@@ -45,7 +45,7 @@ class barColores
       echo '<li><a href="' . LEARNING . '" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="' . BLOGS .'" style="color:white;" title="Blogs">Blogs</a></li>';
     }
-    
+
 
   }
 
