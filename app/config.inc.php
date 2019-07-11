@@ -25,6 +25,7 @@ define("RUTAJS", SERVIDOR . "/js/");
 define("RUTAIMAGENES", SERVIDOR . "/imagenes/");
 define("RUTAPLANTILLAS", SERVIDOR .  "/Plantillas/");
 define("RUTAAPP", SERVIDOR . "/app/");
+define ("RUTAAVATARS", RUTAIMAGENES. "avatars/");
 
 //define("REGISTRAR", SERVIDOR . "/Plantillas/");
 

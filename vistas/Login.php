@@ -35,7 +35,7 @@ include_once "Plantillas/bar.php";
      <div class="col-md-4 text-center">
        <div class="panel panel-primary">
          <div class="panel-heading">
-           <h3 class=panel-title>Iniciar Sesión</h3>
+           <h3 class="panel-title">Iniciar Sesión</h3>
          </div>
          <div class="panel-body">
            <form role="form" method="post" action="<?php echo LOGIN ?>">

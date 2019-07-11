@@ -150,23 +150,24 @@ class RepositorioUsuario
     }
     return $usuario;
   }
-  public static function obtenerUsuarioPorId($conection, $nombre)
+  public static function obtenerUsuarioPorNombre($conection, $nombre)
   {
     $usuario=null;
     if(isset($conection))
     {
       try {
-        $sql="SELECT * FROM usuarios WHERE noombre= :nombre";
+        $sql="SELECT * FROM usuarios WHERE nombre= :nombre";
         $sentencia=$conection ->prepare($sql);
-        $sentencia=bindParam(":nombre", $nombre, PDO:PARAM_STR);
+
+        $sentencia->bindParam(":nombre", $nombre, PDO::PARAM_STR);
         $sentencia->execute();
         $resultado=$sentencia->fetch();
         if(!empty($resultado))
         {
-          $usuario = new Usuario($resultado["id"], $resultado["nombre"], $resultado["email"], $resultado["password"],);
+          $usuario = new Usuario($resultado["id"], $resultado["nombre"], $resultado["email"], $resultado["password"], $resultado["fechaRegistro"], $resultado["activo"], $resultado["suscripcion"], $resultado["puntos"], $resultado["avatar"]);
         }
         else {
-          echo HOLIERROR . "RESULTADO VACIO"
+          echo HOLIERROR . "RESULTADO VACIO";
         }
 
       } catch (PDOException $ex) {
@@ -174,6 +175,7 @@ class RepositorioUsuario
       }
 
     }
+    return $usuario;
   }
 }
 
