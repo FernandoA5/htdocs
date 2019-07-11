@@ -1,16 +1,5 @@
-<?php
-if($P==4)
-{
-  ?>
-    <body style="background-color:#F2F2F2">
-  <?php
-}
-else {
-  ?>
-  <body style="background-color:white">
-  <?php
-}?>
 
+<body style="background-color:#F2F2F2">
 
 <nav class="navbar navbar-inverse navbar-static-top">
 <div class="container">
