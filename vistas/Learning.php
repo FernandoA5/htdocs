@@ -9,7 +9,12 @@
       <div class="col-md-6">
           <form role="form" method="post" action="<?php echo LEARNING; ?>"><br>
               <div class="col-md-11">
-                <input type="text" name="busqueda" id="busqueda" class="form-control" placeholder="¿Qué estás buscando?" value="" autofocus><br>
+                <input type="text" name="busqueda" id="busqueda" class="form-control" placeholder="¿Qué estás buscando?" value="<?php
+                if(isset($_POST["buscar"]))
+                {
+                  echo $_POST["busqueda"];
+                }
+                 ?>" autofocus><br>
               </div>
               <div class="col-md-1 text-center" >
                 <button type="submit" name="buscar" class="btn btn-bg btn-primary" style="border:none; background-color:#0B0B3B !important;"><span class="glyphicon glyphicon-search" style="color:white"></span></button>
@@ -24,6 +29,12 @@
       </div>
     </div>
   </div>
+  <br>
+
+  <?php
+  include_once "app/escritorCursos.inc.php";
+
+   ?>
 
 
   <?php

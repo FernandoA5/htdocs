@@ -177,6 +177,32 @@ class RepositorioUsuario
     }
     return $usuario;
   }
+  public static function obtenerUsuarioPorId($conection, $id)
+  {
+    $usuario=null;
+    if(isset($conection))
+    {
+      try {
+        $sql="SELECT * FROM usuarios WHERE id=:id";
+        $sentencia=$conection->prepare($sql);
+        $sentencia->bindParam(":id", $id, PDO::PARAM_STR);
+        $sentencia->execute();
+        $resultado=$sentencia->fetch();
+        if(!empty($resultado))
+        {
+          $usuario = new Usuario($resultado["id"], $resultado["nombre"], $resultado["email"], $resultado["password"], $resultado["fechaRegistro"], $resultado["activo"], $resultado["suscripcion"], $resultado["puntos"], $resultado["avatar"]);
+        }
+        else {
+          echo HOLIERROR . "RESULTADO VACIO";
+        }
+      } catch (PDOException $ex) {
+        print HOLIERROR . $ex->getMessage();
+      }
+
+    }
+    return $usuario;
+
+  }
 }
 
 
