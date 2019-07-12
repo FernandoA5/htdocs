@@ -5,7 +5,7 @@ include_once "conexion.inc.php";
 include_once "avatars.inc.php";
   class escritorUsuarios
   {
-    public function escribirUsuario($conection)
+    public static function escribirUsuario($conection)
     {
       $usuarios=RepositorioUsuario::getAll($conection);
       $num=count($usuarios);

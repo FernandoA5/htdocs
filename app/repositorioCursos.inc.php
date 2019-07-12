@@ -2,7 +2,7 @@
 include_once "cursos.inc.php";
   class repositorioCursos
   {
-    public function buscarCurso($conection, $titulo)
+    public static function buscarCurso($conection, $titulo)
     {
       $curso=null;
       if(isset($conection))
@@ -26,7 +26,7 @@ include_once "cursos.inc.php";
       }
       return $curso;
     }
-    public function todosCursos($conection)
+    public static function todosCursos($conection)
     {
       $cursos=array();
       if(isset($conection))

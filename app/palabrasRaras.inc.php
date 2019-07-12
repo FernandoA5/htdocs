@@ -1,7 +1,7 @@
 <?php
   class palabrasRaras
   {
-    public function arreglar($pal)
+    public static function arreglar($pal)
     {
 
       $chars[0]="A1";$chars[1]="A9";$chars[2]="AD";$chars[3]="B3";$chars[4]="BA";

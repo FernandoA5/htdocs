@@ -55,11 +55,6 @@ class ValidadorRegistro
     {
       return "¡Epa! Este Nombre ya está en uso";
     }
-
-    /*if(count($nomb)>1)
-    {
-      return "No utilizar espacios";
-    }*/
     return "";
   }
 

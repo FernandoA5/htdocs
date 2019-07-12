@@ -38,14 +38,16 @@ $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
         </div>
      </div>
      <div class="col-md-7">
-       <div class="panel panel-primary">
-         <div class="panel-heading">
-           <h3 class="panel-title">En Mente</h3>
-         </div>
-         <div class="panel-body">
+       <?php
+       include_once "app/entradas.inc.php";
+       include_once "app/repositorioEntradas.inc.php";
+       include_once "app/escritorEntradas.inc.php";
 
-         </div>
-       </div>
+       conexion::openConection();
+       escritorEntradas::escribir(conexion::getConection(), $usuario->obtenerId());
+
+       conexion::closeConection();
+        ?>
      </div>
      <div class="col-md-3">
 

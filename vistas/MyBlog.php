@@ -23,6 +23,7 @@ if(!isset($_SESSION["nombre_usuario"]))
       conexion::openConection();
       $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
       $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
+      conexion::closeConection();
       //echo "<br>" . $minTemp;
        ?>
        <div class="col-md-1">
@@ -40,23 +41,47 @@ if(!isset($_SESSION["nombre_usuario"]))
     <div class="col-md-7">
       <?php
       include_once "app/escritorEntradas.inc.php";
-      escritorEntradas::escribir();
+      include_once "app/validadorEntrada.inc.php";
+      conexion::openConection();
+      escritorEntradas::escribir(conexion::getConection(), $usuario->obtenerId());
+      conexion::closeConection();
+      if(isset($_POST["send"]))
+      {
+        conexion::openConection();
+        $validador = new validadorEntradas($_POST["titulo"], $_POST["texto"]);
+        if($validador->entradaValida())
+        {
+          $entrada = new entradas("", $_SESSION["id_usuario"], $validador->getTitle(), $validador->getText(), "", 1, 0);
+          $entradaInsertada = repositorioEntradas::insertarEntrada(conexion::getConection(), $entrada);
+          if($entradaInsertada)
+          {
+            echo "ENTRADA PUBLICADA";
+            redireccion::redirigir(MYBLOG);
+            $_POST["send"]=null;
+          }
+        }
+        conexion::closeConection();
+      }
        ?>
     </div>
+
     <div class="col-md-3">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">En Mente</h3>
         </div>
         <div class="panel-body">
-          <form>
-            <div class="form-group">
-              <input type="text" id="titulo" value="" placeholder="¿Tienes una idea?" class="form-control">
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" id="texto "rows="3" placeholder="¿Qué tienes en mente?"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm center-block" action="<?php echo MYBLOG; ?>">Publicar</button>
+          <form role="form" method="post" action="<?php echo MYBLOG; ?>">
+            <?php
+            if(isset($_POST["send"]))
+            {
+              include_once "Plantillas/formEntradaValidado.inc.php";
+            }
+            else
+            {
+                include_once "Plantillas/formEntradaVacio.inc.php";
+            }
+             ?>
           </form>
         </div>
       </div>
