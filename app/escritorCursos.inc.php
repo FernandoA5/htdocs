@@ -4,12 +4,13 @@
   include_once "app/conexion.inc.php";
   include_once "app/repositorioUsuario.inc.php";
   include_once "app/usuario.inc.php";
+  include_once "app/cursos.inc.php";
   conexion::openConection();
   $res=0;
   if(empty($_POST["busqueda"]))
   {
     $todos=repositorioCursos::todosCursos(conexion::getConection());
-    $usuario= RepositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $_SESSION["id_usuario"]);
+    //$usuario= RepositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), cursos::obtenerAutorId());
     $numCursos=count($todos);
     for($i=0; $i<$numCursos; $i++)
     {
@@ -24,7 +25,12 @@
           </div>
           <div class="col-md-10">
             <a href="#"><h2 style="color:white"><?php echo $todos[$i]->obtenerTitulo(); ?></h2></a>
-            <h4 style="color:white"><?php echo $usuario->obtenerNombre();   ?></h4>
+            <h4 style="color:white"><?php
+            $usuario= RepositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $todos[$i]->obtenerAutorId());
+            echo $usuario->obtenerNombre();
+            ?>
+          </h4>
+
             <h4 style="color:white"><?php echo $todos[$i]->obtenerTexto(); ?></h4>
             <h5 style="color:gray"><?php echo $todos[$i]->obtenerVistas(); ?></h5>
           </div>
@@ -89,9 +95,7 @@ if(isset($_POST["buscar"]))
   //SOLO UNA PALABRA
   for($i=0; $i<$total; $i++)
   {
-
     $palabras[$i]=$todos[$i]->obtenerTitulo();
-    $num=count($word);
     if($palabras[$i]==$_POST["busqueda"])
     {
       $curso=repositorioCursos::buscarCurso(conexion::getConection(), $todos[$i]->obtenerTitulo());

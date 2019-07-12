@@ -20,8 +20,6 @@ if(!isset($_SESSION["nombre_usuario"]))
     <div class="col-md-2">
       <?php
 
-      //echo $_SESSION["nombre_usuario"];
-      //include_once "app/pruebas.inc.php";
       conexion::openConection();
       $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
       $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
@@ -40,17 +38,28 @@ if(!isset($_SESSION["nombre_usuario"]))
        </div>
     </div>
     <div class="col-md-7">
+      <?php
+      include_once "app/escritorEntradas.inc.php";
+      escritorEntradas::escribir();
+       ?>
+    </div>
+    <div class="col-md-3">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">En Mente</h3>
         </div>
         <div class="panel-body">
-
+          <form>
+            <div class="form-group">
+              <input type="text" id="titulo" value="" placeholder="¿Tienes una idea?" class="form-control">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" id="texto "rows="3" placeholder="¿Qué tienes en mente?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm center-block" action="<?php echo MYBLOG; ?>">Publicar</button>
+          </form>
         </div>
       </div>
-    </div>
-    <div class="col-md-3">
-
     </div>
   </div>
 </div>

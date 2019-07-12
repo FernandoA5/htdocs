@@ -43,6 +43,7 @@ class ValidadorRegistro
   }
   private function validarNombre($conection, $nombre)
   {
+    $nomb=explode(" ", $nombre);
     if(!$this -> VariableIniciada($nombre))
     {
       return "¡Epa! Escribe un nombre";
@@ -54,14 +55,10 @@ class ValidadorRegistro
     {
       return "¡Epa! Este Nombre ya está en uso";
     }
-    /*
-    if(strlen($nombre)<6)
+
+    /*if(count($nomb)>1)
     {
-      return "El nombre debe tener mas de 3 caracteres";
-    }
-    if(strlen($nombre)>24)
-    {
-      return "El nombre solo puede tener menos de 24 caracteres";
+      return "No utilizar espacios";
     }*/
     return "";
   }

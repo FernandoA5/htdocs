@@ -26,7 +26,7 @@ if($partesRuta[1]=="Games")
   include_once "vistas/Games.php";
   $encontrada=1;
 }
-if($partesRuta[1]=="Blogs")
+if($partesRuta[1]=="Blogs" && count($partesRuta)==2)
 {
   include_once "vistas/Blogs.php";
   $encontrada=1;
@@ -56,6 +56,36 @@ if($partesRuta[1]=="Logout")
   include_once "vistas/cerrarSesion.php";
   $encontrada=1;
 }
+if(!empty($partesRuta[2]))
+{
+  if($partesRuta[1]=="Blogs")
+  {
+    include_once "app/usuario.inc.php";
+    include_once "app/repositorioUsuario.inc.php";
+    include_once "app/conexion.inc.php";
+    include_once "app/palabrasRaras.inc.php";
+    conexion::openConection();
+    $existe=RepositorioUsuario::nombreExiste(conexion::getConection(),$partesRuta[2]);
+    if($existe)
+    {
+      $titulo=$partesRuta[2];
+      include_once "vistas/blog.php";
+      $encontrada=1;
+    }
+    else{
+      $arreglada= palabrasRaras::arreglar($partesRuta[2]);
+      $existe=RepositorioUsuario::nombreExiste(conexion::getConection(), $arreglada);
+      if($existe)
+      {
+        $titulo=$arreglada;
+        include_once "vistas/blog.php";
+        $encontrada=1;
+      }
+    }
+    conexion::closeConection();
+  }
+}
+
 
 
 
