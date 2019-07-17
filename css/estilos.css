@@ -136,5 +136,10 @@
   cursor: pointer;
   padding: 0.5em;
   width: 100%;
+  color:white;
+
+}
+#etiquetaMin:hover{
+  background-color: red;
 
 }

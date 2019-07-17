@@ -42,9 +42,11 @@ if(!isset($_SESSION["nombre_usuario"]))
       <?php
       include_once "app/escritorEntradas.inc.php";
       include_once "app/validadorEntrada.inc.php";
+      include_once "app/validadorCurso.inc.php";
       conexion::openConection();
       escritorEntradas::escribir(conexion::getConection(), $usuario->obtenerId());
       conexion::closeConection();
+      //VALIDACION ENTRADAS
       if(isset($_POST["send"]))
       {
         conexion::openConection();
@@ -56,8 +58,33 @@ if(!isset($_SESSION["nombre_usuario"]))
           if($entradaInsertada)
           {
             echo "ENTRADA PUBLICADA";
-            redireccion::redirigir(MYBLOG);
             $_POST["send"]=null;
+            redireccion::redirigir(MYBLOG);
+
+          }
+        }
+        conexion::closeConection();
+      }
+      //VALIDACION CURSOS
+      if(isset($_POST["send2"]))
+      {
+        conexion::openConection();
+        $directorio=DIRECTORIORAIZ . "/imagenes/" . "miniaturas/";
+        $carpetaO=$directorio.basename($_FILES["miniaturaSubida"]["name"]);
+        $tipoImagen=pathinfo($carpetaO, PATHINFO_EXTENSION);
+        $validador=new validadorCursos($_POST["titulo"], $_POST["texto"], $_FILES["miniaturaSubida"]);
+        echo $_FILES["miniaturaSubida"]["tmp_name"];
+        $ruta=$_POST["titulo"];
+        if($validador->cursoValido())
+        {
+          $curso= new cursos("", $_SESSION["id_usuario"], $validador->getTitle(), $validador->getTitle, $ruta, $validador->getText(), "", 0);
+          $cursoInsertado=repositorioCursos::insertarCurso(conexion::getConection(), $curso);
+          if($cursoInsertado)
+          {
+            echo "Curso Creado";
+            $_POST["send2"]=null;
+            redireccion::redirigir(MYBLOG);
+
           }
         }
         conexion::closeConection();
@@ -96,9 +123,54 @@ if(!isset($_SESSION["nombre_usuario"]))
           <div class="panel-body">
             <form role="form" method="post" action="<?php echo MYBLOG; ?>" enctype="multipart/form-data">
               <?php
-              if(!isset($_POST["sendCurso"]))
+              if(!isset($_POST["send2"]))
               {
                 include_once "Plantillas/formCursoVacio.inc.php";
+              }
+              if(isset($_POST["send2"]))
+              {
+                include_once "Plantillas/formCursoValidado.inc.php";
+              }
+
+              if(isset($_POST["send2"]) && !empty($_FILES["miniaturaSubida"]["tmp_name"]))
+              {
+                $directorio=DIRECTORIORAIZ. '/imagenes/'.'miniaturas/';
+                $carpetaObjetivo=$directorio.basename($_FILES["miniaturaSubida"]["name"]);
+                $subidaCorrecta=1;
+                $tipoImagen=pathinfo($carpetaObjetivo, PATHINFO_EXTENSION);
+
+                $comprobacion= getimagesize($_FILES["miniaturaSubida"]["tmp_name"]);
+                if($comprobacion!=false)
+                {
+                  $subidaCorrecta=1;
+                }
+                else {
+                  $subidaCorrecta=0;
+                }
+                if($_FILES["miniaturaSubida"]["size"]>5000000)
+                {
+                  echo "<br><div class='alert-danger' align='center'role='alert'>Imagen demaciado grande</div>";
+                  $subidaCorrecta=0;
+                }
+                if($tipoImagen!="jpg" && $tipoImagen!="png" && $tipoImagen!="jpeg" && $tipoImagen!="gif")
+                {
+                    echo "<br><div class='alert-danger' align='center' role='alert'>Formato Invalido</div>";
+                    $subidaCorrecta=0;
+                }
+                if($subidaCorrecta==0)
+                {
+                  echo "<br><div class='alert-danger' align='center' role='alert'>El archivo no es invalido</div>";
+                }
+                else {
+                  if(move_uploaded_file($_FILES["miniaturaSubida"]["tmp_name"], DIRECTORIORAIZ."/imagenes/miniaturas/".$_POST["titulo"].".".$tipoImagen))
+                  {
+                    echo "<br><div class='alert-success' align='center' role='alert'>Todo Cool ".basename($_FILES["miniaturaSubida"]["name"]) . " subido" ;
+                    echo "</div>";
+                  }
+                  else {
+                    echo "<br><div class='alert-danger' align='center' role='alert'>Ha ocurrido un error</div>";
+                  }
+                }
               }
                ?>
             </form>

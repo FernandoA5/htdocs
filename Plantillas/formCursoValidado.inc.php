@@ -1,8 +1,14 @@
 <div class="form-grup">
-  <input type="text" name="titulo" value="" placeholder="¿Cuál es el titulo del curso?" class="form-control">
+  <input type="text" name="titulo" placeholder="¿Cuál es el titulo del curso?" class="form-control" <?php $validador->showTitle();?>>
+  <?php
+  $validador ->showErrorTitulo();
+   ?>
 </div><br>
 <div class="form-group">
-  <textarea name="texto" rows="4" cols="80" class="form-control" placeholder="¿De que trata el curso?"></textarea>
+  <textarea name="texto" rows="4" cols="80" class="form-control" placeholder="¿De que trata el curso?"><?php $validador->showText(); ?></textarea>
+  <?php
+  $validador ->showErrorTexto();
+   ?>
 </div>
 <div class="form-grup">
   <label for="miniaturaSubida" id="etiquetaMin" class="center-block" align="center">Sube la Miniatura</label>

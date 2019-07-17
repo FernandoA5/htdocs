@@ -27,6 +27,8 @@ define("RUTAPLANTILLAS", SERVIDOR .  "/Plantillas/");
 define("RUTAAPP", SERVIDOR . "/app/");
 define ("RUTAAVATARS", RUTAIMAGENES. "avatars/");
 define("RUTAMINIATURAS", RUTAIMAGENES. "miniaturas/");
+//define("DIRECTORIORAIZ", realpath(dirname(_FILE_)."/..")); php5
+define("DIRECTORIORAIZ", realpath(__DIR__."/..")); //php7
 
 //define("REGISTRAR", SERVIDOR . "/Plantillas/");
 

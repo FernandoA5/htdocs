@@ -12,7 +12,7 @@ class validadorEntradas
   private $errorTexto;
   public function __construct($titulo, $texto)
   {
-    $this -> avisoInicio="<br><div class='alert-danger' alert='alert'>";
+    $this -> avisoInicio="<br><div class='alert-danger text-center' role='alert'>";
     $this -> avisoCierre="</div>";
     $this -> titulo= "";
     $this -> texto= "";
@@ -37,7 +37,7 @@ class validadorEntradas
       return "Escribe un titulo";
     }
     else {
-      $this -> titulo=$titulo;
+        $this -> titulo =$titulo;
     }
     return "";
   }

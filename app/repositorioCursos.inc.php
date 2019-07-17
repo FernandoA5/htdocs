@@ -2,6 +2,29 @@
 include_once "cursos.inc.php";
   class repositorioCursos
   {
+    public static function insertarCurso($conection, $curso)
+    {
+      $cursoInsertado=null;
+      if(isset($conection))
+      {
+        try {
+          $sql ="INSERT INTO cursos(autorId, titulo, miniatura, ruta, texto, fecha, vistas) VALUES(:autorId, :titulo, :texto, NOW(), 0)";
+          $sentencia=$conection->prepare($sql);
+          $autorTemp=$curso->obtenerAutorId();
+          $tituloTemp=$curso->obtenerTitulo();
+          $textoTemp=$curso->obtenerTexto();
+
+          $sentencia->bindParam(":autorId", $autorTemp, PDO::PARAM_STR);
+          $sentencia->bindParam(":titulo", $tituloTemp, PDO::PARAM_STR);
+          $sentencia->bindParam(":texto", $textoTemp, PDO::PARAM_STR);
+          $entradaInsertada=$sentencia->execute();
+        } catch (PDOException $ex) {
+          print HOLIERROR . $ex->getMessage();
+        }
+
+      }
+      return $cursoInsertado;
+    }
     public static function buscarCurso($conection, $titulo)
     {
       $curso=null;
