@@ -122,3 +122,19 @@
 .btn-primary{
   background-color:#0B0B3B !important;
 }
+.boton_subir
+{
+    width: 0.1;
+    height: 0.1;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+#etiquetaMin{
+  background-color: #00FF40;
+  cursor: pointer;
+  padding: 0.5em;
+  width: 100%;
+
+}

@@ -11,12 +11,15 @@ include_once "Plantillas/head.php";
 include_once "Plantillas/bar.php";
 conexion::openConection();
 $usuario= repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $nombre);
-
-if($nombre==$_SESSION["nombre_usuario"])
+if(isset($_SESSION["nombre_usuario"]))
 {
-  echo HOLI;
-  redireccion::redirigir(MYBLOG);
+  if($nombre==$_SESSION["nombre_usuario"])
+  {
+    echo HOLI;
+    redireccion::redirigir(MYBLOG);
+  }
 }
+
 $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
  ?>
  <div class="container-fluid">

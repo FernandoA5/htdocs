@@ -84,7 +84,29 @@ if(!isset($_SESSION["nombre_usuario"]))
              ?>
           </form>
         </div>
-      </div>
+      </div><br>
+      <?php
+      if($usuario->obtenerSuscripcion()==3)
+      {
+        ?>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Publicar Curso</h3>
+          </div>
+          <div class="panel-body">
+            <form role="form" method="post" action="<?php echo MYBLOG; ?>" enctype="multipart/form-data">
+              <?php
+              if(!isset($_POST["sendCurso"]))
+              {
+                include_once "Plantillas/formCursoVacio.inc.php";
+              }
+               ?>
+            </form>
+          </div>
+        </div>
+        <?php
+      }
+       ?>
     </div>
   </div>
 </div>
