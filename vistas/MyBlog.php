@@ -15,28 +15,46 @@ if(!isset($_SESSION["nombre_usuario"]))
   redireccion::redirigir(SERVIDOR);
 }
  ?>
-<div class="container-fluid">
+<div class="container-liquid">
   <div class="row">
     <div class="col-md-2">
       <?php
-
       conexion::openConection();
       $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
       $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
       conexion::closeConection();
       //echo "<br>" . $minTemp;
        ?>
-       <div class="col-md-1">
-
+       <div class="row">
+         <div class="col-md-1">
+         </div>
+         <div class="col-md-10">
+           <img src="<?php echo $minTemp; ?>" alt="<?php echo HOLIERROR. "No encontrada"; ?>" width="100%"><br>
+           <h3 class="text-center" style="color:#0B0B61"><?php echo $usuario->obtenerNombre(); ?></h3>
+           <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
+         </div>
+         <div class="col-md-1">
+         </div>
        </div>
-       <div class="col-md-10">
-         <img src="<?php echo $minTemp; ?>" alt="<?php echo HOLIERROR. "No encontrada"; ?>" width="100%"><br>
-         <h3 class="text-center" style="color:#0B0B61"><?php echo $usuario->obtenerNombre(); ?></h3>
-         <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
-       </div>
-       <div class="col-md-1">
-
-       </div>
+       <?php
+       if($usuario->obtenerSuscripcion()==3)
+       {
+         ?>
+         <div class="row">
+           <div class="col-md-12">
+            <h3 width="100%" style="background-color:#0B0B63; color:white; font-family:Agency Fb" class="text-center">Cursos<h3>
+              <?php
+              include_once "app/cursos.inc.php";
+              include_once "app/repositorioCursos.inc.php";
+              conexion::openConection();
+              repositorioCursos::escribirCursos(repositorioCursos::cursosUsuario(conexion::getConection(), $usuario->obtenerId()));
+              conexion::closeConection();
+               ?>
+           </div>
+         </div>
+         <?php
+       }
+        ?>
     </div>
     <div class="col-md-7">
       <?php
@@ -57,34 +75,8 @@ if(!isset($_SESSION["nombre_usuario"]))
           $entradaInsertada = repositorioEntradas::insertarEntrada(conexion::getConection(), $entrada);
           if($entradaInsertada)
           {
-            echo "ENTRADA PUBLICADA";
             $_POST["send"]=null;
             redireccion::redirigir(MYBLOG);
-
-          }
-        }
-        conexion::closeConection();
-      }
-      //VALIDACION CURSOS
-      if(isset($_POST["send2"]))
-      {
-        conexion::openConection();
-        $directorio=DIRECTORIORAIZ . "/imagenes/" . "miniaturas/";
-        $carpetaO=$directorio.basename($_FILES["miniaturaSubida"]["name"]);
-        $tipoImagen=pathinfo($carpetaO, PATHINFO_EXTENSION);
-        $validador=new validadorCursos($_POST["titulo"], $_POST["texto"], $_FILES["miniaturaSubida"]);
-        echo $_FILES["miniaturaSubida"]["tmp_name"];
-        $ruta=$_POST["titulo"];
-        if($validador->cursoValido())
-        {
-          $curso= new cursos("", $_SESSION["id_usuario"], $validador->getTitle(), $validador->getTitle, $ruta, $validador->getText(), "", 0);
-          $cursoInsertado=repositorioCursos::insertarCurso(conexion::getConection(), $curso);
-          if($cursoInsertado)
-          {
-            echo "Curso Creado";
-            $_POST["send2"]=null;
-            redireccion::redirigir(MYBLOG);
-
           }
         }
         conexion::closeConection();
@@ -129,49 +121,72 @@ if(!isset($_SESSION["nombre_usuario"]))
               }
               if(isset($_POST["send2"]))
               {
-                include_once "Plantillas/formCursoValidado.inc.php";
-              }
+                conexion::openConection();
 
-              if(isset($_POST["send2"]) && !empty($_FILES["miniaturaSubida"]["tmp_name"]))
-              {
-                $directorio=DIRECTORIORAIZ. '/imagenes/'.'miniaturas/';
-                $carpetaObjetivo=$directorio.basename($_FILES["miniaturaSubida"]["name"]);
-                $subidaCorrecta=1;
-                $tipoImagen=pathinfo($carpetaObjetivo, PATHINFO_EXTENSION);
-
-                $comprobacion= getimagesize($_FILES["miniaturaSubida"]["tmp_name"]);
-                if($comprobacion!=false)
+                //VALIDACION IMAGEN
+                if(isset($_POST["send2"]) && !empty($_FILES["miniaturaSubida"]["tmp_name"]))
                 {
+                  $directorio=DIRECTORIORAIZ. '/imagenes/'.'miniaturas/';
+                  $carpetaObjetivo=$directorio.basename($_FILES["miniaturaSubida"]["name"]);
                   $subidaCorrecta=1;
-                }
-                else {
-                  $subidaCorrecta=0;
-                }
-                if($_FILES["miniaturaSubida"]["size"]>5000000)
-                {
-                  echo "<br><div class='alert-danger' align='center'role='alert'>Imagen demaciado grande</div>";
-                  $subidaCorrecta=0;
-                }
-                if($tipoImagen!="jpg" && $tipoImagen!="png" && $tipoImagen!="jpeg" && $tipoImagen!="gif")
-                {
-                    echo "<br><div class='alert-danger' align='center' role='alert'>Formato Invalido</div>";
-                    $subidaCorrecta=0;
-                }
-                if($subidaCorrecta==0)
-                {
-                  echo "<br><div class='alert-danger' align='center' role='alert'>El archivo no es invalido</div>";
-                }
-                else {
-                  if(move_uploaded_file($_FILES["miniaturaSubida"]["tmp_name"], DIRECTORIORAIZ."/imagenes/miniaturas/".$_POST["titulo"].".".$tipoImagen))
+                  $tipoImagen=pathinfo($carpetaObjetivo, PATHINFO_EXTENSION);
+
+                  $comprobacion= getimagesize($_FILES["miniaturaSubida"]["tmp_name"]);
+                  if($comprobacion!=false)
                   {
-                    echo "<br><div class='alert-success' align='center' role='alert'>Todo Cool ".basename($_FILES["miniaturaSubida"]["name"]) . " subido" ;
-                    echo "</div>";
+                    $subidaCorrecta=1;
                   }
                   else {
-                    echo "<br><div class='alert-danger' align='center' role='alert'>Ha ocurrido un error</div>";
+                    $subidaCorrecta=0;
+                  }
+                  if($_FILES["miniaturaSubida"]["size"]>5000000)
+                  {
+                    echo "<br><div class='alert-danger' align='center'role='alert'>Imagen demaciado grande</div>";
+                    $subidaCorrecta=0;
+                  }
+                  if($tipoImagen!="jpg" && $tipoImagen!="png" && $tipoImagen!="jpeg" && $tipoImagen!="gif")
+                  {
+                      echo "<br><div class='alert-danger' align='center' role='alert'>Formato Invalido</div>";
+                      $subidaCorrecta=0;
+                  }
+                  if($subidaCorrecta==0)
+                  {
+                    echo "<br><div class='alert-danger' align='center' role='alert'>El archivo no es invalido</div>";
+                  }
+                  else {
+                    if(move_uploaded_file($_FILES["miniaturaSubida"]["tmp_name"], DIRECTORIORAIZ."/imagenes/miniaturas/".$_POST["titulo"].".".$tipoImagen))
+                    {
+                    //  echo "<br><div class='alert-success' align='center' role='alert'>Todo Cool ".basename($_FILES["miniaturaSubida"]["name"]) . " subido" ;
+                    //  echo "</div>";
+                    }
+                    else {
+                      echo "<br><div class='alert-danger' align='center' role='alert'>Ha ocurrido un error</div>";
+                    }
                   }
                 }
+                //VALIDADOR
+                  $validador=new validadorCursos($_POST["titulo"], $_POST["texto"], $_FILES["miniaturaSubida"]["name"]);
+                  $ruta=$validador->getTitle();
+                  if($validador->cursoValido())
+                  {
+                    $curso= new cursos("", $_SESSION["id_usuario"], $validador->getTitle(), $_FILES["miniaturaSubida"]["name"], $ruta, $validador->getText(), "", 0);
+                    $cursoInsertado=repositorioCursos::insertarCurso(conexion::getConection(), $curso);
+                    if($cursoInsertado)
+                    {
+                      $_POST["send2"]=null;
+                      ?>
+                      <div class="alert-success text-center" role="alert">
+                        Curso Creado Exitosamente
+                      </div>
+                      <?php
+                      $_POST["send2"]=null;
+                    }
+                  }
+                  conexion::closeConection();
+                  include_once "Plantillas/formCursoValidado.inc.php";
               }
+
+
                ?>
             </form>
           </div>

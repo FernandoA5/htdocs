@@ -38,12 +38,12 @@ class validadorCursos
       return "Escribe un titulo";
     }
     else {
-      if(strlen($titulo)<25)
+      if(strpos($titulo, " "))
       {
-        $this -> titulo =$titulo;
+        return "No use espacios en el titulo";
       }
       else {
-        return "titulo demaciado largo";
+        $this-> titulo=$titulo;
       }
     }
     return "";
@@ -69,6 +69,7 @@ class validadorCursos
     else {
       $this -> miniatura =$miniatura;
     }
+    return "";
   }
   public function getTitle()
   {

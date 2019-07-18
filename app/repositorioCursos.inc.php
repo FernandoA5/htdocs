@@ -8,16 +8,20 @@ include_once "cursos.inc.php";
       if(isset($conection))
       {
         try {
-          $sql ="INSERT INTO cursos(autorId, titulo, miniatura, ruta, texto, fecha, vistas) VALUES(:autorId, :titulo, :texto, NOW(), 0)";
+          $sql ="INSERT INTO cursos(autorId, titulo, miniatura, ruta, texto, fecha, vistas) VALUES(:autorId, :titulo, :miniatura, :ruta, :texto, NOW(), 0)";
           $sentencia=$conection->prepare($sql);
           $autorTemp=$curso->obtenerAutorId();
           $tituloTemp=$curso->obtenerTitulo();
           $textoTemp=$curso->obtenerTexto();
+          $minTemp=$curso->obtenerMiniatura();
+          $rutaTemp=$curso->obtenerRuta();
 
           $sentencia->bindParam(":autorId", $autorTemp, PDO::PARAM_STR);
           $sentencia->bindParam(":titulo", $tituloTemp, PDO::PARAM_STR);
+          $sentencia->bindParam(":miniatura", $minTemp, PDO::PARAM_STR);
+          $sentencia->bindParam(":ruta", $rutaTemp, PDO::PARAM_STR);
           $sentencia->bindParam(":texto", $textoTemp, PDO::PARAM_STR);
-          $entradaInsertada=$sentencia->execute();
+          $cursoInsertado=$sentencia->execute();
         } catch (PDOException $ex) {
           print HOLIERROR . $ex->getMessage();
         }
@@ -74,6 +78,46 @@ include_once "cursos.inc.php";
 
       }
       return $cursos;
+    }
+    public static function cursosUsuario($conection, $autorId)
+    {
+      $cursos=array();
+      if(isset($conection))
+      {
+        try {
+          $sql="SELECT * FROM cursos WHERE autorId=:autorId";
+          $sentencia =$conection->prepare($sql);
+          $sentencia->bindParam("autorId", $autorId, PDO::PARAM_STR);
+          $sentencia->execute();
+          $resultado=$sentencia->fetchAll();
+          if(!empty($resultado))
+          {
+            foreach($resultado as $fila)
+            {
+              $cursos[]= new cursos($fila["id"], $fila["autorId"], $fila["titulo"], $fila["miniatura"], $fila["ruta"], $fila["texto"], $fila["fecha"], $fila["vistas"]);
+            }
+          }
+          else
+          {
+            echo "No ha publicado Cursos";
+          }
+        } catch (PDOException $ex) {
+          print HOLIERROR.$ex->getMessage();
+        }
+
+      }
+      return $cursos;
+    }
+    public static function escribirCursos($cursos)
+    {
+      $num= count($cursos);
+      for($i=0; $i<$num; $i++)
+      {
+        ?>
+        <h4 class="text-center"><?php echo $cursos[$i]->obtenerTitulo(); ?></h4>
+
+        <?php
+      }
     }
   }
  ?>

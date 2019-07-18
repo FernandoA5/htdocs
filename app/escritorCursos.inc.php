@@ -24,7 +24,7 @@
             <br><br>
           </div>
           <div class="col-md-10">
-            <a href="#"><h2 style="color:white"><?php echo $todos[$i]->obtenerTitulo(); ?></h2></a>
+            <a href="<?php echo LEARNING."/".$todos[$i]->obtenerTitulo(); ?>"><h2 style="color:white"><?php echo $todos[$i]->obtenerTitulo(); ?></h2></a>
             <h4 style="color:white"><?php
             $usuario= RepositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $todos[$i]->obtenerAutorId());
             echo $usuario->obtenerNombre();
@@ -76,7 +76,7 @@ if(isset($_POST["buscar"]))
                     <br><br>
                   </div>
                   <div class="col-md-10">
-                    <a href="#"><h2 style="color:white"><?php echo $curso->obtenerTitulo(); ?></h2></a>
+                    <a href="<?php echo LEARNING."/".$curso->obtenerTitulo(); ?>"><h2 style="color:white"><?php echo $curso->obtenerTitulo(); ?></h2></a>
                     <h4 style="color:white"><?php echo $usuario->obtenerNombre();   ?></h4>
                     <h4 style="color:white"><?php echo $curso->obtenerTexto(); ?></h4>
                     <h5 style="color:gray"><?php echo $curso->obtenerVistas(); ?></h5>
@@ -113,7 +113,7 @@ if(isset($_POST["buscar"]))
                 <br><br>
               </div>
               <div class="col-md-10">
-                <a href="#"><h2 style="color:white"><?php echo $curso->obtenerTitulo(); ?></h2></a>
+                <a href="<?php echo LEARNING."/".$curso->obtenerTitulo(); ?>"><h2 style="color:white"><?php echo $curso->obtenerTitulo(); ?></h2></a>
                 <h4 style="color:white"><?php echo $usuario->obtenerNombre();   ?></h4>
                 <h4 style="color:white"><?php echo $curso->obtenerTexto(); ?></h4>
                 <h5 style="color:gray"><?php echo $curso->obtenerVistas(); ?></h5>

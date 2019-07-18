@@ -11,7 +11,7 @@ if($partesRuta[1]=="")
   include_once "vistas/home.php";
   $encontrada=1;
 }
-if($partesRuta[1]=="Learning")
+if($partesRuta[1]=="Learning" && count($partesRuta)==2)
 {
   include_once "vistas/Learning.php";
   $encontrada=1;
@@ -81,8 +81,39 @@ if(!empty($partesRuta[2]))
         include_once "vistas/blog.php";
         $encontrada=1;
       }
+      else {
+        $encontrada=0;
+      }
     }
     conexion::closeConection();
+  }
+  if($partesRuta[1]=="Learning")
+  {
+    include_once "app/cursos.inc.php";
+    include_once "app/repositorioCursos.inc.php";
+    include_once "app/conexion.inc.php";
+    include_once "app/palabrasRaras.inc.php";
+    conexion::openConection();
+    $existe=repositorioCursos::buscarCurso(conexion::getConection(), $partesRuta[2]);
+    if($existe)
+    {
+      $titulo=$partesRuta[2];
+      include_once "vistas/Curso.php";
+      $encontrada=1;
+    }
+    else {
+      $arreglada=palabrasRaras::arreglar($partesRuta[2]);
+      $existe=repositorioCursos::buscarCurso(conexion::getConection(), $arreglada);
+      if($existe)
+      {
+        $titulo=$arreglada;
+        include_once "vistas/Curso.php";
+        $encontrada=1;
+      }
+      else {
+        $encontrada=0;
+      }
+    }
   }
 }
 

@@ -43,7 +43,7 @@ class ValidadorRegistro
   }
   private function validarNombre($conection, $nombre)
   {
-    $nomb=explode(" ", $nombre);
+    //$nomb=explode(" ", $nombre);
     if(!$this -> VariableIniciada($nombre))
     {
       return "¡Epa! Escribe un nombre";
@@ -54,6 +54,10 @@ class ValidadorRegistro
     if(RepositorioUsuario::nombreExiste($conection, $nombre))
     {
       return "¡Epa! Este Nombre ya está en uso";
+    }
+    if(strpos($nombre, " "))
+    {
+      return "El nombre no puede tener espacios";
     }
     return "";
   }
