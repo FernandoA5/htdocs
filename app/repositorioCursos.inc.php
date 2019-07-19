@@ -119,5 +119,31 @@ include_once "cursos.inc.php";
         <?php
       }
     }
+    //CAPITULOS
+    public function insertarCapitulo($conection, $capitulo)
+    {
+      $capituloInsertado=null;
+      if(isset($conection))
+      {
+        try {
+          $sql="INSERT INTO capitulos(cursoId, titulo, ruta, fecha) VALUES(:cursoId, :titulo, :ruta, NOW())";
+          $sentencia=$conection->prepare($sql);
+          $cursoIdTemp=$capitulo->obtenerCursoId();
+          $tituloTemp=$capitulo->obtenerTitulo();
+          $rutaTemp=$capitulo->obtenerRuta();
+
+          $sentencia->bindParam(":cursoId", $cursoIdTemp, PDO::PARAM_STR);
+          $sentencia->bindParam(":titulo", $tituloTemp, PDO::PARAM_STR);
+          $sentencia->bindParam(":ruta", $rutaTemp, PDO::PARAM_STR);
+
+          $capituloInsertado=$sentencia->execute();
+
+        } catch (PDOException $ex) {
+          print HOLIERROR.$ex->getMessage();
+        }
+
+      }
+      return $capituloInsertado;
+    }
   }
  ?>
