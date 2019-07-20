@@ -72,5 +72,66 @@ class comentarios
   }
 
 }
+class comentariosCapitulo
+{
+  private $id;
+  private $autorId;
+  private $cursoId;
+  private $texto;//
+  private $fecha;
+  private $activa;
+  private $likes;
+
+  public function __construct($id, $autorId, $cursoId, $texto, $fecha, $activa, $likes)
+  {
+    $this-> id =$id;
+    $this-> autorId=$autorId;
+    $this-> cursoId=$cursoId;
+    $this-> texto=$texto;//
+    $this-> fecha=$fecha;
+    $this-> activa=$activa;//
+    $this-> likes=$likes;//
+  }
+  public function obtenerId()
+  {
+    return $this-> id;
+  }
+  public function obtenerAutorId()
+  {
+    return $this -> autorId;
+  }
+  public function obtenerCursoId()
+  {
+    return $this-> cursoId;
+  }
+  public function obtenerTexto()
+  {
+    return $this -> texto;
+  }
+  public function obtenerFecha()
+  {
+    return $this -> fecha;
+  }
+  public function obtenerActiva()
+  {
+    return $this -> activa;
+  }
+  public function obtenerLikes()
+  {
+    return $this -> likes;
+  }
+  public function changeTexto()
+  {
+    $this -> texto=$texto;
+  }
+  public function changeActiva()
+  {
+    $this-> activa=$activa;
+  }
+  public function changeLikes()
+  {
+    $this-> likes=$likes;
+  }
+}
 
  ?>

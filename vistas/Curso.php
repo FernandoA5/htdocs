@@ -14,6 +14,7 @@ $P=3;
   include_once "app/capitulo.inc.php";
   include_once "app/repositorioCursos.inc.php";
   include_once "app/validadorCapitulo.inc.php";
+
  ?>
 
  <div class="container-liquid">
@@ -35,7 +36,7 @@ $P=3;
 
             ?>
            <div class="embed-responsive embed-responsive-16by9">
-             <iframe id="iframe" width="560%" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+             <iframe id="iframe" width="560%" height="315" src="<?php echo YOUTUBE.$capitulos[0]->obtenerRuta(); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
            </div>
          </div>
        </div>
@@ -44,7 +45,31 @@ $P=3;
            <h3 class="panel-title">Comentarios</h3>
          </div>
          <div class="panel-body">
-           <a href="#">Clase</a>
+           <form role="form" action="<?php echo LEARNING."/".$existe->obtenerTitulo(); ?>" method="post">
+             <?php
+             include_once "Plantillas/formComentarioCapitulo.inc.php";
+             include_once "app/validadorComentariosCapitulo.inc.php";
+             include_once "app/repositorioComentarios.inc.php";
+             conexion::openConection();
+             if(isset($_POST["sendC"]))
+             {
+               $validador= new validadorComentariosCapitulo($_POST["comentario"]);
+               if($validador->comentarioValido())
+               {
+                 $comentario = new comentariosCapitulo("", $_SESSION["id_usuario"], $existe->obtenerId(), $validador->getTexto(), "", "", "");
+                 $capituloInsertado=repositorioComentarios::insertarComentario(conexion::getConection(), $comentario);
+               }
+             }
+             conexion::closeConection();
+             if(isset($_POST["sendC"]))
+             {
+               formComentarioCapitulo::formValidado($validador);
+             }
+             else {
+               formComentarioCapitulo::formVacio();
+             }
+              ?>
+           </form>
          </div>
        </div>
      </div>

@@ -164,7 +164,7 @@ include_once "cursos.inc.php";
             }
           }
           else {
-            echo "Aun no hay capitulos publicados";
+            echo "<h3 style='color:white; font-family:Agency Fb;' class='text-center'>Aun no hay capitulos publicados</h3>";
           }
 
         } catch (PDOException $ex) {
