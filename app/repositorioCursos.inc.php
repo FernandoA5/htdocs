@@ -163,9 +163,6 @@ include_once "cursos.inc.php";
               $capitulos[]=new capitulo($fila["id"], $fila["cursoId"], $fila["titulo"], $fila["ruta"], $fila["fecha"]);
             }
           }
-          else {
-            echo "<h3 style='color:white; font-family:Agency Fb;' class='text-center'>Aun no hay capitulos publicados</h3>";
-          }
 
         } catch (PDOException $ex) {
           print HOLIERROR . $ex->getMessage();

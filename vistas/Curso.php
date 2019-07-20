@@ -32,12 +32,23 @@ $P=3;
            <?php
            conexion::openConection();
            $capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
+           if(count($capitulos)==0)
+           {
+             ?>
+             <div class="embed-responsive embed-responsive-16by9">
+               <iframe id="iframe" width="560%" height="315" src="<?php echo SERVER; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+             </div>
+             <?php
+           }
+           else {
+             ?>
+             <div class="embed-responsive embed-responsive-16by9">
+               <iframe id="iframe" width="560%" height="315" src="<?php echo YOUTUBE.$capitulos[0]->obtenerRuta(); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+             </div>
+             <?php
+           }
            conexion::closeConection();
-
             ?>
-           <div class="embed-responsive embed-responsive-16by9">
-             <iframe id="iframe" width="560%" height="315" src="<?php echo YOUTUBE.$capitulos[0]->obtenerRuta(); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-           </div>
          </div>
        </div>
        <div class="panel panel-primary">
@@ -154,8 +165,11 @@ $P=3;
            <?php
 
            conexion::openConection();
-           $capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
-           escritorCapitulos::escribir($capitulos, $existe->obtenerTitulo());
+           //$capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
+           if(count($capitulos))
+           {
+              escritorCapitulos::escribir($capitulos, $existe->obtenerTitulo());
+           }
            conexion::closeConection();
             ?>
          </div>
