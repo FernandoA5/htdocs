@@ -27,6 +27,32 @@ class repositorioComentarios
     return $comentarioInsertado;
 
   }
+  public static function obtenerComentariosCurso($conection, $cursoId)
+  {
+    $comentarios=array();
+    if(isset($conection))
+    {
+      try {
+        $sql="SELECT * FROM comentarioscursos WHERE cursoId=:cursoId";
+        $sentencia=$conection->prepare($sql);
+        $sentencia->bindParam(":cursoId", $cursoId, PDO::PARAM_STR);
+        $sentencia->execute();
+        $resultado=$sentencia->fetchAll();
+        if(!empty($resultado))
+        {
+          foreach($resultado as $fila)
+          {
+            $comentarios[]=new comentariosCapitulo($fila["id"], $fila["autorId"], $fila["cursoId"], $fila["texto"], $fila["fecha"], $fila["activa"], $fila["likes"]);
+          }
+        }
+
+      } catch (PDOException $ex) {
+        print HOLIERROR.$ex->getMessage();
+      }
+
+    }
+    return $comentarios;
+  }
 }
 
  ?>

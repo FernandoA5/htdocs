@@ -36,6 +36,32 @@ class escritorCapitulos
     </script>
     <?php
   }
+  public function escribirComentarios($conection, $comentarios)
+  {
+    if(isset($conection))
+    {
+      $usuario=array();
+      $num=count($comentarios);
+      for($i=$num-1; $i>=0;$i--)
+      {
+        $usuario[$i]=repositorioUsuario::obtenerUsuarioPorId($conection, $comentarios[$i]->obtenerAutorId());
+        ?>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $usuario[$i]->obtenerNombre();;?></h3>
+          </div>
+          <div class="panel-body">
+            <?php
+            echo $comentarios[$i]->obtenerTexto();
+             ?>
+          </div>
+        </div>
+
+        <?php
+      }
+    }
+  }
 }
 
  ?>

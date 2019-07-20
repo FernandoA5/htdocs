@@ -57,7 +57,12 @@ $P=3;
                if($validador->comentarioValido())
                {
                  $comentario = new comentariosCapitulo("", $_SESSION["id_usuario"], $existe->obtenerId(), $validador->getTexto(), "", "", "");
-                 $capituloInsertado=repositorioComentarios::insertarComentario(conexion::getConection(), $comentario);
+                 $comentarioInsertado=repositorioComentarios::insertarComentario(conexion::getConection(), $comentario);
+                 if($comentarioInsertado)
+                 {
+                   $_POST["sendC"]=null;
+                   redireccion::redirigir(LEARNING."/".$existe->obtenerTitulo());
+                 }
                }
              }
              conexion::closeConection();
@@ -72,6 +77,13 @@ $P=3;
            </form>
          </div>
        </div>
+       <?php
+       conexion::openConection();
+       $comentarios=repositorioComentarios::obtenerComentariosCurso(conexion::getConection(), $existe->obtenerId());
+       escritorCapitulos::escribirComentarios(conexion::getConection(), $comentarios);
+       conexion::closeConection();
+        ?>
+
      </div>
      <div class="col-sm-4">
        <?php
