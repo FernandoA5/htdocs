@@ -8,28 +8,39 @@
       $chars[5]="A0";$chars[6]="A8";$chars[7]="AC";$chars[8]="B2";$chars[9]="B9";
       $chars[10]="81";$chars[11]="89";$chars[12]="8D";$chars[13]="93";$chars[14]="9A";
       $chars[15]="80";$chars[16]="88";$chars[17]="8C";$chars[18]="92";$chars[19]="99";
-      $chars[20]="%20";$chars[21]="%";$chars[22]="C3";
+      $chars[20]="20";$chars[21]="C3";$chars[22]="%";$chars[23]="84";$chars[24]="8B";
+      $chars[25]="8F";$chars[26]="96";$chars[27]="9C";
       $rep[0]="á";$rep[1]="é";$rep[2]="í";$rep[3]="ó";$rep[4]="ú";
       $rep[5]="à";$rep[6]="è";$rep[7]="ì";$rep[8]="ò";$rep[9]="ù";
       $rep[10]="Á";$rep[11]="É";$rep[12]="Í";$rep[13]="Ó";$rep[14]="Ú";
       $rep[15]="À";$rep[16]="È";$rep[17]="Ì";$rep[18]="Ò";$rep[19]="Ù";
-      $rep[20]=" ";$rep[21]="";$rep[22]="";
+      $rep[20]=" ";$rep[21]="";$rep[22]="";$rep[23]="Ä";$rep[24]="Ë";$rep[25]="Ï";$rep[26]="Ö";$rep[27]="Ü";
 
-      for($i=0;$i<23;$i++)
+      for($i=0;$i<28;$i++)
       {
-        if(strpos($pal, $chars[$i]))
-        {
-          $pal=str_replace($chars[$i], $rep[$i], $pal);
-        }
-        $pal=$pal;
+        $pal=str_replace($chars[$i], $rep[$i], $pal);
       }
-      /*
-        $word=str_replace("A1", "á", $pal);
-        $word=str_replace("%C3%", "", $word);
-        $word=str_replace("20", " ",$word);
-*/
-
       return $pal;
+    }
+    public function detectar($pal)
+    {
+      $pos=false;
+      $rep[0]="á";$rep[1]="é";$rep[2]="í";$rep[3]="ó";$rep[4]="ú";
+      $rep[5]="à";$rep[6]="è";$rep[7]="ì";$rep[8]="ò";$rep[9]="ù";
+      $rep[10]="Á";$rep[11]="É";$rep[12]="Í";$rep[13]="Ó";$rep[14]="Ú";
+      $rep[15]="À";$rep[16]="È";$rep[17]="Ì";$rep[18]="Ò";$rep[19]="Ù";
+
+      for($i=0; $i<20; $i++)
+      {
+        if(strpos($pal, $rep[$i])===0)
+        {
+          return false;
+        }
+        else {
+          return true;
+        }
+
+      }
     }
   }
  ?>

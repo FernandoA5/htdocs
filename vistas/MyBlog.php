@@ -178,8 +178,10 @@ if(!isset($_SESSION["nombre_usuario"]))
                       <div class="alert-success text-center" role="alert">
                         Curso Creado Exitosamente
                       </div>
+                      <script>
+                        window.location.replace(<?php echo RUTALEARNING; ?>);
+                      </script>
                       <?php
-                      $_POST["send2"]=null;
                     }
                   }
                   conexion::closeConection();

@@ -111,9 +111,21 @@ if(!empty($partesRuta[2]))
         $encontrada=1;
       }
       else {
-        $encontrada=0;
+        $arreglada2=palabrasRaras::arreglar($arreglada);
+        $existe=repositorioCursos::buscarCurso(conexion::getConection(), $arreglada2);
+        echo $arreglada2;
+        if($existe)
+        {
+          $titulo=$arreglada2;
+          include_once "vistas/Curso.php";
+          $encontrada=1;
+        }
+        else {
+          $encontrada=0;
+        }
       }
     }
+    conexion::closeConection();
   }
 }
 

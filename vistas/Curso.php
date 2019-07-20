@@ -6,11 +6,19 @@ $P=3;
   include_once "app/conexion.inc.php";
   include_once "app/cursos.inc.php";
   include_once "app/repositorioCursos.inc.php";
+  include_once "app/escritorCapitulos.inc.php";
+  include_once "app/redireccion.inc.php";
+  include_once "app/usuario.inc.php";
+  include_once "app/repositorioUsuario.inc.php";
+  include_once "app/conexion.inc.php";
+  include_once "app/capitulo.inc.php";
+  include_once "app/repositorioCursos.inc.php";
+  include_once "app/validadorCapitulo.inc.php";
  ?>
 
  <div class="container-liquid">
    <div class="row">
-     <div class="col-md-8">
+     <div class="col-sm-8">
        <div class="panel panel-primary">
          <div class="panel-heading">
            <h3 class="panel-title">
@@ -20,26 +28,29 @@ $P=3;
           </h3>
          </div>
          <div class="panel-body">
-           <script type="text/javascript">
+           <?php
+           conexion::openConection();
+           $capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
+           conexion::closeConection();
 
-           </script>
+            ?>
+           <div class="embed-responsive embed-responsive-16by9">
+             <iframe id="iframe" width="560%" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+           </div>
          </div>
        </div>
        <div class="panel panel-primary">
          <div class="panel-heading">
            <h3 class="panel-title">Comentarios</h3>
          </div>
+         <div class="panel-body">
+           <a href="#">Clase</a>
+         </div>
        </div>
      </div>
-     <div class="col-md-4">
+     <div class="col-sm-4">
        <?php
-       include_once "app/redireccion.inc.php";
-       include_once "app/usuario.inc.php";
-       include_once "app/repositorioUsuario.inc.php";
-       include_once "app/conexion.inc.php";
-       include_once "app/capitulo.inc.php";
-       include_once "app/repositorioCursos.inc.php";
-       include_once "app/validadorCapitulo.inc.php";
+
        $si=true;
        conexion::openConection();
        if(isset($_POST["send"]))
@@ -102,14 +113,19 @@ $P=3;
          <div class="panel-heading">
            <h3 class="panel-title">Capitulos</h3>
          </div>
-         <div class="panel-body">
-           Escritor Capitulos
+         <div class="panel-body" style="background-color:#045FB4">
+           <?php
+
+           conexion::openConection();
+           $capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
+           escritorCapitulos::escribir($capitulos, $existe->obtenerTitulo());
+           conexion::closeConection();
+            ?>
          </div>
        </div>
 
      </div>
    </div>
-
  </div>
  <?php
  include_once "Plantillas/cierre.php";

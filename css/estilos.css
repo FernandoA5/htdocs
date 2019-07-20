@@ -142,5 +142,20 @@
 }
 #etiquetaMin:hover{
   background-color: red;
-
+}
+.capitulo-btn
+{
+  background-color: #045FB4;
+  color:white;
+  border:none;
+  width: 100%;
+  font-size: 20px;
+  font-family: Agency Fb;
+  font-weight: bold;
+  height: 50px;
+}
+.capitulo-btn:hover
+{
+  background-color: white;
+  color:#045FB4;
 }

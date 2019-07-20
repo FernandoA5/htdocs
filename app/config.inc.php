@@ -16,9 +16,10 @@ define("REGISTROCORRECTO", "/RegistroCorrecto");
 define("LOGIN", "/Login");
 define("MYBLOG", "/MyBlog");
 define("LOGOUT", "/Logout");
+define("YOUTUBE", "https://www.youtube.com/embed/");
 
 
-
+define("RUTALEARNING", SERVIDOR.LEARNING);
 //SOURCES
 define("RUTACSS", SERVIDOR . "/css/");
 define("RUTAJS", SERVIDOR . "/js/");

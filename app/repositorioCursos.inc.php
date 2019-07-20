@@ -145,5 +145,34 @@ include_once "cursos.inc.php";
       }
       return $capituloInsertado;
     }
+    public function todosCapitulos($conection, $cursoId)
+    {
+      $capitulos=array();
+      if(isset($conection))
+      {
+        try {
+          $sql="SELECT * FROM capitulos WHERE cursoId=:cursoId";
+          $sentencia=$conection->prepare($sql);
+          $sentencia->bindParam(":cursoId", $cursoId, PDO::PARAM_STR);
+          $sentencia->execute();
+          $resultado=$sentencia->fetchAll();
+          if(!empty($resultado))
+          {
+            foreach($resultado as $fila)
+            {
+              $capitulos[]=new capitulo($fila["id"], $fila["cursoId"], $fila["titulo"], $fila["ruta"], $fila["fecha"]);
+            }
+          }
+          else {
+            echo "Aun no hay capitulos publicados";
+          }
+
+        } catch (PDOException $ex) {
+          print HOLIERROR . $ex->getMessage();
+        }
+
+      }
+      return $capitulos;
+    }
   }
  ?>
