@@ -56,6 +56,16 @@ if($partesRuta[1]=="Logout")
   include_once "vistas/cerrarSesion.php";
   $encontrada=1;
 }
+if($partesRuta[1]=="WebFamily")
+{
+  include_once "vistas/WebFamily.php";
+  $encontrada=1;
+}
+if($partesRuta[1]=="CatNetwork")
+{
+  include_once "vistas/CatNetwork.php";
+  $encontrada=1;
+}
 if(!empty($partesRuta[2]))
 {
   if($partesRuta[1]=="Blogs")

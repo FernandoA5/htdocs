@@ -14,7 +14,7 @@ if(isset($_POST["login"]))
   $validador= new validadorLogin($_POST["email"], $_POST["pass"], conexion::getConection());
   if($validador-> obtenerError()=="" && !is_null($validador ->obtenerUsuario()))
   {
-    controlSesion::iniciarSesion($validador->obtenerUsuario()-> obtenerId(), $validador->obtenerUsuario()->obtenerNombre());
+    controlSesion::iniciarSesion($validador->obtenerUsuario()-> obtenerId(), $validador->obtenerUsuario()->obtenerNombre(), $validador->obtenerUsuario()->obtenerSuscripcion());
     redireccion::redirigir(SERVIDOR);
   }
   else{

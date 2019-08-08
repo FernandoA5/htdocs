@@ -71,8 +71,11 @@ $P=3;
                  $comentarioInsertado=repositorioComentarios::insertarComentario(conexion::getConection(), $comentario);
                  if($comentarioInsertado)
                  {
-                   $_POST["sendC"]=null;
-                   redireccion::redirigir(LEARNING."/".$existe->obtenerTitulo());
+                   ?>
+                   <script type="text/javascript">
+                     window.location.replace("<?php echo LEARNING."/".$existe->obtenerTitulo(); ?>");
+                   </script>
+                   <?php
                  }
                }
              }
@@ -112,49 +115,57 @@ $P=3;
            $capituloInsertado = repositorioCursos::insertarCapitulo(conexion::getConection(), $capitulo);
            if($capituloInsertado)
            {
-             $_POST["send"]=null;
-             redireccion::redirigir(LEARNING."/".$existe->obtenerTitulo());
+             ?>
+             <script type="text/javascript">
+               window.location.replace("<?php echo LEARNING."/".$existe->obtenerTitulo(); ?>");
+             </script>
+             <?php
            }
          }
          else {
            $si=false;
          }
        }
-       $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
-       if($usuario->obtenerSuscripcion()==3)
+       if(isset($_SESSION["nombre_usuario"]))
        {
-         ?>
-         <div class="panel-success">
-           <?php
-           if($si)
-           {
-             ?>
-              <div class="panel-heading" style="background-color:#088A08 !important; color:white;">
-             <?php
-           }
-           else {
-              ?><div class="panel-heading" style="background-color:#B40404 !important; color:white;"><?php
-           }
-            ?>
 
-             <h3 class="panel-title">Añadir Capitulo</h3>
-           </div>
-           <div class="panel-body" style="background-color:white">
-             <form role="form" method="post" action="<?php echo LEARNING."/".$existe->obtenerTitulo(); ?>">
+         $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
+         if($usuario->obtenerSuscripcion()==3)
+         {
+           ?>
+           <div class="panel-success">
+             <?php
+             if($si)
+             {
+               ?>
+                <div class="panel-heading" style="background-color:#088A08 !important; color:white;">
                <?php
-               if(!isset($_POST["send"]))
-               {
-                 include_once "Plantillas/formCapituloVacio.inc.php";
-               }
-               else {
-                 include_once "Plantillas/formCapituloValidado.inc.php";
-               }
-                ?>
-             </form>
-           </div>
-         </div><br>
-         <?php
+             }
+             else {
+                ?><div class="panel-heading" style="background-color:#B40404 !important; color:white;"><?php
+             }
+              ?>
+
+               <h3 class="panel-title">Añadir Capitulo</h3>
+             </div>
+             <div class="panel-body" style="background-color:white">
+               <form role="form" method="post" action="<?php echo LEARNING."/".$existe->obtenerTitulo(); ?>">
+                 <?php
+                 if(!isset($_POST["send"]))
+                 {
+                   include_once "Plantillas/formCapituloVacio.inc.php";
+                 }
+                 else {
+                   include_once "Plantillas/formCapituloValidado.inc.php";
+                 }
+                  ?>
+               </form>
+             </div>
+           </div><br>
+           <?php
+         }
        }
+
        conexion::closeConection();
         ?>
        <div class="panel panel-primary">
@@ -163,14 +174,25 @@ $P=3;
          </div>
          <div class="panel-body" style="background-color:#045FB4">
            <?php
-
-           conexion::openConection();
-           //$capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
-           if(count($capitulos))
+           if(isset($_SESSION["nombre_usuario"]))
            {
-              escritorCapitulos::escribir($capitulos, $existe->obtenerTitulo());
+             conexion::openConection();
+             //$capitulos=repositorioCursos::todosCapitulos(conexion::getConection(), $existe->obtenerId());
+             if(count($capitulos))
+             {
+                escritorCapitulos::escribir($capitulos, $existe->obtenerTitulo());
+             }
+             conexion::closeConection();
            }
-           conexion::closeConection();
+           else {
+             ?>
+             <h4 style="color:white">Registrate para ver los capitulos</h4>
+             <script type="text/javascript">
+               document.getElementById("iframe").src="#";
+             </script>
+             <?php
+           }
+
             ?>
          </div>
        </div>

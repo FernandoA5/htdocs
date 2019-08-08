@@ -22,7 +22,7 @@
           </form>
       </div>
       <div class="col-md-4">
-        <h2 align="right" style="color:white; font-family:Agency Fb">HARD LEVEL LEARNING</h2>
+      <h2 align="right" href="<?php echo LEARNING; ?>" style="color:white; font-family:Agency Fb">HARD LEVEL LEARNING</h2>
       </div>
       <div class="col-md-2">
 

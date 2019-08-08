@@ -15,7 +15,9 @@ include_once "Plantillas/bar.php";
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
+      <div class="col-md-4">
+        <a href="<?php echo CATNETWORK; ?>">CatNetwork</a>
+      </div>
     </div>
   </div>
   </div>

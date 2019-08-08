@@ -17,6 +17,8 @@ define("LOGIN", "/Login");
 define("MYBLOG", "/MyBlog");
 define("LOGOUT", "/Logout");
 define("YOUTUBE", "https://www.youtube.com/embed/");
+define("WEBFAMILY", "/WebFamily");
+define("CATNETWORK", "/CatNetwork");
 
 
 define("RUTALEARNING", SERVIDOR.LEARNING);

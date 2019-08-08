@@ -75,8 +75,11 @@ if(!isset($_SESSION["nombre_usuario"]))
           $entradaInsertada = repositorioEntradas::insertarEntrada(conexion::getConection(), $entrada);
           if($entradaInsertada)
           {
-            $_POST["send"]=null;
-            redireccion::redirigir(MYBLOG);
+            ?>
+            <script type="text/javascript">
+              window.location.replace("<?php echo MYBLOG; ?>");
+            </script>
+            <?php
           }
         }
         conexion::closeConection();
