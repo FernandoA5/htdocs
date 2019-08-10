@@ -6,7 +6,9 @@ $P=2;
   if($Ventana==1)
   {
     include_once "Plantillas/WebFamilyMenu.inc.php";
+
   }
+
 
 
   include_once "Plantillas/cierre.php";
