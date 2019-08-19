@@ -30,14 +30,33 @@ $P=1;
 
           </div>
         </div>
-        <div class="col-md-6 ">
-          <div align="center">
-            escritor de Publicaciones
+        <div class="col-md-5 ">
+          <div align="left">
+            Escritor de Publicaciones
           </div>
         </div>
-        <div class="col-md-3">
-          formulario de publicar<br>
-          publicidad
+        <div class="col-md-4">
+          <div class="panel panel primary">
+            <div class="panel-heading">
+              <h3 class="panel-title" style="color:white">Buscale un hogar a ese gato</h3>
+            </div>
+            <div class="panel-body">
+              <form role="form" action="<?php echo CATNETWORK ?>" method="post">
+                <?php
+                include_once "Plantillas/formCNPublicaciones.inc.php";
+                if(!isset($_POST["send"]))
+                {
+                    formCNPublicaciones::formCNPVacio();
+                }
+                else {
+                    formCNPublicaciones::formCNPValidado();
+                }
+                 ?>
+              </form>
+            </div>
+          </div>
+          <br>
+          Publicidad
         </div>
       </div>
     </div>
