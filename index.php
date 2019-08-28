@@ -66,6 +66,11 @@ if($partesRuta[1]=="CatNetwork")
   include_once "vistas/CatNetwork.php";
   $encontrada=1;
 }
+if($partesRuta[1]=="onlineGame")
+{
+  include_once "vistas/onlineGame.php";
+  $encontrada=1;
+}
 if(!empty($partesRuta[2]))
 {
   if($partesRuta[1]=="Blogs")

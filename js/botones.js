@@ -1,6 +1,7 @@
 var MTSbtn=document.getElementById("btnMTS");
 var ABoostbtn=document.getElementById("btnABoost");
 
+
 MTSbtn.addEventListener("click", botonApp1);
 ABoostbtn.addEventListener("click", botonApp2);
 
