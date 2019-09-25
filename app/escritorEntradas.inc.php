@@ -20,11 +20,11 @@ class escritorEntradas
             ?>
               <div class="panel">
                 <div class="panel-heading">
-                  <h3 class="panel-title" style="color:white"><?php echo $entradas[$i]->obtenerTitulo(); ?></h3>
+                  <h3 class="panel-title" style="color:white"><?php echo self::resumirTitulo($entradas[$i]->obtenerTitulo()); ?></h3>
                 </div>
                 <div class="panel-body">
                   <h5 style="color:gray"><?php echo $entradas[$i]->obtenerFecha(); ?></h5>
-                  <h4><?php echo $entradas[$i]->obtenerTexto(); ?></h4>
+                  <h4><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
                 </div>
               </div>
             <?php
@@ -43,6 +43,40 @@ class escritorEntradas
         <?php
       }
     }
+  }
+  public static function resumir($texto)
+  {
+    $longMax=400;
+    $resultado ="";
+    if(strlen($texto)>=$longMax)
+    {
+      for($i=0; $i<$longMax; $i++)
+      {
+        $resultado .=substr($texto, $i, 1);
+      }
+      $resultado.="...";
+    }
+    else {
+      $resultado=$texto;
+    }
+    return $resultado;
+  }
+  public static function resumirTitulo($titulo)
+  {
+    $longMax=85;
+    $resultado="";
+    if(strlen($titulo)>=$longMax)
+    {
+      for($i=0; $i<$longMax;$i++)
+      {
+        $resultado.=substr($titulo, $i, 1);
+      }
+      $resultado.="...";
+    }
+    else {
+      $resultado=$titulo;
+    }
+    return $resultado;
   }
 }
  ?>
