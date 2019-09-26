@@ -5,7 +5,7 @@
    ?>
 </div>
 <div class="form-group">
-  <textarea class="form-control" name="texto" rows="5" placeholder="¿Qué tienes en mente?"><?php $validador->showText();?></textarea>
+  <textarea class="form-control" name="texto" rows="3" placeholder="¿Qué tienes en mente?"><?php $validador->showText();?></textarea>
   <?php
   $validador ->showErrorText();
    ?>

@@ -23,6 +23,8 @@ if(!isset($_SESSION["nombre_usuario"]))
       $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
       $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
       conexion::closeConection();
+      include_once "app/escritorEntradas.inc.php";
+      include_once "app/validadorEntrada.inc.php";
       //echo "<br>" . $minTemp;
        ?>
        <div class="row">
@@ -57,13 +59,11 @@ if(!isset($_SESSION["nombre_usuario"]))
         ?>
     </div>
     <div class="col-md-7">
+    <div class="row">
       <?php
       include_once "app/escritorEntradas.inc.php";
       include_once "app/validadorEntrada.inc.php";
       include_once "app/validadorCurso.inc.php";
-      conexion::openConection();
-      escritorEntradas::escribir(conexion::getConection(), $usuario->obtenerId());
-      conexion::closeConection();
       //VALIDACION ENTRADAS
       if(isset($_POST["send"]))
       {
@@ -83,11 +83,7 @@ if(!isset($_SESSION["nombre_usuario"]))
           }
         }
         conexion::closeConection();
-      }
-       ?>
-    </div>
-
-    <div class="col-md-3">
+      } ?>
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">En Mente</h3>
@@ -106,7 +102,22 @@ if(!isset($_SESSION["nombre_usuario"]))
              ?>
           </form>
         </div>
-      </div><br>
+      </div>
+    </div>
+      <div class="row">
+        <?php
+        include_once "app/escritorEntradas.inc.php";
+        include_once "app/validadorEntrada.inc.php";
+        include_once "app/validadorCurso.inc.php";
+        conexion::openConection();
+        escritorEntradas::escribir(conexion::getConection(), $usuario->obtenerId());
+        conexion::closeConection();
+
+         ?>
+      </div>
+    </div>
+
+    <div class="col-md-3">
       <?php
       if($usuario->obtenerSuscripcion()==3)
       {

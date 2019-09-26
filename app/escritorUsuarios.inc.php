@@ -22,7 +22,7 @@ include_once "avatars.inc.php";
                   ?>
                   <div class="row" style="background-color:white">
                       <div class="col-md-4">
-                        <img src="<?php echo avatars::controlAvatars($usuarios[$j]->obtenerAvatar()); ?>" alt="HOLI" width="100%">
+                        <img src="<?php echo avatars::controlAvatars($usuarios[$j]->obtenerAvatar()); ?>" alt="" width="100%">
                       </div>
                       <div class="col-md-8">
                         <a href="<?php echo BLOGS."/".$usuarios[$j]->obtenerNombre(); ?>" style="color:#08088A; font-family:Agency Fb;"><h2><?php echo $usuarios[$j]->obtenerNombre();?></h2></a>

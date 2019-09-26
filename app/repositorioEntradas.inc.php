@@ -54,6 +54,31 @@ class repositorioEntradas
     }
     return $entradas;
   }
+  public static function entradaExiste($conection, $titulo)
+  {
+    $entradaExiste=true;
+    if(isset($conection))
+    {
+      try {
+          include_once "entradas.inc.php";
+          $sql="SELECT * FROM entradas WHERE titulo = :titulo";
+          $sentencia=$conection->prepare($sql);
+          $sentencia->bindParam(":titulo", $titulo, PDO::PARAM_STR);
+          $sentencia->execute();
+          $resultado=$sentencia->fetchAll();
+          if(count($resultado))
+          {
+            $entradaExiste=true;
+          }
+          else{
+            $entradaExiste=false;
+          }
+      } catch (PDOException $ex) {
+        print HOLIERROR . $ex->getMessage();
+      }
+      return $entradaExiste;
+    }
+  }
 }
 
  ?>

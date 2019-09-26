@@ -24,7 +24,10 @@ class escritorEntradas
                 </div>
                 <div class="panel-body">
                   <h5 style="color:gray"><?php echo $entradas[$i]->obtenerFecha(); ?></h5>
-                  <h4><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
+                  <h4 class="text-justify"><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
+                  <div class="text-left">
+                    <a class="btn btn-primary btn-sm" href="#" role="button">Continua Leyendo</a>
+                  </div>
                 </div>
               </div>
             <?php
@@ -49,11 +52,12 @@ class escritorEntradas
     $longMax=400;
     $resultado ="";
     if(strlen($texto)>=$longMax)
-    {
+    {/*
       for($i=0; $i<$longMax; $i++)
       {
         $resultado .=substr($texto, $i, 1);
-      }
+      }*/
+      $resultado=substr($texto, 0, $longMax);
       $resultado.="...";
     }
     else {
@@ -66,11 +70,12 @@ class escritorEntradas
     $longMax=85;
     $resultado="";
     if(strlen($titulo)>=$longMax)
-    {
+    {/*
       for($i=0; $i<$longMax;$i++)
       {
         $resultado.=substr($titulo, $i, 1);
-      }
+      }*/
+      $resultado=substr($titulo, 0, $longMax);
       $resultado.="...";
     }
     else {

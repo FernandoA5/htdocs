@@ -97,7 +97,24 @@ if(!empty($partesRuta[2]))
         $encontrada=1;
       }
       else {
-        $encontrada=0;
+        include_once "app/repositorioEntradas.inc.php";
+        conexion::openConection();
+        $existe=repositorioEntradas::entradaExiste(conexion::getConection(), $partesRuta[2]);
+        if($existe)
+        {
+          $encontrada=1;
+        }
+        else {
+          $arreglada= palabrasRaras::arreglar($partesRuta[2]);
+          $existe=repositorioEntradas::entradaExiste(conexion::getConection(), $arreglada);
+          if($existe)
+          {
+            $encontrada=1;
+          }
+          else {
+            $encontrada=0;
+          }
+        }
       }
     }
     conexion::closeConection();
