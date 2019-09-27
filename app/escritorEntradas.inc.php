@@ -26,7 +26,7 @@ class escritorEntradas
                   <h5 style="color:gray"><?php echo $entradas[$i]->obtenerFecha(); ?></h5>
                   <h4 class="text-justify"><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
                   <div class="text-left">
-                    <a class="btn btn-primary btn-sm" href="#" role="button">Continua Leyendo</a>
+                    <a class="btn btn-primary btn-sm" href="<?php echo BLOGS ."/". $entradas[$i]->obtenerTitulo(); ?>" role="button">Continua Leyendo</a>
                   </div>
                 </div>
               </div>

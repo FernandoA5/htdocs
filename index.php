@@ -71,6 +71,11 @@ if($partesRuta[1]=="onlineGame")
   include_once "vistas/onlineGame.php";
   $encontrada=1;
 }
+if($partesRuta[1]=="TheFifthGuild")
+{
+  include_once "vistas/TheFifthGuild.php";
+  $encontrada=1;
+}
 if(!empty($partesRuta[2]))
 {
   if($partesRuta[1]=="Blogs")
@@ -102,6 +107,7 @@ if(!empty($partesRuta[2]))
         $existe=repositorioEntradas::entradaExiste(conexion::getConection(), $partesRuta[2]);
         if($existe)
         {
+          include_once "vistas/Entrada.php";
           $encontrada=1;
         }
         else {
@@ -109,6 +115,7 @@ if(!empty($partesRuta[2]))
           $existe=repositorioEntradas::entradaExiste(conexion::getConection(), $arreglada);
           if($existe)
           {
+            include_once "vistas/Entrada.php";
             $encontrada=1;
           }
           else {

@@ -59,7 +59,6 @@ if(!isset($_SESSION["nombre_usuario"]))
         ?>
     </div>
     <div class="col-md-7">
-    <div class="row">
       <?php
       include_once "app/escritorEntradas.inc.php";
       include_once "app/validadorEntrada.inc.php";
@@ -103,8 +102,7 @@ if(!isset($_SESSION["nombre_usuario"]))
           </form>
         </div>
       </div>
-    </div>
-      <div class="row">
+      <div>
         <?php
         include_once "app/escritorEntradas.inc.php";
         include_once "app/validadorEntrada.inc.php";
@@ -112,11 +110,9 @@ if(!isset($_SESSION["nombre_usuario"]))
         conexion::openConection();
         escritorEntradas::escribir(conexion::getConection(), $usuario->obtenerId());
         conexion::closeConection();
-
          ?>
       </div>
     </div>
-
     <div class="col-md-3">
       <?php
       if($usuario->obtenerSuscripcion()==3)

@@ -79,6 +79,30 @@ class repositorioEntradas
       return $entradaExiste;
     }
   }
+  public static function obtenerEntradaPorTitulo($conection, $titulo)
+  {
+    $entrada=null;
+    if(isset($conection))
+    {
+      try {
+        $sql="SELECT * FROM entradas WHERE titulo= :titulo";
+        $sentencia=$conection->prepare($sql);
+        $sentencia->bindParam(":titulo", $titulo, PDO::PARAM_STR);
+        $sentencia->execute();
+        $resultado=$sentencia->fetch();
+        if(!empty($resultado))
+        {
+          $entrada= new entradas($resultado["id"], $resultado["autorId"], $resultado["titulo"], $resultado["texto"], $resultado["fecha"], $resultado["activa"], $resultado["likes"]);
+        }
+        else{
+          echo HOLIERROR . "RESULTADO VACIO";
+        }
+      } catch (PDOException $ex) {
+        print HOLIERROR . $ex ->getMessage();
+      }
+    }
+    return $entrada;
+  }
 }
 
  ?>

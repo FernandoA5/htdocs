@@ -1,6 +1,6 @@
 <?php
 $P=1;
-$titulo=" Registro Correcto";
+$titulo="Solutions";
 include_once "Plantillas/head.php";
 include_once "Plantillas/bar.php";
 include_once "app/usuario.inc.php";

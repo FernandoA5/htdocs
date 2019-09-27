@@ -69,9 +69,6 @@ include_once "cursos.inc.php";
               $cursos[]=new cursos($fila["id"], $fila["autorId"], $fila["titulo"], $fila["miniatura"], $fila["ruta"], $fila["texto"], $fila["fecha"], $fila["vistas"]);
             }
           }
-          else {
-            echo HOLI . "NO HAY CURSOS";
-          }
         } catch (PDOException $ex) {
           print HOLI . $ex->getMessage();
         }
@@ -99,7 +96,7 @@ include_once "cursos.inc.php";
           }
           else
           {
-            echo "No ha publicado Cursos";
+            echo "<h4 class='text-center'>No ha publicado Cursos</h4>";
           }
         } catch (PDOException $ex) {
           print HOLIERROR.$ex->getMessage();

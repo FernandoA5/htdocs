@@ -20,6 +20,7 @@ define("YOUTUBE", "https://www.youtube.com/embed/");
 define("WEBFAMILY", "/WebFamily");
 define("CATNETWORK", "/CatNetwork");
 define("ONLINE", "/onlineGame");
+define("TFG", "/TheFifthGuild");
 
 
 define("RUTALEARNING", SERVIDOR.LEARNING);
