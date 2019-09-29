@@ -84,6 +84,63 @@
          "y":0
         }, 
         {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 201, 0, 0, 0, 0, 0, 0, 201, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 201, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "id":32,
+         "name":"Capa de patrones 7",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "color":"#0000ff",
+         "draworder":"topdown",
+         "id":33,
+         "name":"objetos",
+         "objects":[
+                {
+                 "height":0,
+                 "id":10,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":910.666666666667,
+                 "y":366.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":11,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":529.333333333333,
+                 "y":496
+                }, 
+                {
+                 "height":0,
+                 "id":12,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":144,
+                 "y":752
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "color":"#c80000",
          "draworder":"topdown",
          "id":23,
@@ -184,8 +241,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":31,
- "nextobjectid":10,
+ "nextlayerid":34,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
@@ -198,6 +255,10 @@
         {
          "firstgid":101,
          "source":"sprites128x128.tsx"
+        }, 
+        {
+         "firstgid":201,
+         "source":"32b.tsx"
         }],
  "tilewidth":128,
  "type":"map",
