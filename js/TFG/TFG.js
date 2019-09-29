@@ -7,10 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
 var inicio={
   iniciarJuego: function()
   {
-    console.log("HOLI");
     teclado.iniciar();
-    mando.iniciar();
     dimensiones.iniciar();
+    mando.iniciar();
     inicio.recargarTiles();
     mainBucle.iterar();
   },
@@ -26,3 +25,4 @@ var inicio={
     }
   },
 };
+

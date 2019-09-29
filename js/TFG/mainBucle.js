@@ -23,6 +23,7 @@ var mainBucle= {
   },
   actualizar: function(registroTemporal){
     teclado.reiniciar();
+    mando.actualizar;
     mainBucle.aps++;
   },
   dibujar: function(registroTemporal){
