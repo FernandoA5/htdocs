@@ -27,6 +27,7 @@ define("RUTALEARNING", SERVIDOR.LEARNING);
 //SOURCES
 define("RUTACSS", SERVIDOR . "/css/");
 define("RUTAJS", SERVIDOR . "/js/");
+define("RUTAJSTFG", SERVIDOR."/js/TFG/");
 define("RUTAIMAGENES", SERVIDOR . "/imagenes/");
 define("RUTAPLANTILLAS", SERVIDOR .  "/Plantillas/");
 define("RUTAAPP", SERVIDOR . "/app/");

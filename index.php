@@ -75,6 +75,7 @@ if($partesRuta[1]=="TheFifthGuild")
 {
   include_once "vistas/TheFifthGuild.php";
   $encontrada=1;
+  include_once "app/cargadorArchivosjs.inc.php";
 }
 if(!empty($partesRuta[2]))
 {

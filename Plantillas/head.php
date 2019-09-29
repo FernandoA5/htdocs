@@ -6,8 +6,9 @@
    <meta name="Description" content="Hard-Level plataforma de soluciones online">
    <link href="<?php echo RUTACSS; ?>estilos.css" rel="stylesheet" >
    <link href="<?php echo RUTACSS; ?>bootstrap.min.css" rel="stylesheet">
-
+  
    <?php
+   
    if(!isset($titulo)||empty($titulo))
    {
 

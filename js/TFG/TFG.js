@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
 var inicio={
   iniciarJuego: function()
   {
+    
+    ajax.cargarArchivo("imagenes/TFG/mapas/mapita.json");
     teclado.iniciar();
     dimensiones.iniciar();
     mando.iniciar();
