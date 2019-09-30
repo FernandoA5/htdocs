@@ -12,37 +12,47 @@ include_once "Plantillas/bar.php";
  include_once "app/conexion.inc.php";
  include_once "app/config.inc.php";
  include_once "app/usuario.inc.php";
-
+ include_once "app/repositorioTFG.inc.php";
+ include_once "app/repositorioUsuario.inc.php";
+ include_once "app/tfgPlayer.inc.php";
  conexion::openConection();
- $conexion=conexion::getConection();
- if(isset($conexion))
- {
-  try{
-    $sql="SELECT * FROM usuarios WHERE id=1";
-    $sentencia=$conexion->prepare($sql);
-    $sentencia->execute();
-    $resultado=$sentencia->fetchAll();
-    if(!empty($resultado))
-    {
-      foreach($resultado as $fila)
-      {
-        $usuario = new Usuario($fila["id"], $fila["nombre"], $fila["email"], $fila["password"], $fila["fechaRegistro"], $fila["activo"], $fila["suscripcion"], $fila["puntos"], $fila["avatar"]);
-      }
-      echo $usuario->obtenerNombre();
-    }
+ $idUsuario=$_SESSION["id_usuario"];
+ $player = repositorioTFG::buscarJugador(conexion::getConection(), $idUsuario);
+ $x= $player->obtenerX();
+ $y= $player->obtenerY();
+  
+ //INCLUCION DE JS
+ echo '<script src="js/TFG2.0/funciones.js"></script>'
+ ?>
+ <script>
+  //FUNCIONES
+  rec = new rectangulo(<?php
+    echo $x.",".$y.","."64,64".$player->obtenerId();
+  ?>)
+ </script>
+ <script>
+  var color = "red";
+  var div = '<div id="' + 1 + '"></div>';
+	var html = document.getElementById("juego").innerHTML;
+	document.getElementById("juego").innerHTML = html + div;
+	document.getElementById("1").style.position = "absolute";
+  document.getElementById("1").style.left = <?php 
+    echo $player->obtenerX();
+  ?> + "px";
+	document.getElementById("1").style.top =  <?php 
+    echo $player->obtenerY();
+  ?> + "px";
+	document.getElementById("1").style.width = 256 + "px";
+	document.getElementById("1").style.height = 256 + "px";
+	document.getElementById("1").style.backgroundColor = color;
+ </script>
+ <?php
     //ACTUALIZAR DATO
     /*$sql = "UPDATE usuarios SET nombre = 'Dios' WHERE id = 1";
     $sentencia=$conexion->prepare($sql);
     $sentencia->execute();*/
-  }catch(PDOException $ex){
-    print HOLIERROR.$ex->getMessage();
-  }
- }
-  /*$sql = "SELECT * FROM agenda WHERE id = $id" 
-  $result = mysql_query($sql);
-  $sql = "UPDATE agenda SET nombre='$nombre', direccion='$direccion',".
-     "telefono='$telefono', email='$email'";
- include_once "app/cargadorArchivosjs.inc.php";*/
+ 
+
   include_once "Plantillas/cierre.php";
   ?>
 
