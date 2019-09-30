@@ -3,18 +3,23 @@ include_once "config.inc.php";
 
 $fecha = new DateTime();
 $fuentesJavaScript = array(
-    RUTAJSTFG."listadoEstados.js",
+    
     RUTAJSTFG."rectangulo.js",
-    RUTAJSTFG."punto.js",
-    RUTAJSTFG."paletaSprites.js",
+    
     RUTAJSTFG."sprites.js",
     RUTAJSTFG."tile.js",
     RUTAJSTFG."capaMapaTiles.js",
+    RUTAJSTFG."paletaSprites.js",
+    RUTAJSTFG."listadoEstados.js",
     RUTAJSTFG."ajax.js",
+    RUTAJSTFG."estadoMapa.js",
+    RUTAJSTFG."maquinaEstados.js",
+    RUTAJSTFG."punto.js",
+    RUTAJSTFG."mapa.js",
     RUTAJSTFG."teclado.js",
     RUTAJSTFG."mando.js",
-    RUTAJSTFG."mainBucle.js",
     RUTAJSTFG."dimensiones.js",
+    RUTAJSTFG."mainBucle.js",
     RUTAJSTFG."TFG.js"
 );
 

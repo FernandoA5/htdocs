@@ -10,7 +10,7 @@ function capaMapaTiles(datosCapa, indiceZ, anchoDeLosTiles, altoDeLosTiles, pale
     {
         for(x=0; x<this.anchoEnTiles; x++)
         {
-            var idSpriteActualSobreUno = datosCapa.data[x+y * this.ancho.altoEnTiles];
+            var idSpriteActualSobreUno = datosCapa.data[x+y * this.anchoEnTiles];
             if(idSpriteActualSobreUno == 0)
             {
                 this.tiles.push(null);
@@ -22,12 +22,16 @@ function capaMapaTiles(datosCapa, indiceZ, anchoDeLosTiles, altoDeLosTiles, pale
         }
     }
 }
-capaMapaTiles.prototype.encontrarSpriteEnPaletaPorId = function(idSpriteActualSobreUno, paletasSprites)
+capaMapaTiles.prototype.encontrarSpriteEnPaletaPorId = function(idSpriteSobreZero, paletasSprites)
 {
+    
     for(s=0; s< paletasSprites.length; s++)
     {
-        if(idSpriteSobreZero >= paletasSprites[s].primerSpriteSobreUno - 1 && idSpriteSobreZero< paletasSprites[s].totalSprites + paletaSprites[s].primerSpriteSobreUno+1);
+        if(idSpriteSobreZero >= paletasSprites[s].primerSpriteSobreUno - 1 && idSpriteSobreZero< paletasSprites[s].totalSprites + paletasSprites[s].primerSpriteSobreUno+1);
         {
+            var f =paletasSprites[s].sprites[Math.abs(paletasSprites[s].primerSpriteSobreUno - 1 - idSpriteSobreZero)];
+            console.log(paletasSprites[2]);
+            //console.log(Math.abs(paletasSprites[s].primerSpriteSobreUno - 1 - idSpriteSobreZero));
             return paletasSprites[s].sprites[Math.abs(paletasSprites[s].primerSpriteSobreUno - 1 - idSpriteSobreZero)];
         }
     }

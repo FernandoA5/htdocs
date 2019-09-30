@@ -1,30 +1,24 @@
 
 
 
+var inicio={
+    iniciadores: [
+      maquinaEstados.iniciar(),
+      teclado.iniciar(),
+      mando.iniciar(),
+      mainBucle.iterar()
+    ],
+    iniciarJuego:function(){
+      inicio.encadenarInicios(inicio.iniciadores.shift());
+    },
+    encadenarInicios: function(iniciador){
+      if(iniciador)
+      {
+        iniciador(() => inicio.encadenarInicios(this.iniciadores.shift()));
+      }
+    }
+};
 document.addEventListener("DOMContentLoaded", function() {
   inicio.iniciarJuego();
 }, false);
-var inicio={
-  iniciarJuego: function()
-  {
-    
-    ajax.cargarArchivo("imagenes/TFG/mapas/mapita.json");
-    teclado.iniciar();
-    dimensiones.iniciar();
-    mando.iniciar();
-    inicio.recargarTiles();
-    mainBucle.iterar();
-  },
-  recargarTiles: function ()
-  {
-    document.getElementById("juego").innerHTML ="";
-    for(var y=0; y<dimensiones.obtenerTilesVerticales(); y++ )
-    {
-      for(var x = 0; x<dimensiones.obtenerTilesHorizontales(); x++)
-      {
-        var r = new rectangulo(x*dimensiones.sizeTiles, y*dimensiones.sizeTiles, dimensiones.sizeTiles, dimensiones.sizeTiles);
-      }
-    }
-  },
-};
 

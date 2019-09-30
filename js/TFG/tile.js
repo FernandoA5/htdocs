@@ -11,6 +11,7 @@ tile.prototype.aplicarEstilos = function(){
     {
         throw("El ID: " + this.idHtml + "no existe en la hoja");
     }
+    console.log(this.html);
     document.getElementById(this.idHtml).style.position="absolute";
     document.getElementById(this.idHtml).style.left=(this.rectangulo.x * this.rectangulo.ancho)+ "px";
     document.getElementById(this.idHtml).style.top=(this.rectangulo.y * this.rectangulo.alto)+ "px";

@@ -5,8 +5,8 @@ var teclado = {
   },
   guardarTecla: function(e){
     teclado.teclas.push(e.key);
-    console.log(e.key);
-    console.log("HOLI");
+    //console.log(e.key);
+    
   },
   teclaPulsada: function(codigoTecla){
     return (teclado.teclas.indexOf(codigoTecla) !== -1) ? true:false;

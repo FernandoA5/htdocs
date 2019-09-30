@@ -1,28 +1,27 @@
-var ajax={
-    cargarArchivo: function(ruta){
-        var peticion = new XMLHttpRequest();
-        peticion.onreadystatechange = function(){
-            /*
-                O/ unsent - noiniciada
-                1/ opened - conectado al servidor
-                2/ HEADERS_RECIVED - peticion recibida
-                3/ LOADING - procesando peticion;
-                4/ DONE - peticion finalizada, respuesta preparada;
-            */
-            if(peticion.readyState== XMLHttpRequest.DONE)
-            {
-               if(peticion.status == 200)
-               {
-                console.log(JSON.parse(peticion.responseText));
-               } else if(peticion.status == 400)
-               {
-                console.log("error");
-               }else{
-                   console.log("Resultado Inesperado");
-               }
-            }
-        };
-        peticion.open("GET", ruta, true);
-        peticion.send();
-    }
+var ajax = {
+	cargarArchivo: function(ruta, manipularDatos) {
+		var peticion = new XMLHttpRequest();
+
+		peticion.onreadystatechange = function() {
+			/*
+			0 / UNSENT - no iniciada
+			1 / OPENED - conectado al servidor
+			2 / HEADERS_RECIEVED - peticion recbida
+			3 / LOADING - procesando peticion
+			4 / DONE - peticion finalizada, respuesta preparada
+			*/
+			if (peticion.readyState == XMLHttpRequest.DONE) {
+				if (peticion.status == 200) {
+					manipularDatos((peticion.responseText));
+				} else if (peticion.status == 400) {
+					console.log("error");
+				} else {
+					console.log("resultado inesperado");
+				}
+			}
+		};
+
+		peticion.open("GET", ruta, true);
+		peticion.send();
+	}
 }
