@@ -16,6 +16,7 @@ include_once "Plantillas/bar.php";
        $partesRuta=explode("/", $ruta);
        include_once "app/palabrasRaras.inc.php";
        $titulo=palabrasRaras::arreglar($partesRuta[2]);
+       
        conexion::openConection();
        $entrada=repositorioEntradas::obtenerEntradaPorTitulo(conexion::getConection(), $titulo);
        if(!empty($entrada))
@@ -55,6 +56,7 @@ include_once "Plantillas/bar.php";
 
      </div>
    </div>
+   <br><br>
  </div>
  <?php
 include_once "Plantillas/cierre.php"

@@ -27,9 +27,10 @@ class escritorEntradas
                   <h5 style="color:gray"><?php echo $entradas[$i]->obtenerFecha(); ?></h5>
                   <h4 class="text-justify"><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
                   <div class="text-left">
-                    <form role="form" method="post" action="<?php echo MYBLOG; ?>">
+                    <form role="form" method="post" action="<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>">
                     <a class="btn btn-primary btn-sm" href="<?php echo BLOGS."/".$entradas[$i]->obtenerTitulo();?>" role="button">Continua Leyendo</a>
                     <?php
+                    
                       if($_SESSION)
                       {
                         if($entradas[$i]->obtenerAutorId()==$_SESSION["id_usuario"])
@@ -71,6 +72,7 @@ class escritorEntradas
           <div class="panel-heading">
             <h3 class="panel-title" style="color:white">
               Este usuario no ha publicado nada
+              
             </h3>
           </div>
         </div>

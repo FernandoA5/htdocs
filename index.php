@@ -125,7 +125,7 @@ if(!empty($partesRuta[2]))
             $encontrada=1;
           }
           else {
-            
+              echo $arreglada;
               $encontrada=0;
           }
         }

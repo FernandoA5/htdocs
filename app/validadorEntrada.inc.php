@@ -45,6 +45,13 @@ class validadorEntradas
         else{
           return "Caracter Invalido";
         }
+        if(!strpos($titulo, "?"))
+        {
+          $this -> titulo =$titulo;
+        }
+        else{
+          return "Caracter Invalido";
+        }
         
     }
     return "";
@@ -56,14 +63,9 @@ class validadorEntradas
       return "Escribe algo";
     }
     else {
-      //SI LAS ENTRADAS CON TAGS EN EL TEXTO FALLA CAMBIAR $titulo por $texto
-      if(palabrasRaras::encontrarTags($titulo)==true)
-      {
+      
         $this -> texto=$texto;
-      }
-      else{
-        return "Caracter Invalido";
-      }
+      
     }
     return "";
   }

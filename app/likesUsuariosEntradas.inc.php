@@ -13,7 +13,7 @@ class likesUsuariosEntradas{
     public function obtenerId(){
         return $this->id;
     }
-    public function obtenerIdEntradas()
+    public function obtenerIdEntrada()
     {
         return $this->idEntradas;
     }

@@ -103,6 +103,32 @@ class repositorioEntradas
     }
     return $entrada;
   }
+  public static function obtenerEntradaPorId($conection, $id)
+  {
+    $entrada = null;
+    if(isset($conection))
+    {
+      try{
+        $sql="SELECT * FROM entradas WHERE id=:id";
+        $sentencia=$conection->prepare($sql);
+        $sentencia->bindParam(":id", $id, PDO::PARAM_STR);
+        $sentencia->execute();
+        $resultado=$sentencia->fetch();
+        if(!empty($resultado))
+        {
+          
+          $entrada= new entradas($resultado["id"], $resultado["autorId"], $resultado["titulo"], $resultado["texto"], $resultado["fecha"], $resultado["activa"], $resultado["likes"]);
+        }
+        else{
+          echo HOLIERROR. "RESULTADO VACIO";
+        }
+      }catch(PDOException $ex)
+      {
+        print HOLIERROR.$ex->getMessage();
+      }
+    }
+    return $entrada;
+  }
   public static function añadirLike($conection, $entrada, $idUsuario, $idUnica)
   {
     if(isset($conection))
@@ -112,12 +138,13 @@ class repositorioEntradas
         include_once "repositorioLikesUsuariosEntradas.inc.php";
         if(repositorioLikesUsuariosEntradas::consultar($conection, $entrada->obtenerId(), $_SESSION["id_usuario"]))
         {
-          echo HOLI;
+          
           //DISLIKE
           
         }
         else
         {
+          
           $sql="UPDATE entradas SET likes = :likes WHERE id=:idEntrada";
           $sentencia=$conection->prepare($sql);
           $likes=$entrada->obtenerLikes();
@@ -126,7 +153,14 @@ class repositorioEntradas
           $sentencia->bindParam(":likes", $likes, PDO::PARAM_STR);
           $sentencia->bindParam(":idEntrada", $idEntradaTemp, PDO::PARAM_STR);
           $sentencia->execute();
-          repositorioLikesUsuariosEntradas::push($conection, $entrada->obtenerId(), $idUsuario);
+          repositorioLikesUsuariosEntradas::push($conection, $entrada->obtenerId(), $_SESSION["id_usuario"]);
+          
+          //SUMAR PUNTOS
+          include_once "entradas.inc.php"; include_once "repositorioEntradas.inc.php";
+          $entrada=repositorioEntradas::obtenerEntradaPorId($conection, $entrada->obtenerId());
+          
+          repositorioLikesUsuariosEntradas::sumarPuntos($conection, $entrada);
+
         }
       }catch(PDOException $ex)
       {
@@ -134,6 +168,7 @@ class repositorioEntradas
       }
     }
   }
+
 }
 
  ?>

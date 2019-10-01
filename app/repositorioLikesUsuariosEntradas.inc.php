@@ -13,10 +13,16 @@ class repositorioLikesUsuariosEntradas{
                 $sentencia->bindParam(":idEntrada", $idEntrada, PDO::PARAM_STR);
                 $sentencia->execute();
                 $resultado=$sentencia->fetchAll();
-                echo $idEntrada;
                 if(!empty($resultado))
                 {
-                    return true;
+                    foreach($resultado as $fila)
+                    {
+                        $likesUE=new likesUsuariosEntradas($fila["id"], $fila["idEntrada"], $fila["idUsuario"]);
+                    }
+                    if($idUsuario==$likesUE->obtenerIdUsuario())
+                    {
+                        return true;
+                    }
                 }
                 else
                 {
@@ -34,16 +40,20 @@ class repositorioLikesUsuariosEntradas{
     {
         if(isset($conection))
         {
+            
             try{
+                //AÑADIR REGISTRO DE USUARIO
                 $sql="INSERT INTO likesusuariosentradas(idEntrada, idUsuario) VALUES(:idEntrada, :idUsuario)";
                 $sentencia=$conection->prepare($sql);
                 $sentencia->bindParam(":idEntrada", $idEntrada,PDO::PARAM_STR);
                 $sentencia->bindParam(":idUsuario", $idUsuario,PDO::PARAM_STR);
                 $sentencia->execute();
+                
                 ?>
                 <script type="text/javascript">
-              window.location.replace("<?php echo MYBLOG; ?>");
-            </script>
+                    //REACTIVAR CUANDO NO SE ESTEN HACIENDO PRUEBAS
+                    //window.location.replace("<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>");
+                </script>
                 <?php
             }catch(PDOExceptio $ex)
             {
@@ -51,5 +61,32 @@ class repositorioLikesUsuariosEntradas{
             }
         }
     }
+    public static function sumarPuntos($conection, $entrada)
+    {
+        if(isset($conection))
+        {
+            try{
+                $sql="UPDATE usuarios SET puntos=:puntos WHERE id=:id";
+                $sentencia=$conection->prepare($sql);
+                //obtener puntos actuales
+                include_once "repositorioUsuario.inc.php";
+                $usuario=repositorioUsuario::obtenerUsuarioPorId($conection, $entrada->obtenerAutorId());
+                $tempPuntos= $usuario->obtenerPuntos();
+                $tempId=$entrada->obtenerAutorId();
+                $tempPuntos+=5;
+                $sentencia->bindParam(":puntos", $tempPuntos, PDO::PARAM_STR);
+                $sentencia->bindParam(":id", $tempId, PDO::PARAM_STR);
+                $sentencia->execute();
+            }   catch(PDOException $ex)
+            {
+                print HOLIERROR.$ex->getMessage();
+            }         
+        }
+    }
+    public static function restarPuntos()
+    {
+
+    }
 }
+
 ?>
