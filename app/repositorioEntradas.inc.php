@@ -112,7 +112,7 @@ class repositorioEntradas
         include_once "repositorioLikesUsuariosEntradas.inc.php";
         if(repositorioLikesUsuariosEntradas::consultar($conection, $entrada->obtenerId(), $_SESSION["id_usuario"]))
         {
-          
+          echo HOLI;
           //DISLIKE
           
         }
@@ -126,7 +126,7 @@ class repositorioEntradas
           $sentencia->bindParam(":likes", $likes, PDO::PARAM_STR);
           $sentencia->bindParam(":idEntrada", $idEntradaTemp, PDO::PARAM_STR);
           $sentencia->execute();
-          repositorioLikesUsuariosEntradas::push($conection, $idUsuario, $entrada->obtenerId());
+          repositorioLikesUsuariosEntradas::push($conection, $entrada->obtenerId(), $idUsuario);
         }
       }catch(PDOException $ex)
       {
