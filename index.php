@@ -88,6 +88,7 @@ if(!empty($partesRuta[2]))
     include_once "app/palabrasRaras.inc.php";
     conexion::openConection();
     $existe=RepositorioUsuario::nombreExiste(conexion::getConection(),$partesRuta[2]);
+    
     if($existe)
     {
       $titulo=$partesRuta[2];

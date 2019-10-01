@@ -34,7 +34,8 @@ include_once "Plantillas/bar.php";
            <h6 style="color:#BDBDBD"><?php echo $entrada->obtenerFecha(); ?></h6>
            <br>
            <p class="text-justify">
-             <?php echo nl2br($entrada->obtenerTexto()); ?>
+             <?php 
+             echo nl2br($entrada->obtenerTexto()); ?>
            </p>
            <br><br>
          </div>
