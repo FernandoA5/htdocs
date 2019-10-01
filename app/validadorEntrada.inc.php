@@ -1,6 +1,7 @@
 <?php
 include_once "entradas.inc.php";
 include_once "repositorioEntradas.inc.php";
+include_once "palabrasRaras.inc.php";
 class validadorEntradas
 {
   private $avisoInicio;
@@ -37,7 +38,14 @@ class validadorEntradas
       return "Escribe un titulo";
     }
     else {
-        $this -> titulo =$titulo;
+        if(palabrasRaras::encontrarTags($titulo)==true)
+        {
+          $this -> titulo =$titulo;
+        }
+        else{
+          return "Caracter Invalido";
+        }
+        
     }
     return "";
   }

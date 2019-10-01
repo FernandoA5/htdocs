@@ -20,33 +20,13 @@ include_once "Plantillas/bar.php";
  $player = repositorioTFG::buscarJugador(conexion::getConection(), $idUsuario);
  $x= $player->obtenerX();
  $y= $player->obtenerY();
-  
+ include_once "appJs/rectangulos.js.php";
+ funcionesJs::player($player);
+ $c=funcionesJs::nuevoPalabrasRaras();
+ echo $c;
  //INCLUCION DE JS
- echo '<script src="js/TFG2.0/funciones.js"></script>'
- ?>
- <script>
-  //FUNCIONES
-  rec = new rectangulo(<?php
-    echo $x.",".$y.","."64,64".$player->obtenerId();
-  ?>)
- </script>
- <script>
-  var color = "red";
-  var div = '<div id="' + 1 + '"></div>';
-	var html = document.getElementById("juego").innerHTML;
-	document.getElementById("juego").innerHTML = html + div;
-	document.getElementById("1").style.position = "absolute";
-  document.getElementById("1").style.left = <?php 
-    echo $player->obtenerX();
-  ?> + "px";
-	document.getElementById("1").style.top =  <?php 
-    echo $player->obtenerY();
-  ?> + "px";
-	document.getElementById("1").style.width = 256 + "px";
-	document.getElementById("1").style.height = 256 + "px";
-	document.getElementById("1").style.backgroundColor = color;
- </script>
- <?php
+ 
+ 
     //ACTUALIZAR DATO
     /*$sql = "UPDATE usuarios SET nombre = 'Dios' WHERE id = 1";
     $sentencia=$conexion->prepare($sql);

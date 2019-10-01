@@ -75,8 +75,9 @@ if($partesRuta[1]=="TheFifthGuild")
 {
   include_once "vistas/TheFifthGuild.php";
   $encontrada=1;
-  include_once "app/cargadorArchivosjs.inc.php";
+  //include_once "app/cargadorArchivosjs.inc.php";
 }
+
 if(!empty($partesRuta[2]))
 {
   if($partesRuta[1]=="Blogs")
@@ -96,6 +97,7 @@ if(!empty($partesRuta[2]))
     else{
       $arreglada= palabrasRaras::arreglar($partesRuta[2]);
       $existe=RepositorioUsuario::nombreExiste(conexion::getConection(), $arreglada);
+      
       if($existe)
       {
         $titulo=$arreglada;
@@ -106,6 +108,7 @@ if(!empty($partesRuta[2]))
         include_once "app/repositorioEntradas.inc.php";
         conexion::openConection();
         $existe=repositorioEntradas::entradaExiste(conexion::getConection(), $partesRuta[2]);
+        
         if($existe)
         {
           include_once "vistas/Entrada.php";
@@ -114,13 +117,15 @@ if(!empty($partesRuta[2]))
         else {
           $arreglada= palabrasRaras::arreglar($partesRuta[2]);
           $existe=repositorioEntradas::entradaExiste(conexion::getConection(), $arreglada);
+          
           if($existe)
           {
             include_once "vistas/Entrada.php";
             $encontrada=1;
           }
           else {
-            $encontrada=0;
+            
+              $encontrada=0;
           }
         }
       }

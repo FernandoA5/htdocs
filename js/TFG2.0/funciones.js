@@ -1,22 +1,18 @@
-function rectangulo(x, y, ancho, alto, idUsuario)
+function holi()
 {
-    this.x=x;
-    this.y=y;
-    this.ancho=ancho;
-    this.alto=alto;
-    this.id=idUsuario;
-      
-}
-rectangulo.prototype.insertarDOM = function() {
-    console.log("HOLI");
-	var div = '<div id="' + id + '"></div>';
+    var avatar={
+        var div = '<div id="' + 1 + '"></div>';
 	var html = document.getElementById("juego").innerHTML;
-	var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
 	document.getElementById("juego").innerHTML = html + div;
-	document.getElementById(this.id).style.position = "absolute";
-	document.getElementById(this.id).style.left = this.x + "px";
-	document.getElementById(this.id).style.top = this.y + "px";
-	document.getElementById(this.id).style.width = this.ancho + "px";
-	document.getElementById(this.id).style.height = this.alto + "px";
-	document.getElementById(this.id).style.backgroundColor = color;
+	document.getElementById("1").style.position = "absolute";
+  document.getElementById("1").style.left = <?php 
+    echo $player->obtenerX();
+  ?> + "px";ocument.getElementById("1").style.background = "url(imagenes/avatars/01.png)";
+	document.getElementById("1").style.top =  <?php 
+    echo $player->obtenerY();
+  ?> + "px";
+	document.getElementById("1").style.width = 64 + "px";
+	document.getElementById("1").style.height = 64+ "px";
+  
+    }
 }
