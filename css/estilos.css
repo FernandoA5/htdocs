@@ -159,3 +159,13 @@
   background-color: white;
   color:#045FB4;
 }
+.btn-love{
+  background-color:red;
+  color:white;
+}
+.btn-love:hover
+{
+  background-color:#01A9DB;
+  color:white !important;
+  content: "HOLI";
+}

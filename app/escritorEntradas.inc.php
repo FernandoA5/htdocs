@@ -27,12 +27,35 @@ class escritorEntradas
                   <h5 style="color:gray"><?php echo $entradas[$i]->obtenerFecha(); ?></h5>
                   <h4 class="text-justify"><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
                   <div class="text-left">
-                    <a class="btn btn-primary btn-sm" href="<?php 
-                      echo BLOGS."/".$entradas[$i]->obtenerTitulo();
-                    ?>" role="button">Continua Leyendo</a>
+                    <form role="form" method="post" action="<?php echo MYBLOG; ?>">
+                    <a class="btn btn-primary btn-sm" href="<?php echo BLOGS."/".$entradas[$i]->obtenerTitulo();?>" role="button">Continua Leyendo</a>
                     <?php
-                    
+                      if($_SESSION)
+                      {
+                        if($entradas[$i]->obtenerAutorId()==$_SESSION["id_usuario"])
+                        {
+                          echo '<a class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>';
+                        }
+                      }
                     ?>
+                    <button id="btn-love<?php
+                      echo $entradas[$i]->obtenerId();
+                    ?>" type="submit" name="btn-love<?php
+                    echo $entradas[$i]->obtenerId();
+                     ?>" class="btn btn-love btn-sm" title="<?php
+                    echo $entradas[$i]->obtenerLikes();
+                    ?>"><span class="glyphicon glyphicon-heart"></span></button>
+                    </form>
+
+                        <?php
+                        $idUnica="btn-love".$entradas[$i]->obtenerId();
+                        if(isset($_POST[$idUnica]))
+                        {
+                          repositorioEntradas::añadirLike(conexion::getConection(), $entradas[$i], $_SESSION["id_usuario"], $idUnica); 
+                        }
+                        $_POST[$idUnica]=null;
+                        unset($_POST[$idUnica]);
+                        ?>
                   </div>
                 </div>
               </div>

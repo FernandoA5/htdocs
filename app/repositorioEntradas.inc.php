@@ -103,6 +103,37 @@ class repositorioEntradas
     }
     return $entrada;
   }
+  public static function añadirLike($conection, $entrada, $idUsuario, $idUnica)
+  {
+    if(isset($conection))
+    {
+      try{
+        include_once "likesUsuariosEntradas.inc.php";
+        include_once "repositorioLikesUsuariosEntradas.inc.php";
+        if(repositorioLikesUsuariosEntradas::consultar($conection, $entrada->obtenerId(), $_SESSION["id_usuario"]))
+        {
+          
+          //DISLIKE
+          
+        }
+        else
+        {
+          $sql="UPDATE entradas SET likes = :likes WHERE id=:idEntrada";
+          $sentencia=$conection->prepare($sql);
+          $likes=$entrada->obtenerLikes();
+          $likes++;
+          $idEntradaTemp=$entrada->obtenerId();
+          $sentencia->bindParam(":likes", $likes, PDO::PARAM_STR);
+          $sentencia->bindParam(":idEntrada", $idEntradaTemp, PDO::PARAM_STR);
+          $sentencia->execute();
+          repositorioLikesUsuariosEntradas::push($conection, $idUsuario, $entrada->obtenerId());
+        }
+      }catch(PDOException $ex)
+      {
+        print HOLIERROR.$ex->getMessage();
+      }
+    }
+  }
 }
 
  ?>
