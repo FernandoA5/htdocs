@@ -2,8 +2,11 @@
 class redireccion{
   public static function redirigir($url)
   {
-    header("location:" . $url, true, 301);
-    exit();
+    ?>
+    <script type="text/javascript">
+        window.location.replace("<?php echo $url; ?>");
+    </script>
+    <?php
   }
 }
 

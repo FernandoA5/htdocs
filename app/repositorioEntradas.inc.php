@@ -29,6 +29,7 @@ class repositorioEntradas
     }
     return $entradaInsertada;
   }
+ 
   public static function obtenerEntradasPorUsuario($conection, $autorId)
   {
     $entradas=array();
@@ -138,13 +139,10 @@ class repositorioEntradas
         include_once "repositorioLikesUsuariosEntradas.inc.php";
         if(repositorioLikesUsuariosEntradas::consultar($conection, $entrada->obtenerId(), $_SESSION["id_usuario"]))
         {
-          
           //DISLIKE
-          
         }
         else
         {
-          
           $sql="UPDATE entradas SET likes = :likes WHERE id=:idEntrada";
           $sentencia=$conection->prepare($sql);
           $likes=$entrada->obtenerLikes();
@@ -167,6 +165,28 @@ class repositorioEntradas
         print HOLIERROR.$ex->getMessage();
       }
     }
+  }
+  public static function actualizarEntrada($conection, $titulo, $texto, $id)
+  {
+    $entradaActualizada=null;
+    if(isset($conection))
+    {
+      try{
+        $sql="UPDATE entradas SET titulo = :titulo WHERE id=:idEntrada";
+        $sentencia=$conection->prepare($sql);
+        //BINDPARAM
+        echo $texto;
+        $sentencia->bindParam(":titulo", $titulo, PDO::PARAM_STR);
+        //$sentencia->bindParam(":texto", $$texto, PDO::PARAM_STR);
+        $sentencia->bindParam(":idEntrada", $id, PDO::PARAM_STR);
+        $sentencia->execute();
+        $entradaActualizada=$sentencia->fetch();
+      }catch(PDOException $ex)
+      {
+        print HOLIERROR.$ex->getMessage();
+      }
+    }
+    return $entradaActualizada;
   }
 
 }

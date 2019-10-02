@@ -169,3 +169,25 @@
   color:white !important;
   content: "HOLI";
 }
+.btn-editar
+{
+  background-color: #FBF303;
+  color:white;
+  font-weight:bold;
+}
+.btn-editar:hover{
+  background-color:#FDCE00;
+  color:white !important;  
+  font-weight:bold;
+}
+.btn-editarError
+{
+  background-color: red;
+  color:white;
+  font-weight:bold;
+}
+.btn-editarEntrada{
+  background-color:transparent;
+  color:gray;
+  position:absolute;
+}

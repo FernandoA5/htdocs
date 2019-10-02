@@ -69,7 +69,7 @@ if(!isset($_SESSION["nombre_usuario"]))
         conexion::openConection();
         $validador = new validadorEntradas($_POST["titulo"], $_POST["texto"]);
         if($validador->entradaValida())
-        {
+        { 
           $entrada = new entradas("", $_SESSION["id_usuario"], $validador->getTitle(), $validador->getText(), "", 1, 0);
           $entradaInsertada = repositorioEntradas::insertarEntrada(conexion::getConection(), $entrada);
           if($entradaInsertada)
@@ -90,13 +90,14 @@ if(!isset($_SESSION["nombre_usuario"]))
         <div class="panel-body">
           <form role="form" method="post" action="<?php echo MYBLOG; ?>">
             <?php
+            include_once "Plantillas/formEntrada.inc.php";
             if(isset($_POST["send"]))
             {
-              include_once "Plantillas/formEntradaValidado.inc.php";
+             formEntrada::formValidado($validador);
             }
             else
-            {
-                include_once "Plantillas/formEntradaVacio.inc.php";
+            { 
+              formEntrada::formVacio();
             }
              ?>
           </form>

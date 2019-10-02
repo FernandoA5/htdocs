@@ -52,7 +52,7 @@ class repositorioLikesUsuariosEntradas{
                 ?>
                 <script type="text/javascript">
                     //REACTIVAR CUANDO NO SE ESTEN HACIENDO PRUEBAS
-                    //window.location.replace("<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>");
+                    window.location.replace("<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>");
                 </script>
                 <?php
             }catch(PDOExceptio $ex)
