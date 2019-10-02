@@ -205,3 +205,14 @@
   font-weight:bold;
   border: 1px solid #0174DF;
 }
+.enlace{
+  color:#585858;
+}
+.enlace:hover{
+  color:#0489B1 !important;
+  text-decoration: none;
+}
+#hTitulo{
+  font-family: Lucida sans;
+  font-weight: normal;
+}

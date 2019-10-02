@@ -13,7 +13,7 @@
     }
 
 
-    public function cerrarSesion()
+    public static function cerrarSesion()
     {
       if(session_id()=="")
       {

@@ -24,7 +24,8 @@
             <br><br>
           </div>
           <div class="col-md-10">
-            <a href="<?php echo LEARNING."/".$todos[$i]->obtenerTitulo(); ?>"><h2 style="color:white"><?php echo $todos[$i]->obtenerTitulo(); ?></h2></a>
+            <br>
+            <a class="enlace"href="<?php echo LEARNING."/".$todos[$i]->obtenerTitulo(); ?>" style="font-size:24px; color:white !important"><?php echo $todos[$i]->obtenerTitulo(); ?></a>
             <h4 style="color:white"><?php
             $usuario= RepositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $todos[$i]->obtenerAutorId());
             echo $usuario->obtenerNombre();

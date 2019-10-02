@@ -21,12 +21,10 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
             <div class="col-sm-2">
             </div>
    </div>
-   <div class="row" id="Hoja">
+   <div class="row" id="">
             <div class="col-sm-2">
             </div>
-            <div class="col-sm-8">
-              <div class="col-sm-1"></div>
-              <div class="col-sm-10" style="background-color:white">
+              <div class="col-sm-8" style="background-color:white">
                     <?php
                       if(isset($_POST["sendEdicion"]))
                       {
@@ -56,47 +54,42 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                         <div class="col-sm-1">
                         </div>
                         <div class="col-sm-10">
-                          <div>
                           <h3 class="text-left" id="hTitulo">
-                            
-                            <?php echo $entrada->obtenerTitulo(). "&nbsp";
-                          if($_SESSION)
-                          {
-                            if($entrada->obtenerAutorId()==$_SESSION["id_usuario"])
+                            <?php 
+                            echo $entrada->obtenerTitulo(). "&nbsp";
+                            if($_SESSION)
                             {
-                              ?>
-                              <button  id="editar" type="submit" name="editar" class="btn btn-editarEntrada btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
-                              <script>
-                                var btnEditar = document.getElementById("editar");
-                                btnEditar.addEventListener("click", visible);
-                                function visible()
-                                {
-                                  document.getElementById("formEdit").style.visibility="visible";
-                                  
+                              if($entrada->obtenerAutorId()==$_SESSION["id_usuario"])
+                              {
+                                ?>
+                                <button  id="editar" type="submit" name="editar" class="btn btn-editarEntrada btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
+                                <script>
+                                  var btnEditar = document.getElementById("editar");
+                                  btnEditar.addEventListener("click", visible);
+                                  function visible()
+                                  {
+                                    document.getElementById("formEdit").style.visibility="visible";
+                                    
+                                  }
+                                </script>
+                                <?php
                                 }
-                              </script>
-                              <?php
                             }
-                          }
+                            ?>
+                          </h3><br>
+                          <?php
+                          include_once "app/repositorioUsuario.inc.php"; include_once "app/usuario.inc.php";
+                          $usuario=repositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $entrada->obtenerAutorId());
                           ?>
-                      </h3>
-                      </div>
-                      <?php
-                      include_once "app/repositorioUsuario.inc.php"; include_once "app/usuario.inc.php";
-                      $usuario=repositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $entrada->obtenerAutorId());
-                      ?>
-                      <h5 style="color:#585858"><?php echo $usuario->obtenerNombre(); ?></h5>
+                      <a class="enlace" href="<?php echo $usuario->obtenerNombre(); ?>"><?php echo $usuario->obtenerNombre(); ?></a>
                       <h6 style="color:#BDBDBD"><?php echo $entrada->obtenerFecha(); ?></h6>
                       <br>
-                      <p class="text-justify">
+                      <p class="text-justify" style="font-family:Lato;">
                         <?php 
                         echo nl2br($entrada->obtenerTexto()); ?>
                       </p>
                       <br><br>
                     </div>
-                    <div class="col-sm-1">
-                    </div>
-
                     <?php
                     conexion::closeConection();
                   }
@@ -104,10 +97,11 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                     echo HOLIERROR;
                   }
                   ?>
-              </div>
-              <div class="col-sm-1"></div>
+                  <div class="col-sm-1">
+                  </div>
+            </div>
+          <div class="col-sm-2">
           </div>
-          <div class="col-sm-2"> </div>
    </div>
    <br>
    <div class="row">

@@ -24,8 +24,8 @@ include_once "avatars.inc.php";
                       <div class="col-md-4">
                         <img src="<?php echo avatars::controlAvatars($usuarios[$j]->obtenerAvatar()); ?>" alt="" width="100%">
                       </div>
-                      <div class="col-md-8">
-                        <a href="<?php echo BLOGS."/".$usuarios[$j]->obtenerNombre(); ?>" style="color:#08088A; font-family:Agency Fb;"><h2><?php echo $usuarios[$j]->obtenerNombre();?></h2></a>
+                      <div class="col-md-8"><br>
+                        <a class="enlace" style="font-size:25px" href="<?php echo BLOGS."/".$usuarios[$j]->obtenerNombre(); ?>"><?php echo $usuarios[$j]->obtenerNombre();?></a>
                         <h4><?php echo $usuarios[$j]->obtenerPuntos(); ?></h4>
                       </div>
                   </div>
@@ -49,8 +49,8 @@ include_once "avatars.inc.php";
                       <div class="col-md-4">
                         <img src="<?php echo avatars::controlAvatars($usuarios[$j]->obtenerAvatar()); ?>" alt="HOLI" width="100%">
                       </div>
-                      <div class="col-md-8">
-                        <a href="<?php echo BLOGS."/".$usuarios[$j]->obtenerNombre(); ?>" style="color:#08088A; font-family:Agency Fb;"><h2><?php echo $usuarios[$j]->obtenerNombre();?></h2></a>
+                      <div class="col-md-8"><br>
+                      <a class="enlace" style="font-size:25px" href="<?php echo BLOGS."/".$usuarios[$j]->obtenerNombre(); ?>"><?php echo $usuarios[$j]->obtenerNombre();?></a>
                         <h4><?php echo $usuarios[$j]->obtenerPuntos(); ?></h4>
                       </div>
                   </div>
