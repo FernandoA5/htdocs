@@ -162,13 +162,15 @@
 .btn-love{
   background-color:red;
   color:white;
-  height: 29px;
+  height: 30px;
+  cursor: pointer;
 }
 .btn-love:hover
 {
-  background-color:#01A9DB;
-  color:white !important;
-  content: "HOLI";
+  background-color:white !important;
+  color:red !important;
+  border: 1px solid red;
+  font-weight: bold !important;
 }
 .btn-editar
 {
@@ -191,4 +193,15 @@
   background-color:transparent;
   color:gray;
   position:absolute;
+}
+.btn-continuarLeyendo{
+  background-color:#0174DF;
+  color:white;
+  font-weight:bold !important;
+}
+.btn-continuarLeyendo:hover{
+  background-color:white;
+  color:#0174DF !important;
+  font-weight:bold;
+  border: 1px solid #0174DF;
 }

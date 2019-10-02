@@ -18,7 +18,6 @@ class escritorEntradas
         {
           if($entradas[$i]->obtenerActiva()==1)
           {
-            
             ?>
               <div class="panel">
                 <div class="panel-heading">
@@ -29,7 +28,7 @@ class escritorEntradas
                   <h4 class="text-justify"><?php echo nl2br(self::resumir($entradas[$i]->obtenerTexto())); ?></h4>
                   <div class="text-left">
                     <form id="formEditar" role="form" method="post" action="<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>">
-                    <a class="btn btn-primary btn-sm" href="<?php echo BLOGS."/".$entradas[$i]->obtenerTitulo();?>" role="button">Continua Leyendo</a>
+                    <a class="btn btn-continuarLeyendo btn-sm" href="<?php echo BLOGS."/".$entradas[$i]->obtenerTitulo();?>" role="button">Continua Leyendo</a>
                     <button id="btn-love<?php
                       echo $entradas[$i]->obtenerId();
                       ?>" type="submit" name="btn-love<?php
@@ -48,7 +47,7 @@ class escritorEntradas
                         }
                         $_POST[$idUnica]=null;
                         unset($_POST[$idUnica]);
-                        ?>
+              ?>
                   </div>
                 </div>
               </div>
