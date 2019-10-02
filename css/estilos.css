@@ -162,6 +162,7 @@
 .btn-love{
   background-color:red;
   color:white;
+  height: 29px;
 }
 .btn-love:hover
 {

@@ -125,7 +125,6 @@ if(!empty($partesRuta[2]))
             $encontrada=1;
           }
           else {
-              echo $arreglada;
               $encontrada=0;
           }
         }
@@ -159,7 +158,7 @@ if(!empty($partesRuta[2]))
       else {
         $arreglada2=palabrasRaras::arreglar($arreglada);
         $existe=repositorioCursos::buscarCurso(conexion::getConection(), $arreglada2);
-        echo $arreglada2;
+        //echo $arreglada2;
         if($existe)
         {
           $titulo=$arreglada2;

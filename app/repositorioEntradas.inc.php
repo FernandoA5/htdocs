@@ -168,25 +168,23 @@ class repositorioEntradas
   }
   public static function actualizarEntrada($conection, $titulo, $texto, $id)
   {
-    $entradaActualizada=null;
+    $actualizacion=false;
     if(isset($conection))
     {
       try{
-        $sql="UPDATE entradas SET titulo = :titulo WHERE id=:idEntrada";
+        $sql="UPDATE entradas SET titulo = :titulo, texto = :texto WHERE id=:idEntrada";
         $sentencia=$conection->prepare($sql);
         //BINDPARAM
-        echo $texto;
         $sentencia->bindParam(":titulo", $titulo, PDO::PARAM_STR);
-        //$sentencia->bindParam(":texto", $$texto, PDO::PARAM_STR);
+        $sentencia->bindParam(":texto", $texto, PDO::PARAM_STR);
         $sentencia->bindParam(":idEntrada", $id, PDO::PARAM_STR);
         $sentencia->execute();
-        $entradaActualizada=$sentencia->fetch();
       }catch(PDOException $ex)
       {
         print HOLIERROR.$ex->getMessage();
       }
     }
-    return $entradaActualizada;
+    return $actualizacion;
   }
 
 }

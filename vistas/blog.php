@@ -15,7 +15,7 @@ if(isset($_SESSION["nombre_usuario"]))
 {
   if($nombre==$_SESSION["nombre_usuario"])
   {
-    echo HOLI;
+    
     redireccion::redirigir(MYBLOG);
   }
 }
