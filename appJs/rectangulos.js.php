@@ -21,15 +21,7 @@ class funcionesJs
         </script>
     <?php
     }
-    public static function nuevoPalabrasRaras($palabra)
-    {
-        //$palabra="<h1 style='color:blue'>HOLI</h1>";
-        $r=explode("<", $palabra);
-        $s=sizeof($r);
-        $nr=explode(">", $r[1]); 
-        return $nr[1];
-
-    }
+    
     public static function moverse()
     {
         ?>

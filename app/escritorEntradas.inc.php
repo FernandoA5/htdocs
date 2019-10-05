@@ -69,6 +69,12 @@ class escritorEntradas
       }
     }
   }
+  public static function escribirComentarios($conection, $idEntrada)
+  {
+    ?>
+    HOLI
+    <?php
+  }
   public static function resumir($texto)
   {
     $longMax=400;

@@ -216,3 +216,9 @@
   font-family: Lucida sans;
   font-weight: normal;
 }
+#desplegar{
+  text-decoration: none;
+}
+#desplegar:hover{
+  text-decoration: none;
+}

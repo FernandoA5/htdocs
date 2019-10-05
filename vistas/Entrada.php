@@ -102,21 +102,22 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
             </div>
           <div class="col-sm-2">
           </div>
-   </div>
-   <br>
+   </div><br>
    <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-2 center-block">
       </div>
          <div class="col-sm-8">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-10 center-block">
                     <div id="formEdit" style="visibility:hidden">
+                          <div class="panel-group" id="accordion">
                           <div class="panel panel-primary">
                               <div class="panel-heading">
                                   <h3 class="panel-title center-block">
-                                    Editar Publicación
+                                    <a id="desplegar" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                    Editar Publicacion
+                                    </a>
                                   </h3>
                               </div>
+                              <div id="collapse1" class="panel-collapse collapse">
                               <div class="panel-body">
                                 <form role="form" method="post" action="<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>">
                                   <?php
@@ -160,12 +161,39 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                                   }
                                   ?>
                                   </div>
-                              </div>  
+                              </div>
+                              </div>
+                          </div>  
                           </div>
-                      </div>
+                      <div class="col-sm-2"></div>
                 </div>
-                <div class="col-sm-1"></div>
         </div>
+        <?php 
+          ///A?ADIR ENTRADS RECOMENDADAS
+        ?>
+        <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="panel-group" id="accordion">
+          <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title center-block">
+                      <a  id="desplegar" href="#collapse2" data-toggle="collapse" data-parent="#acordion">
+                        Comentarios
+                      </a>
+                    </h3>
+                  </div>
+                  <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+        </div>
+        
   </div>
    <br><br>
  <?php
