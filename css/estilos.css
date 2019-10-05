@@ -222,3 +222,11 @@
 #desplegar:hover{
   text-decoration: none;
 }
+.enlace2{
+  color:white;
+  text-decoration:none !important;
+}
+.enlace:hover{
+  color:#0080FF !important;
+  text-decoration:none !important;
+}

@@ -84,7 +84,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                       <a class="enlace" href="<?php echo $usuario->obtenerNombre(); ?>"><?php echo $usuario->obtenerNombre(); ?></a>
                       <h6 style="color:#BDBDBD"><?php echo $entrada->obtenerFecha(); ?></h6>
                       <br>
-                      <p class="text-justify" style="font-family:Lato;">
+                      <p class="text-justify" style="font-family:Lucida sans;">
                         <?php 
                         echo nl2br($entrada->obtenerTexto()); ?>
                       </p>
@@ -179,17 +179,56 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                   <div class="panel-heading">
                     <h3 class="panel-title center-block">
                       <a  id="desplegar" href="#collapse2" data-toggle="collapse" data-parent="#acordion">
-                        Comentarios
+                        Escribir Comentario
                       </a>
                     </h3>
                   </div>
                   <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        
+                        <form action="<?php
+                        echo $entrada->obtenerTitulo();
+                        ?>">
+                        <?php
+                        include_once "Plantillas/formComentarios.inc.php";
+                        include_once "app/validadorComentario.inc.php";
+                        include_once "app/repositorioComentarios.inc.php";
+                        include_once "app/redireccion.inc.php";
+                        conexion::openConection();
+                        $usuario=repositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $_SESSION["id_usuario"]);
+                        if(isset($_POST["sendComentario"]))
+                        {
+                          $validador=new validadorComentario($_POST["texto"]);
+                          if(!empty($validador))
+                          {
+                            $comentarioInsertado=repositorioComentarios::insertarComentarioEntrada (conexion::getConection(), $validador->getText(), $usuario, $entrada);
+                            if(!$comentarioInsertado)
+                            {
+                              echo  HOLIERROR;
+                            }
+                            else{
+                              redireccion::redirigir($entrada->obtenerTitulo());
+                            }
+                          }
+                        }
+                          
+                          if(isset($_POST["sendComentario"]))
+                          {
+                            formComentarios::formValidado($validador);
+                          }
+                          else{
+                            formComentarios::formVacio();
+                          }
+                          conexion::closeConection();
+                        ?>
+                        </form>
                     </div>
                   </div>
               </div>
           </div>
+          <?php
+          include_once "app/escritorComentarios.inc.php";
+          escritorComentarios::escribir($entrada);
+          ?>
         </div>
         <div class="col-sm-2"></div>
         </div>
