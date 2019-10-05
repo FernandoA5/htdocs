@@ -84,7 +84,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                       <a class="enlace" href="<?php echo $usuario->obtenerNombre(); ?>"><?php echo $usuario->obtenerNombre(); ?></a>
                       <h6 style="color:#BDBDBD"><?php echo $entrada->obtenerFecha(); ?></h6>
                       <br>
-                      <p class="text-justify" style="font-family:Lucida sans;">
+                      <p class="text-justify" style="font-family:Lato;">
                         <?php 
                         echo nl2br($entrada->obtenerTexto()); ?>
                       </p>
@@ -197,8 +197,13 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                         $usuario=repositorioUsuario::obtenerUsuarioPorId(conexion::getConection(), $_SESSION["id_usuario"]);
                         if(isset($_POST["sendComentario"]))
                         {
+                          ?>
+                          <script>
+                            document.getElementById("collapse2").class="collapse in"
+                          </script>
+                          <?php
                           $validador=new validadorComentario($_POST["texto"]);
-                          if(!empty($validador))
+                          if($validador->comentarioValido())
                           {
                             $comentarioInsertado=repositorioComentarios::insertarComentarioEntrada (conexion::getConection(), $validador->getText(), $usuario, $entrada);
                             if(!$comentarioInsertado)

@@ -47,14 +47,17 @@ class validadorComentario{
     {
         if($this-> errorTexto=="")
         {
-            echo "value='".$this-> texto. "'";
+            echo $this-> texto;
         }
     }
     public function showErrorText()
     {
-        echo $this-> avisoInicio. $this-> errorTexto . $this-> avisoCierre;
+        if($this-> errorTexto!="")
+        {
+            echo $this-> avisoInicio. $this-> errorTexto . $this-> avisoCierre;
+        }
     }
-    public function comentarioVacio()
+    public function comentarioValido()
     {
         if($this -> errorTexto==="" && $this-> errorRuta==="")
         {
