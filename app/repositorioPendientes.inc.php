@@ -71,9 +71,11 @@ class repositorioPendientes{
         {
             
             try{
-                $sql="SELECT * FROM cosasporhacer WHERE idUsuario=:idUsuario";
+                $sql="SELECT * FROM cosasporhacer WHERE(idUsuario=:idUsuario) AND estado=:estado";
                 $sentencia=$conection->prepare($sql);
                 $sentencia->bindParam(":idUsuario", $idUsuario, PDO::PARAM_STR);
+                $estado="1";
+                $sentencia->bindParam(":estado", $estado, PDO::PARAM_STR);
                 $sentencia->execute();
                 $resultado=$sentencia->fetchAll();
                 if(count($resultado))
@@ -121,19 +123,17 @@ class repositorioPendientes{
         
             for($i=count($pendientes)-1; $i>=0; $i--)
             {
-                if($pendientes[$i]->obtenerEstado()==1)
+                if($top==$pendientes[$i]->obtenerTop())
                 {
-                    if($top==$pendientes[$i]->obtenerTop())
-                {
-                    ?>
-                    <button class="btn control-panel capitulo-btn pop" type="submit" name="sendActividad" style="font-size:24px" title="<?php 
-                        echo "Top: ".$top;
-                    ?>" id="<?php echo "actividad".$i; ?>"><?php 
-                    echo $pendientes[$i]->obtenerActividad();
-                    ?>
-                    </button>
-                    <input   style="visibility:hidden; height:0px" type="text" name="actividadTop" value="<?php echo $pendientes[$i]->obtenerId();?>">
-                    <?php
+                ?>
+                <button class="btn control-panel capitulo-btn pop" type="submit" name="sendActividad" style="font-size:24px" title="<?php 
+                    echo "Top: ".$top;
+                ?>" id="<?php echo "actividad".$i; ?>"><?php 
+                echo $pendientes[$i]->obtenerActividad();
+                ?>
+                </button>
+                <input   style="visibility:hidden; height:0px" type="text" name="actividadTop" value="<?php echo $pendientes[$i]->obtenerId();?>">
+                <?php
                 }
                 else{
                     ?>
@@ -141,7 +141,6 @@ class repositorioPendientes{
                         echo $pendientes[$i]->obtenerActividad();
                     ?></a>
                     <?php
-                }
                 }
             }
         }

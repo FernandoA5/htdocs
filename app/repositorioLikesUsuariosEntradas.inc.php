@@ -58,6 +58,23 @@ class repositorioLikesUsuariosEntradas{
             }
         }
     }
+    public static function pop($conection, $idEntrada, $idUsuario)
+    {
+        if(isset($conection))
+        {
+            try
+            {
+                $sql="DELETE FROM likesusuariosentradas WHERE(idEntrada=:idEntrada) AND idUsuario=:idUsuario";
+                $sentencia=$conection->prepare($sql);
+                $sentencia->bindParam(":idEntrada", $idEntrada, PDO::PARAM_STR);
+                $sentencia->bindParam(":idUsuario", $idUsuario, PDO::PARAM_STR);
+                $sentencia->execute();
+            }catch(PDOException $ex)
+            {
+                print HOLIERROR.$ex->getMessage();
+            }
+        }
+    }
     public static function sumarPuntos($conection, $entrada)
     {
         if(isset($conection))
@@ -80,9 +97,28 @@ class repositorioLikesUsuariosEntradas{
             }         
         }
     }
-    public static function restarPuntos()
+    public static function restarPuntos($conection, $entrada)
     {
-
+        if(isset($conection))
+        {
+            try
+            {
+                $sql="UPDATE usuarios SET puntos=:puntos WHERE id=:id";
+                $sentencia=$conection->prepare($sql);
+                //obtener puntos actuales
+                include_once "repositorioUsuario.inc.php";
+                $usuario=repositorioUsuario::obtenerUsuarioPorId($conection, $entrada->obtenerAutorId());
+                $tempPuntos= $usuario->obtenerPuntos();
+                $tempId=$entrada->obtenerAutorId();
+                $tempPuntos-=5;
+                $sentencia->bindParam(":puntos", $tempPuntos, PDO::PARAM_STR);
+                $sentencia->bindParam(":id", $tempId, PDO::PARAM_STR);
+                $sentencia->execute();
+            }catch(PDOException $ex)
+            {
+                print HOLIERROR.$ex->getMessage();
+            }
+        }
     }
 }
 

@@ -44,6 +44,7 @@ class escritorEntradas
                         if(isset($_POST[$idUnica]))
                         {
                           repositorioEntradas::addirLike(conexion::getConection(), $entradas[$i], $_SESSION["id_usuario"], $idUnica); 
+                          redireccion::redirigir($_SERVER["REQUEST_URI"]);
                         }
                         $_POST[$idUnica]=null;
                         unset($_POST[$idUnica]);

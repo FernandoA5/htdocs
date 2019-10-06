@@ -275,7 +275,7 @@ if(!isset($_SESSION["nombre_usuario"]))
                               else{
                                 //$top=0;
                                 ?>
-                                <br><br><br>
+                                <br><br>
                                 <button class="btn control-panel capitulo-btn" style="font-size:25px">NO TIENES PENDIENTES</button>
                                 <?php
                               }
