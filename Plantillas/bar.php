@@ -10,8 +10,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" style="color:white" href="<?php echo SERVIDOR; ?>" title="Hard Level">
-      Hard Level
+    <a class="navbar-brand" style="color:white" href="<?php echo SERVIDOR; ?>" title="Hard-Level">
+      Hard-Level
     </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">

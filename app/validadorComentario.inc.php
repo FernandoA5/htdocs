@@ -59,7 +59,7 @@ class validadorComentario{
     }
     public function comentarioValido()
     {
-        if($this -> errorTexto==="" && $this-> errorRuta==="")
+        if($this -> errorTexto==="")
         {
             return true;
         }

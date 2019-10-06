@@ -17,11 +17,7 @@ class formComentarios{
     {
         ?>
             <div class="form-group">
-                <textarea class="form-control" name="texto" cols="30" rows="4" placeholder="¿Qué piensas al respecto?">
-                    <?php
-                        echo $validador->showText();
-                    ?>
-                </textarea>
+                <textarea class="form-control" name="texto" cols="30" rows="4" placeholder="¿Qué piensas al respecto?"><?php echo $validador->showText(); ?></textarea>
                 <?php
                         echo $validador->showErrorText();
                 ?>
