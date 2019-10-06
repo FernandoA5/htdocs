@@ -204,6 +204,75 @@ if(!isset($_SESSION["nombre_usuario"]))
             </form>
           </div>
         </div>
+
+        <div class="panel-group" id="accordion">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title" style="color:white">
+                    <a id="desplegar" href="#collapse1" data-toggle="collapse" data-parent="#acordion">
+                      Cosas Por Hacer
+                    </a>
+                  </h3>
+                </div>
+                <div class="panel-collapse collapse in" id="collapse1">
+                    <div class="panel-body text-center" style="background-color:#045FB4">
+                          <form action="<?php echo MYBLOG?>" role="form" method="post">
+                            <?php
+                            //PASADA ID DE LA ACTIVIDAD MEDIANTE LOS BOTONES;
+                            //echo $_POST["actividad1"];
+                            conexion::openConection();
+                            if(isset($_POST["sendPendiente"]))
+                            {
+                              include_once "app/validadorPendiente.inc.php";
+                              include_once "app/repositorioPendientes.inc.php";
+                              $validador=new validadorPendiente($_POST["pendiente"]);
+                              if($validador-> actividadValida())
+                              {
+                                $actividadInsertada=repositorioPendientes::push(conexion::getConection(), $validador->getActividad());
+                                if(!$actividadInsertada)
+                                {
+                                  echo HOLIERROR;
+                                }
+                                else{
+                                  redireccion::redirigir(MYBLOG);
+                                }
+                              }
+                            }
+                              include_once "Plantillas/formPendiente.inc.php";
+                              if(isset($_POST["sendPendiente"]))
+                              {
+                                formPendiente::formValidado();  
+                              }
+                              else{
+                                formPendiente::formVacio();
+                              }
+                              conexion::closeConection();
+                            ?>
+                          
+                        <?php
+                        include_once "app/cosasPorHacer.inc.php";
+                        include_once "app/repositorioPendientes.inc.php";
+                        conexion::openConection();
+                        $pendientes=repositorioPendientes::cargarPendientes(conexion::getConection(), $usuario->obtenerId());
+                        if(count($pendientes))
+                        {
+                          ?>
+                          <br><br><br>
+                          <?php
+                          repositorioPendientes::escribir(conexion::getConection(), $usuario->obtenerId());
+                        }
+                        else{
+                          ?>
+                          <br><br><br>
+                          <button class="btn control-panel capitulo-btn" style="font-size:25px">NO TIENES PENDIENTES</button>
+                          <?php
+                        }
+                        ?>
+                        </form>
+                    </div>
+                </div>
+              </div>
+        </div>
         <?php
       }
        ?>

@@ -198,9 +198,6 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                         if(isset($_POST["sendComentario"]))
                         {
                           ?>
-                          <script>
-                            document.getElementById("collapse2").class="collapse in"
-                          </script>
                           <?php
                           $validador=new validadorComentario($_POST["texto"]);
                           if($validador->comentarioValido())

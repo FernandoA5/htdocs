@@ -156,7 +156,7 @@
 }
 .capitulo-btn:hover
 {
-  background-color: white;
+  background-color: white !important;
   color:#045FB4;
 }
 .btn-love{

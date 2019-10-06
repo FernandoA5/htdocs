@@ -123,3 +123,11 @@ CREATE TABLE likesUsuariosEntradas(
 	idEntrada INT NOT NULL,
 	idUsuario INT NOT NULL
 );
+CREATE TABLE cosasPorHacer(
+	id INT NOT NULL UNIQUE AUTO_INCREMENT,
+	idUsuario INT NOT NULL,
+	actividad VARCHAR(50) NOT NULL,
+	fecha DATETIME NOT NULL,
+	estado TINYINT NULL,
+	tope INT NOT NULL
+);
