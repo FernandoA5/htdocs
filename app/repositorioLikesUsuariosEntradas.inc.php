@@ -8,18 +8,15 @@ class repositorioLikesUsuariosEntradas{
         {
             try
             {  
-                $sql="SELECT * FROM likesusuariosentradas WHERE idEntrada=:idEntrada";
+                $sql="SELECT * FROM likesusuariosentradas WHERE idEntrada=:idEntrada AND idUsuario=:idUsuario";
                 $sentencia=$conection->prepare($sql);
-                $sentencia->bindParam(":idEntrada", $idEntrada, PDO::PARAM_STR);
+                $sentencia->bindParam(':idEntrada', $idEntrada, PDO::PARAM_STR);
+                $sentencia->bindParam(':idUsuario', $idUsuario, PDO::PARAM_STR);
                 $sentencia->execute();
                 $resultado=$sentencia->fetchAll();
                 if(!empty($resultado))
                 {
-                    foreach($resultado as $fila)
-                    {
-                        $likesUE=new likesUsuariosEntradas($fila["id"], $fila["idEntrada"], $fila["idUsuario"]);
-                    }
-                    if($idUsuario==$likesUE->obtenerIdUsuario())
+                    if($resultado)
                     {
                         return true;
                     }
