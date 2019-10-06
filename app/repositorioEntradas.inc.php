@@ -130,7 +130,7 @@ class repositorioEntradas
     }
     return $entrada;
   }
-  public static function añadirLike($conection, $entrada, $idUsuario, $idUnica)
+  public static function addirLike($conection, $entrada, $idUsuario, $idUnica)
   {
     if(isset($conection))
     {

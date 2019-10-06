@@ -159,6 +159,22 @@
   background-color: white !important;
   color:#045FB4;
 }
+.done-btn
+{
+  background-color: #2EFE2E;
+  color:white;
+  border:none;
+  width: 100%;
+  font-size: 20px;
+  font-family: Agency Fb;
+  font-weight: bold;
+  height: 50px;
+}
+.done-btn:hover
+{
+  background-color: white !important;
+  color:#2EFE2E !important;
+}
 .btn-love{
   background-color:red;
   color:white;
@@ -216,11 +232,11 @@
   font-family: Lucida sans;
   font-weight: normal;
 }
-#desplegar{
-  text-decoration: none;
+.desplegar{
+  text-decoration: none !important;
 }
-#desplegar:hover{
-  text-decoration: none;
+.desplegar:hover{
+  text-decoration: none !important;
 }
 .enlace2{
   color:white;
@@ -229,4 +245,11 @@
 .enlace:hover{
   color:#0080FF !important;
   text-decoration:none !important;
+}
+.pop{
+  color:white;
+}
+.pop:hover{
+  background-color: red !important;
+  color:white !important;
 }

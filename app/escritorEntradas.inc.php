@@ -43,7 +43,7 @@ class escritorEntradas
                         $idUnica="btn-love".$entradas[$i]->obtenerId();
                         if(isset($_POST[$idUnica]))
                         {
-                          repositorioEntradas::añadirLike(conexion::getConection(), $entradas[$i], $_SESSION["id_usuario"], $idUnica); 
+                          repositorioEntradas::addirLike(conexion::getConection(), $entradas[$i], $_SESSION["id_usuario"], $idUnica); 
                         }
                         $_POST[$idUnica]=null;
                         unset($_POST[$idUnica]);

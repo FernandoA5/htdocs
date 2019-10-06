@@ -204,12 +204,14 @@ if(!isset($_SESSION["nombre_usuario"]))
             </form>
           </div>
         </div>
-
+        <?php
+      }
+       ?>
         <div class="panel-group" id="accordion">
               <div class="panel">
                 <div class="panel-heading">
                   <h3 class="panel-title" style="color:white">
-                    <a id="desplegar" href="#collapse1" data-toggle="collapse" data-parent="#acordion">
+                    <a class="desplegar" href="#collapse1" data-toggle="collapse" data-parent="#acordion">
                       Cosas Por Hacer
                     </a>
                   </h3>
@@ -218,17 +220,20 @@ if(!isset($_SESSION["nombre_usuario"]))
                     <div class="panel-body text-center" style="background-color:#045FB4">
                           <form action="<?php echo MYBLOG?>" role="form" method="post">
                             <?php
-                            //PASADA ID DE LA ACTIVIDAD MEDIANTE LOS BOTONES;
-                            //echo $_POST["actividad1"];
+                            include_once "app/cosasPorHacer.inc.php";
+                            include_once "app/validadorPendiente.inc.php";
+                            include_once "app/repositorioPendientes.inc.php";
                             conexion::openConection();
+                            $top=repositorioPendientes::obtenerTop(conexion::getConection(), $usuario->obtenerId());
                             if(isset($_POST["sendPendiente"]))
                             {
-                              include_once "app/validadorPendiente.inc.php";
-                              include_once "app/repositorioPendientes.inc.php";
+                              
+                              
                               $validador=new validadorPendiente($_POST["pendiente"]);
                               if($validador-> actividadValida())
                               {
-                                $actividadInsertada=repositorioPendientes::push(conexion::getConection(), $validador->getActividad());
+                                $top++;
+                                $actividadInsertada=repositorioPendientes::push(conexion::getConection(), $validador->getActividad(),$top);
                                 if(!$actividadInsertada)
                                 {
                                   echo HOLIERROR;
@@ -248,34 +253,62 @@ if(!isset($_SESSION["nombre_usuario"]))
                               }
                               conexion::closeConection();
                             ?>
-                          
-                        <?php
-                        include_once "app/cosasPorHacer.inc.php";
-                        include_once "app/repositorioPendientes.inc.php";
-                        conexion::openConection();
-                        $pendientes=repositorioPendientes::cargarPendientes(conexion::getConection(), $usuario->obtenerId());
-                        if(count($pendientes))
-                        {
-                          ?>
-                          <br><br><br>
-                          <?php
-                          repositorioPendientes::escribir(conexion::getConection(), $usuario->obtenerId());
-                        }
-                        else{
-                          ?>
-                          <br><br><br>
-                          <button class="btn control-panel capitulo-btn" style="font-size:25px">NO TIENES PENDIENTES</button>
-                          <?php
-                        }
-                        ?>
-                        </form>
+                            </form>
+                            
+                            <form action="<?php echo MYBLOG?>" role="form" method="post">
+                              <?php
+                              conexion::openConection();
+                              $pendientes=repositorioPendientes::cargarPendientes(conexion::getConection(), $usuario->obtenerId());
+                              if(isset($_POST["sendActividad"]))
+                              {
+                                repositorioPendientes::pop(conexion::getConection(), $_POST["actividadTop"]);
+                                redireccion::redirigir(MYBLOG);
+                              }
+                              if(count($pendientes))
+                              {
+                                //$top=0;
+                                ?>
+                                <br><br>
+                                <?php
+                                repositorioPendientes::escribir(conexion::getConection(), $usuario->obtenerId(), $top);
+                              }
+                              else{
+                                //$top=0;
+                                ?>
+                                <br><br><br>
+                                <button class="btn control-panel capitulo-btn" style="font-size:25px">NO TIENES PENDIENTES</button>
+                                <?php
+                              }
+                              conexion::closeConection();
+                              ?>
+                           </form>
                     </div>
                 </div>
               </div>
+              <div class="panel">
+                <div class="panel-heading">
+                <h3 class="panel-title" style="color:white">
+                    <a class="desplegar" href="#collapse2" data-toggle="collapse" data-parent="#acordion">
+                      Cosas hechas
+                    </a>
+                  </h3>
+                </div>
+                <div class="panel-collapse collapse in" id="collapse2">
+                  <div class="panel-body text-center" style="background-color:#2EFE2E">
+                      <form action="<?php echo MYBLOG?>" role="form" method="post">
+                            <?php
+                              conexion::openConection();
+                              $done=repositorioPendientes::cargarDone(conexion::getConection(), $usuario->obtenerId());
+                              if(count($done))
+                              {
+                                repositorioPendientes::escribirDone(conexion::getConection(), $usuario->obtenerId());
+                              }
+                            ?>
+                      </form>
+                  </div>  
+                </div>
+              </div>  
         </div>
-        <?php
-      }
-       ?>
     </div>
   </div>
 </div>

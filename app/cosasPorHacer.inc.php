@@ -5,13 +5,15 @@ class cosasPorHacer{
     private $actividad;
     private $fecha;
     private $estado;
-    public function __construct($id, $idUsuario, $actividad, $fecha, $estado)
+    private $top;
+    public function __construct($id, $idUsuario, $actividad, $fecha, $estado, $top)
     {
         $this-> id =$id;
         $this-> idUsuario=$idUsuario;
         $this-> actividad=$actividad;
         $this-> fecha=$fecha;
         $this-> estado=$estado;
+        $this-> top=$top;
     }    
     public function obtenerId()
     {
@@ -33,6 +35,10 @@ class cosasPorHacer{
     {
         return $this-> estado;
     }
+    public function obtenerTop()
+    {
+        return $this-> top;
+    }
     public function changeActividad()
     {
         $this-> actividad = $actividad;
@@ -40,6 +46,10 @@ class cosasPorHacer{
     public function changeEstado()
     {
         $this-> estado = $estado;
+    }
+    public function changeTop()
+    {
+        $this-> top= $top;
     }
 
 }
