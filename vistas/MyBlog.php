@@ -58,7 +58,7 @@ if(!isset($_SESSION["nombre_usuario"]))
        }
         ?>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
       <?php
       include_once "app/escritorEntradas.inc.php";
       include_once "app/validadorEntrada.inc.php";
@@ -114,7 +114,7 @@ if(!isset($_SESSION["nombre_usuario"]))
          ?>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <?php
       if($usuario->obtenerSuscripcion()==3)
       {
