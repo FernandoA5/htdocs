@@ -40,7 +40,7 @@ class formEntrada{
             ?>">
             </div>
             <div class="form-group">
-            <textarea  id="texto" class="form-control" name="texto" rows="3" placeholder="Desarrolla tu idea"><?php echo $texto; ?>
+            <textarea  id="texto" class="form-control" name="textoE" rows="3" placeholder="Desarrolla tu idea"><?php echo $texto; ?>
             </textarea>
             </div>
             <button type="submit" name="sendEdicion" class="btn btn-editar btn-sm center-block">Guardar</button>
@@ -57,7 +57,7 @@ class formEntrada{
             <?php $validador->showErrorTitle(); ?>
             </div>
             <div class="form-group">
-            <textarea  id="texto" class="form-control" name="texto" rows="3" placeholder="Desarrolla tu idea">
+            <textarea  id="texto" class="form-control" name="textoE" rows="3" placeholder="Desarrolla tu idea">
                 <?php
                 $validador->showText();
                 ?>

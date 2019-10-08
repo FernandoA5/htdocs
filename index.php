@@ -77,6 +77,11 @@ if($partesRuta[1]=="TheFifthGuild")
   $encontrada=1;
   //include_once "app/cargadorArchivosjs.inc.php";
 }
+if($partesRuta[1]=="Ruby")
+{
+  include_once "rb/holi.rb";
+  $encontrada=1;
+}
 
 if(!empty($partesRuta[2]))
 {

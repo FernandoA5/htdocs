@@ -132,7 +132,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                                       </script>
                                     <?php
                                     conexion::openConection();
-                                    $validador = new validadorEntradas($_POST["titulo"], $_POST["texto"]);
+                                    $validador = new validadorEntradas($_POST["titulo"], $_POST["textoE"]);
                                     if($validador->entradaValida())
                                     {
                                       $nuevaEntrada = new entradas("", $_SESSION["id_usuario"], $validador->getTitle(), $validador->getText(), "", 1, $entrada->obtenerLikes());
@@ -146,7 +146,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                                     }
                                     conexion::closeConection();
                                   }
-                                  //$entrada=repositorioEntradas::obtenerEntradaPorTitulo(conexion::getConection(), $titulo);
+                                  
                                  
                                   $titulo=$entrada->obtenerTitulo();
                                   $texto=$entrada->obtenerTexto();

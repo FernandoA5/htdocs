@@ -48,7 +48,7 @@ class escritorEntradas
                         }
                         $_POST[$idUnica]=null;
                         unset($_POST[$idUnica]);
-              ?>
+                        ?>
                   </div>
                 </div>
               </div>
