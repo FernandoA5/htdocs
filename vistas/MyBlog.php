@@ -34,6 +34,7 @@ if(!isset($_SESSION["nombre_usuario"]))
            <img src="<?php echo $minTemp; ?>" alt="<?php echo "No encontrada"; ?>" width="100%"><br>
            <h3 class="text-center" style="color:#0B0B61"><?php echo $usuario->obtenerNombre(); ?></h3>
            <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
+           <h6 class="text-center"><a href="<?php echo AGENDA ?>" class="enlace" style="color:#0080FF">Agenda</a></h6>
          </div>
          <div class="col-md-1">
          </div>

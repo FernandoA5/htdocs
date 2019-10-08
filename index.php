@@ -77,9 +77,9 @@ if($partesRuta[1]=="TheFifthGuild")
   $encontrada=1;
   //include_once "app/cargadorArchivosjs.inc.php";
 }
-if($partesRuta[1]=="Ruby")
+if($partesRuta[1]=="Agenda")
 {
-  include_once "rb/holi.rb";
+  include_once "vistas/agenda.php";
   $encontrada=1;
 }
 

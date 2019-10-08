@@ -253,3 +253,19 @@
   background-color: red !important;
   color:white !important;
 }
+.panel-agenda{
+  color:white;
+  background-color:#0174DF !important;
+}
+.panel-mes
+{
+  color:white;
+  background-color:#0080FF !important;
+}
+.noDecoration{
+  text-decoration:none !important;
+}
+.noDecoration:hover{
+  text-decoration:none !important;
+}
+
