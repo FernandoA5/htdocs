@@ -170,6 +170,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
         </div>
         <?php 
           ///A?ADIR ENTRADS RECOMENDADAS
+          if(isset($_SESSION["id_usuario"])){
         ?>
         <div class="row">
         <div class="col-sm-2"></div>
@@ -238,5 +239,6 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
   </div>
    <br><br>
  <?php
+          }
 include_once "Plantillas/cierre.php"
   ?>

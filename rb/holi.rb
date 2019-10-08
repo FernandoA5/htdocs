@@ -6,7 +6,7 @@ class HolaMundo
         loop do
             #sleep 1
         system "cls"
-        
+        baseBtoDecimal()
         puts "¿Qué programa deseas ejecutar?"
         programa=gets().to_i
         case programa
@@ -20,6 +20,8 @@ class HolaMundo
             calculadora()
         when 5
             tresAlumnos()
+        when 6
+            baseBtoDecimal()
         else
             exit
         end
@@ -30,6 +32,25 @@ class HolaMundo
         exit
         
         #puts "El resultado de la sua de #{a} + #{b} es: #{c}"         
+    end
+    def baseBtoDecimal
+        puts "cuantos digitos tiene el numero"
+        n=gets().to_i
+        c=[]
+        puts "ingrese el numero digito por digito de derecha a izquierda"          
+        for i in 0...n
+            c[i]=gets().to_i
+        end
+        valDec=0
+        pot=1
+        for i in 0...n
+            valDec=valDec+c[i]*pot
+            #puts " valor: #{valDec}"
+            pot=pot*2
+            #puts "pot: #{pot}"
+        end
+        puts valDec
+        
     end
     def sumaDosNumeros
         puts "¿Cual es el primer valor?"
@@ -95,7 +116,7 @@ class HolaMundo
             puts "¿Calificación?"
             calificaciones[i]=gets().to_i
             if calificaciones>10
-                puts "Calificacion maxima es 10"
+                puts "Calificacion maxima es 10";
                 redo
             end
         end

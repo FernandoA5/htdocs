@@ -29,6 +29,9 @@ class escritorEntradas
                   <div class="text-left">
                     <form id="formEditar" role="form" method="post" action="<?php echo SERVIDOR.$_SERVER["REQUEST_URI"]; ?>">
                     <a class="btn btn-continuarLeyendo btn-sm" href="<?php echo BLOGS."/".$entradas[$i]->obtenerTitulo();?>" role="button">Continua Leyendo</a>
+                    <?php
+                    if(isset($_SESSION["id_usuario"])){
+                    ?>
                     <button id="btn-love<?php
                       echo $entradas[$i]->obtenerId();
                       ?>" type="submit" name="btn-love<?php
@@ -37,6 +40,9 @@ class escritorEntradas
                       echo $entradas[$i]->obtenerLikes();
                       ?>"><span class="glyphicon glyphicon-heart"></span>
                     </button>
+                    <?php
+                    }
+                    ?>
                     </form>
 
                         <?php
