@@ -44,6 +44,7 @@ class repositorioComentarios
           foreach($resultado as $fila)
           {
             $comentarios[]=new comentariosCapitulo($fila["id"], $fila["autorId"], $fila["cursoId"], $fila["texto"], $fila["fecha"], $fila["activa"], $fila["likes"]);
+            
           }
         }
 

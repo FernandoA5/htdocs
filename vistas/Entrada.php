@@ -239,6 +239,6 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
   </div>
    <br><br>
  <?php
-          }
+          } 
 include_once "Plantillas/cierre.php"
   ?>

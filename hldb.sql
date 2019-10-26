@@ -138,5 +138,5 @@ CREATE TABLE agenda(
 	estado TINYINT NULL,
 	dia VARCHAR(25) NOT NULL,
 	mes VARCHAR(25) NOT NULL,
-	año INT NOT NULL
+	year INT NOT NULL
 );

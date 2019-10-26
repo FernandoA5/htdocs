@@ -15,14 +15,14 @@ include_once "Plantillas/bar.php";
                 $visiesto=date("L");//AÑO BISIESTO TRUE O FALSE
                 if(!$visiesto)
                 {
-                    $diasMeses=array(5, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);      
+                    $diasMeses=array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);      
                 }
                 else{
                     $diasMeses=array(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);      
                 }
                 
                 echo $diaSemana;
-                for($i=-1; $i<2; $i++)
+                for($i=0; $i<1; $i++)//MODIFICADO PARA QUE FUNCIONE MAS RAPIDO SOLO DURANTE LAS PRUEBAS
                 {
                     ?>
                         <div class="panel">
@@ -97,8 +97,36 @@ include_once "Plantillas/bar.php";
                                                                                                 <h2>
                                                                                                     <?php
                                                                                                         echo "&nbsp".$d;
+                                                                                                        include_once "Plantillas/formAgenda.inc.php"
                                                                                                     ?>
                                                                                                 </h2>
+                                                                                                <form role="form" method="post" action="<?php echo AGENDA ?>">
+                                                                                                    <?php
+                                                                                                    if(isset($_POST["send"]))
+                                                                                                    {
+                                                                                                        formAgenda::formValidado();
+                                                                                                    }
+                                                                                                    else{
+                                                                                                        formAgenda::formVacio();
+                                                                                                    }
+                                                                                                    ?>
+                                                                                                </form>
+                                                                                                <?php
+                                                                                                include_once "app/repositorioAgenda.inc.php";
+                                                                                                conexion::openConection();
+                                                                                                $a=[$year, $j+1, $d];
+                                                                                                if(isset($a))
+                                                                                                {
+                                                                                                    $actividades=array();
+                                                                                                    //repositorioAgenda::escribirActividades(conexion::getConection(), $a);
+                                                                                                    $actividades=repositorioAgenda::obtenerActividades(conexion::getConection(), $a);
+                                                                                                    if(!empty($actividades))
+                                                                                                    {
+                                                                                                        echo $actividades[0]->obtenerActividad();
+                                                                                                    }
+                                                                                                }
+                                                                                                conexion::closeConection();
+                                                                                                ?>
                                                                                             </div>
                                                                                             <?php
                                                                                         }
