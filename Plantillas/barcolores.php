@@ -15,6 +15,7 @@ class barColores
       echo '<li><a href="' . GAMES . '" title="Hard Level Games">Games</a></li>';
       echo '<li><a href="' . LEARNING . '" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="' . BLOGS .'" title="Blogs">Blogs</a></li>';
+      echo '<li><a href="' . OPENSOURCE. '"title="OpenSource">OpenSource</a></li>';
     }
     if($P==1)
     {
@@ -22,6 +23,7 @@ class barColores
       echo '<li><a href="' . GAMES . '" title="Hard Level Games">Games</a></li>';
       echo '<li><a href="' . LEARNING . '" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="' . BLOGS .'" title="Blogs">Blogs</a></li>';
+      echo '<li><a href="' . OPENSOURCE. '"title="OpenSource">OpenSource</a></li>';
     }
     if($P==2)
     {
@@ -29,6 +31,7 @@ class barColores
       echo '<li><a href="' . GAMES . '" style="color:white;" title="Hard Level Games">Games</a></li>';
       echo '<li><a href="' . LEARNING . '" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="' . BLOGS .'" title="Blogs">Blogs</a></li>';
+      echo '<li><a href="' . OPENSOURCE. '"title="OpenSource">OpenSource</a></li>';
     }
 
     if($P==3)
@@ -37,6 +40,7 @@ class barColores
       echo '<li><a href="' . GAMES . '"  title="Hard Level Games">Games</a></li>';
       echo '<li><a href="' . LEARNING . '" style="color:white;" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="' . BLOGS .'" title="Blogs">Blogs</a></li>';
+      echo '<li><a href="' . OPENSOURCE. '"title="OpenSource">OpenSource</a></li>';
     }
     if($P==4)
     {
@@ -44,6 +48,15 @@ class barColores
       echo '<li><a href="' . GAMES . '"  title="Hard Level Games">Games</a></li>';
       echo '<li><a href="' . LEARNING . '" title="Hard Level Learning">Learning</a></li>';
       echo '<li><a href="' . BLOGS .'" style="color:white;" title="Blogs">Blogs</a></li>';
+      echo '<li><a href="' . OPENSOURCE. '"title="OpenSource">OpenSource</a></li>';
+    }
+    if($P==5)
+    {
+      echo '<li><a href="' .  SOLUTIONS . '"  title="Hard Level Solutions">Solutions</a></li>';
+      echo '<li><a href="' . GAMES . '"  title="Hard Level Games">Games</a></li>';
+      echo '<li><a href="' . LEARNING . '" title="Hard Level Learning">Learning</a></li>';
+      echo '<li><a href="' . BLOGS .'" title="Blogs">Blogs</a></li>';
+      echo '<li><a href="' . OPENSOURCE. '" style="color:white;" title="OpenSource">OpenSource</a></li>';
     }
 
 

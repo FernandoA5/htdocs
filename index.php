@@ -31,6 +31,11 @@ if($partesRuta[1]=="Blogs" && count($partesRuta)==2)
   include_once "vistas/Blogs.php";
   $encontrada=1;
 }
+if($partesRuta[1]=="OpenSource")
+{
+  include_once "vistas/OpenSource.php";
+  $encontrada=1;
+}
 if($partesRuta[1]=="Registrar")
 {
   include_once "vistas/Registrar.php";

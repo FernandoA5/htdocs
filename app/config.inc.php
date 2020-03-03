@@ -11,6 +11,7 @@ define("LEARNING", "/Learning");
 define("SOLUTIONS", "/Solutions");
 define("GAMES", "/Games");
 define("BLOGS", "/Blogs");
+define("OPENSOURCE", "/OpenSource");
 define("REGISTRAR", "/Registrar");
 define("REGISTROCORRECTO", "/RegistroCorrecto");
 define("LOGIN", "/Login");
