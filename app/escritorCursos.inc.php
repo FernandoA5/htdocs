@@ -20,7 +20,8 @@
         <div class="row">
           <div class="col-md-2">
             <br>
-            <img src="<?php echo RUTAMINIATURAS.$todos[$i]->obtenerMiniatura(); ?>" alt="Miniatura" width="100%">
+            <img src="<?php echo RUTAMINIATURAS.$todos[$i]->obtenerTitulo().".".$todos[$i]->obtenerMiniatura(); ?>" alt="Miniatura" width="100%">
+            
             <br><br>
           </div>
           <div class="col-md-10">

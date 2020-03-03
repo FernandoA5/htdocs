@@ -35,6 +35,9 @@ if(!isset($_SESSION["nombre_usuario"]))
            <h3 class="text-center" style="color:#0B0B61"><?php echo $usuario->obtenerNombre(); ?></h3>
            <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
            <h6 class="text-center"><a href="<?php echo AGENDA ?>" class="enlace" style="color:#0080FF">Agenda</a></h6>
+           <?php
+
+           ?>
          </div>
          <div class="col-md-1">
          </div>
@@ -181,7 +184,7 @@ if(!isset($_SESSION["nombre_usuario"]))
                   $ruta=$validador->getTitle();
                   if($validador->cursoValido())
                   {
-                    $curso= new cursos("", $_SESSION["id_usuario"], $validador->getTitle(), $_FILES["miniaturaSubida"]["name"], $ruta, $validador->getText(), "", 0);
+                    $curso= new cursos("", $_SESSION["id_usuario"], $validador->getTitle(), $tipoImagen, $ruta, $validador->getText(), "", 0);
                     $cursoInsertado=repositorioCursos::insertarCurso(conexion::getConection(), $curso);
                     if($cursoInsertado)
                     {

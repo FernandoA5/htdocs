@@ -32,7 +32,7 @@ if(isset($_SESSION["nombre_usuario"]))
             <div class="row">
               <div class="col-sm-6">
                 <div class="col-md-4">
-                  <a href="<?php echo CATNETWORK; ?>">CatNetwork</a>
+                  
                 </div>
               </div>
 
