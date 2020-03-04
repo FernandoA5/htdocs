@@ -179,7 +179,6 @@ class repositorioEntradas
   }
   public static function actualizarEntrada($conection, $titulo, $texto, $id)
   {
-    $actualizacion=false;
     if(isset($conection))
     {
       try{
@@ -190,12 +189,12 @@ class repositorioEntradas
         $sentencia->bindParam(":texto", $texto, PDO::PARAM_STR);
         $sentencia->bindParam(":idEntrada", $id, PDO::PARAM_STR);
         $sentencia->execute();
+        
       }catch(PDOException $ex)
       {
         print HOLIERROR.$ex->getMessage();
       }
     }
-    return $actualizacion;
   }
 
 }

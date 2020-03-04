@@ -36,7 +36,7 @@ if(!isset($_SESSION["nombre_usuario"]))
            <h4 class="text-center" style="color:#0080FF"><?php echo $usuario->obtenerPuntos(); ?></h4>
            <h6 class="text-center"><a href="<?php echo AGENDA ?>" class="enlace" style="color:#0080FF">Agenda</a></h6>
            <?php
-              if($usuario->obtenerSuscripcion()!=5)
+              if($usuario->obtenerSuscripcion()!=5 && $usuario->obtenerSuscripcion()!=3)
               {
                 ?>
                   <h6 class="text-center"><a href="<?php echo CODE; ?>"class="enlace" style="color:#333CFF">¿Eres miembro de openSource?</a></h6>

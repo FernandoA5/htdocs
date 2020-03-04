@@ -4,6 +4,7 @@ $titulo="OpenSource";
 include_once "app/repositorioUsuario.inc.php";
 include_once "app/conexion.inc.php";
 include_once "app/config.inc.php";
+include_once "app/redireccion.inc.php";
 //
 include_once "Plantillas/head.php";
 include_once "Plantillas/bar.php";
@@ -15,10 +16,13 @@ if(!isset($_SESSION["nombre_usuario"]))
     <h1 class="text-center"><a href="<?php echo LOGIN; ?>">Inicia cesión para acceder aquí</a></h1>
     <?php
 }
+else{
+    conexion::openConection();
+    $usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
+    conexion::closeConection();
+
+}
 //OBTENIENDO USUARIO POR EL NOMBRE EN LA CESIÓN
-conexion::openConection();
-$usuario=repositorioUsuario::obtenerUsuarioPorNombre(conexion::getConection(), $_SESSION["nombre_usuario"]);
-conexion::closeConection();
 
 ?>
 <?php

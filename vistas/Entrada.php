@@ -85,7 +85,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                       <h6 style="color:#BDBDBD"><?php echo $entrada->obtenerFecha(); ?></h6>
                       <br>
                       <p class="text-justify" style="font-family:Lato;">
-                        <?php 
+                        <?php //CONVIERTE LOS SALTOS DE LINEA
                         echo nl2br($entrada->obtenerTexto()); ?>
                       </p>
                       <br><br>
@@ -137,7 +137,7 @@ include_once "app/entradas.inc.php"; include_once "app/repositorioEntradas.inc.p
                                     {
                                       $nuevaEntrada = new entradas("", $_SESSION["id_usuario"], $validador->getTitle(), $validador->getText(), "", 1, $entrada->obtenerLikes());
                                       
-                                      $entradaActualizada = repositorioEntradas::actualizarEntrada(conexion::getConection(), $nuevaEntrada->obtenerTitulo(), $nuevaEntrada->obtenerTexto(), $entrada->obtenerId());
+                                      repositorioEntradas::actualizarEntrada(conexion::getConection(), $nuevaEntrada->obtenerTitulo(), $nuevaEntrada->obtenerTexto(), $entrada->obtenerId());
                                       $_POST["sendEdicion"]=null;
                                       unset($_POST["sendEdicion"]);
                                       ?>
