@@ -23,7 +23,7 @@ define("CATNETWORK", "/CatNetwork");
 define("ONLINE", "/onlineGame");
 define("TFG", "/TheFifthGuild");
 define("AGENDA", "/Agenda");
-
+define("CODE", "/Code");
 
 define("RUTALEARNING", SERVIDOR.LEARNING);
 //SOURCES
