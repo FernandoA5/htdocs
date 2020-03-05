@@ -6,7 +6,7 @@ class formCode{
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <br>
-                <input type="text" id="codigo" name="codigo" value="" placeholder="Ingresa tu código" class="form-control text-center"><br>
+                <input type="text" id="codigo" name="codigo" value="" placeholder="Ingresa tu código" class="form-control text-center" required autofocus><br>
                 <button type="submit" name="sendCode" class="btn btn-primary btn-sm center-block form-control">Enviar</button>
             </div>
             <div class="col-sm-2"></div>

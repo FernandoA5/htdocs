@@ -52,8 +52,16 @@ else{
                                 $idTemp=$_SESSION["id_usuario"];
                                 $sentencia->bindParam(":suscripcion", $nS, PDO::PARAM_STR);
                                 $sentencia->bindParam(":idUsuario", $idTemp, PDO::PARAM_STR);
-                                $sentencia->execute();
-                                redireccion::redirigir(OPENSOURCE);
+                                if($sentencia->execute())
+                                {
+                                    include_once "app/repositorioOpenSource.inc.php";
+                                    $usuarioInsertado=repositorioOpenSource::registrarUsuario(conexion::getConection(), $usuario);
+                                    if($usuarioInsertado)
+                                    {
+                                        redireccion::redirigir(OPENSOURCE);
+                                    }
+                                }
+                                
                             }catch(PDOException $ex)
                             {
                                 print HOLIERROR.$ex->getMessage();
