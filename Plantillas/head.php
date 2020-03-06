@@ -12,7 +12,7 @@
    if(!isset($titulo)||empty($titulo))
    {
 
-     $titulo="Hard Level";
+     $titulo="Hard-Level";
      ?>
      <title><?php echo $titulo; ?></title>
      <?php

@@ -52,7 +52,7 @@ include_once "Plantillas/bar.php";
            </form>
            <br>
            <div>
-             <a href="#">¿Olvidaste tu contraseña?</a>
+             <a href="<?php echo RECUPERARCLAVE ?>">¿Olvidaste tu contraseña?</a>
            </div>
          </div>
        </div>

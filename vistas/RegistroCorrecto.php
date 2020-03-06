@@ -27,6 +27,7 @@ if($_GET["nombre"] && !empty($_GET["nombre"]))
             <div class="text-center">
               ¡Buen trabajo <strong><?php echo $_GET["nombre"]; ?></strong>!<br> Te has registrado correctamente.<br><br>
               <a href="<?php echo LOGIN; ?>">Iniciar Sesión</a>
+              
             </div>
           </div>
         </div>

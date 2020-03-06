@@ -92,6 +92,25 @@ if(!isset($_SESSION["nombre_usuario"]))
         }
         conexion::closeConection();
       } ?>
+      <?php
+        if($usuario->obtenerActivo()==0)
+        {
+          ?>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                Aun no confirmas tu correo
+              </h3>
+            </div>
+            <div class="panel-body">
+                <h4>
+                  Clic <a href="<?php echo TESTING;?>" class="enlace">here</a> to do it
+                </h4>
+            </div>  
+          </div>
+          <?php
+        }
+      ?>
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">En Mente</h3>

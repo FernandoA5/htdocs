@@ -92,6 +92,21 @@ if($partesRuta[1]=="Agenda")
   include_once "vistas/agenda.php";
   $encontrada=1;
 }
+if($partesRuta[1]=="test")
+{
+  include_once "vistas/test.php";
+  $encontrada=1;
+}
+if($partesRuta[1]=="recuperarClave")
+{
+  include_once "vistas/recuperarClave.php";
+  $encontrada=1;
+}
+if($partesRuta[1]=="generarUrl")
+{
+  include_once "scripts/generarUrl.inc.php";
+  $encontrada=1;
+}
 
 if(!empty($partesRuta[2]))
 {
@@ -186,6 +201,18 @@ if(!empty($partesRuta[2]))
       }
     }
     conexion::closeConection();
+  }
+  if($partesRuta[1]=="recuperar")
+  {
+    include_once "app/repositorioRecuperacionClave.inc.php";
+    include_once "app/conexion.inc.php";
+    conexion::openConection();
+    $existe=repositorioRecuperacionClave::buscarPeticion(conexion::getConection(), $partesRuta[2]);
+    if($existe)
+    {
+      include_once "vistas/nuevaClave.php";
+      $encontrada=1;
+    }
   }
 }
 

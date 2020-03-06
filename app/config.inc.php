@@ -24,6 +24,10 @@ define("ONLINE", "/onlineGame");
 define("TFG", "/TheFifthGuild");
 define("AGENDA", "/Agenda");
 define("CODE", "/Code");
+define("TESTING", "/test");
+define("RECUPERARCLAVE", "/recuperarClave");
+define("GENERARURL", "/generarUrl");
+define("NUEVACLAVE", "/nuevaClave");
 
 define("RUTALEARNING", SERVIDOR.LEARNING);
 //SOURCES
@@ -43,5 +47,5 @@ define("DIRECTORIORAIZ", realpath(__DIR__."/..")); //php7
 define("HOLI", "HOLI: ");
 define("HOLIERROR", "HOLI, QUE MAL PLAN: ");
 define("CODIGO", "4F53");
-define("CORREO", 0):
+define("CORREO", 0);
  ?>
