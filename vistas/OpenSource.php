@@ -39,6 +39,7 @@ else{
     else
     {
         include_once "app/avatars.inc.php";
+        include_once "app/repositorioOpenSource.inc.php";
         $minTemp=avatars::controlAvatars($usuario->obtenerAvatar());
         
         ?>
@@ -48,7 +49,7 @@ else{
                         <h1 class="text-center">
                             <a href="
                             <?php
-                                
+                                echo BLOGS."/".$usuario->obtenerNombre();
                             ?>
                             " class="enlace" style="color: blue; font-size:70%">
                             <?php
@@ -57,6 +58,37 @@ else{
                             </a>
                         <h1>
                         <img class="center-block" width="80%" src="<?php echo $minTemp;?>" alt="<?php echo HOLIERROR."imagen no encontrada" ?>">
+                        <h5 style="color: 339FFF; font-weight: bold" class="text-center"> 
+                        PUNTOS
+                        </h5>
+                        <?php
+                        conexion::openConection(); 
+                        $usuarioOS=repositorioOpenSource::obtenerUsuarioPorId(conexion::getConection(), $usuario->obtenerId());
+                        conexion::closeConection();
+                        ?>
+                        <h5 style="color:
+                        <?php
+                            $puntos=$usuarioOS->obtenerPuntos();
+                            if($puntos==0)
+                            {
+                                echo "red";
+                            }
+                            else
+                            {
+                                echo "#30EB03";
+                            }    
+                            ?>; font-weight:bold" class="text-center">
+                            <?php
+                                echo $puntos;
+                            ?>
+                        </h5>
+                    </div>
+                    
+                    <div class="col-md-8">
+                    
+                    </div>
+                    <div class="col-md-2">
+                        TABLA DE USUARIOS
                     </div>
                 </div>
             </div>

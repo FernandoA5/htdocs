@@ -1,4 +1,5 @@
 <?php
+include_once "openSourceUsers.inc.php";
 class repositorioOpenSource{
     public static function registrarUsuario($conection, $usuario)
     {
@@ -6,7 +7,6 @@ class repositorioOpenSource{
         if(isset($conection))
         {
             try{
-                include_once "openSourceUsers.inc.php";
                 $sql="INSERT INTO opensourceusers(idUsuario, puntos, rango) VALUES(:idUsuario, :puntos, :rango)";
                 $sentencia=$conection->prepare($sql);
 
@@ -25,6 +25,31 @@ class repositorioOpenSource{
 
         }
         return $usuarioInsertado;
+    }
+    public static function obtenerUsuarioPorId($conection, $id)
+    {
+        $usuarioOS=null;
+        if(isset($conection))
+        {
+            try{
+                $sql="SELECT * FROM opensourceusers WHERE idUsuario=:id";
+                $sentencia=$conection->prepare($sql);
+                $sentencia->bindParam(":id", $id, PDO::PARAM_STR);
+                $sentencia->execute();
+                $resultado=$sentencia->fetch();
+                if(!empty($resultado))
+                {
+                    $usuarioOS= new openSourceUsers($resultado["id"], $resultado["idUsuario"], $resultado["puntos"], $resultado["rango"]);
+                }
+                else{
+                    echo HOLIERROR . "RESULTADO VACIO";
+                }
+            }catch(PDOException $ex)
+            {
+                print HOLIERROR . $ex->getMessage();
+            }
+        }
+        return $usuarioOS;
     }
 }
 ?>
