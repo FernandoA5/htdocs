@@ -18,7 +18,7 @@ class formCode{
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <br>
-            <input type="text" id="codigo" name="codigo" value="" placeholder="Ingresa tu código" class="form-control text-center" <?php $validador->showCode(); ?>>
+            <input type="text" id="codigo" name="codigo" value="" placeholder="Ingresa tu cรณdigo" class="form-control text-center" <?php $validador->showCode(); ?>>
             <?php
                 $validador->showErrorCodigo();
             ?><br>
