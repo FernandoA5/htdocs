@@ -252,6 +252,28 @@ class RepositorioUsuario
     }
     return $cambiar;
   }
+  public static function activarCuenta($conection, $idUsuario)
+  {
+    $activada=null;
+    if(isset($conection)) 
+    {
+      try{
+        $sql="UPDATE usuarios SET activo = :activo WHERE id=:id";
+        $sentencia=$conection->prepare($sql);
+        $activo=1;
+        $sentencia->bindParam(":id", $idUsuario, PDO::PARAM_STR);
+        $sentencia->bindParam(":activo", $activo, PDO::PARAM_STR);
+        if($sentencia->execute())
+        {
+          $activada=true;
+        }
+      }catch(PDOException $ex)
+      {
+        print HOLIERROR.$ex->getMessage();
+      }
+    }
+    return $activada;
+  }
  
 }
 

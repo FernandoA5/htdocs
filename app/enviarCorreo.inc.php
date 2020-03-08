@@ -1,22 +1,17 @@
 <?php
 include_once "app/redireccion.inc.php";
 class enviarCorreo{
-    public static function verificacion($mail, $estado)
+    public static function verificacion($mail, $estado, $urlSecreta)
     {
         if($estado==1)
         {
-            $contenido='
-                        Felicitaciones te has registrado exitosamente.
-                        Presiona el enlace para confirmar tu correo.
-                        
-                        https://www.hard-level.com/MyBlog
-                        
-            ';
+            $contenido='Felicitaciones te has registrado exitosamente.
+                        Presiona el enlace para confirmar tu correo: 
+                        '.$urlSecreta;
             $asunto="Confirmacion de correo";
             if(mail($mail, $asunto, $contenido))
             {
                 redireccion::redirigir(MYBLOG);
-                
             }
 
         }

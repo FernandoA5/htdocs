@@ -28,7 +28,7 @@ if(isset($_POST["enviarEmail"]))
         $peticion=repositorioRecuperacionClave::generarPeticion(conexion::getConection(), $usuario->obtenerId(), $urlSecreta);
         if($peticion)
         {
-            $url="www.hard-level-com/recuperacion".$urlSecreta;
+            $url="www.hard-level.com/recuperar".$urlSecreta;
             enviarCorreo::cambiarContraseña($email, CORREO, "www.hard-level.com/recuperar/".$urlSecreta);
          //   redireccion::redirigir(SERVIDOR);
         }

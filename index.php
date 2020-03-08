@@ -214,6 +214,19 @@ if(!empty($partesRuta[2]))
       $encontrada=1;
     }
   }
+  if($partesRuta[1]=="confirmar")
+  {
+    include_once "app/repositorioConfirmarCorreo.inc.php";
+    include_once "app/conexion.inc.php";
+    
+    conexion::openConection();
+    $existe=repositorioConfirmarCorreo::buscarPeticion(conexion::getConection(), $partesRuta[2]);
+    if($existe)
+    {
+      include_once "scripts/cuentaConfiramda.inc.php";  
+      $encontrada=1;
+    }
+  }
 }
 
 
