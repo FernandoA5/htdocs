@@ -203,6 +203,55 @@ class RepositorioUsuario
     return $usuario;
 
   }
+  public static function activarOpenSource($conection, $usuario)
+  {
+    if(isset($conection))
+    {
+        try{
+            $sql="UPDATE usuarios SET suscripcion = :suscripcion WHERE id=:idUsuario";
+            $sentencia=$conection->prepare($sql);
+            //BINDPARAM
+            $nS=5;
+            $idTemp=$usuario->obtenerId();
+            $sentencia->bindParam(":suscripcion", $nS, PDO::PARAM_STR);
+            $sentencia->bindParam(":idUsuario", $idTemp, PDO::PARAM_STR);
+            //EJECUCION DE LA SENTENCIA EN LA BASE DE DATOS
+            if($sentencia->execute())
+            {
+                include_once "app/repositorioOpenSource.inc.php";
+                $usuarioInsertado=repositorioOpenSource::registrarUsuario(conexion::getConection(), $usuario);
+                if($usuarioInsertado)
+                {
+                    redireccion::redirigir(OPENSOURCE);
+                }
+            }
+            
+        }catch(PDOException $ex)
+        {
+            print HOLIERROR.$ex->getMessage();
+        }
+        
+    }
+  }
+  public static function cambiarClave($conection, $usuario, $nuevaClave)
+  {
+    $cambiar=false;
+    if(isset($conection))
+    {
+      $sql="UPDATE usuarios SET password = :password WHERE id=:id";
+      $sentencia=$conection->prepare($sql);
+      //BINDPARAM
+      $idTemp=$usuario->obtenerId();
+      $sentencia->bindParam(":password", $nuevaClave, PDO::PARAM_STR);
+      $sentencia->bindParam(":id", $idTemp, PDO::PARAM_STR);
+      //EJECUCIÓN DE LA SENTENCIA EN BASE DE DATOS
+      if($sentencia->execute())
+      {
+        $cambiar=true;
+      }
+    }
+    return $cambiar;
+  }
  
 }
 

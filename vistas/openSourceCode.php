@@ -42,33 +42,10 @@ else{
                     if($validador->codigoValido())
                     {
                         $conection=conexion::getConection();
-                        if(isset($conection))
-                        {
-                            try{
-                                $sql="UPDATE usuarios SET suscripcion = :suscripcion WHERE id=:idUsuario";
-                                $sentencia=$conection->prepare($sql);
-                                //BINDPARAM
-                                $nS=5;
-                                $idTemp=$_SESSION["id_usuario"];
-                                $sentencia->bindParam(":suscripcion", $nS, PDO::PARAM_STR);
-                                $sentencia->bindParam(":idUsuario", $idTemp, PDO::PARAM_STR);
-                                if($sentencia->execute())
-                                {
-                                    include_once "app/repositorioOpenSource.inc.php";
-                                    $usuarioInsertado=repositorioOpenSource::registrarUsuario(conexion::getConection(), $usuario);
-                                    if($usuarioInsertado)
-                                    {
-                                        redireccion::redirigir(OPENSOURCE);
-                                    }
-                                }
-                                
-                            }catch(PDOException $ex)
-                            {
-                                print HOLIERROR.$ex->getMessage();
-                            }
-                            
-                        }
+                        include_once "app/repositorioUsuario.inc.php";
+                        $cambioRealizado=repositorioUsuario::activarOpenSource(conexion::getConection(), $usuario);
                     }
+                    conexion::closeConection();
                 }
                 
                 if(isset($_POST["sendCode"]))

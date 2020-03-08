@@ -15,10 +15,10 @@ if(isset($_POST["login"]))
   if($validador-> obtenerError()=="" && !is_null($validador ->obtenerUsuario()))
   {
     controlSesion::iniciarSesion($validador->obtenerUsuario()-> obtenerId(), $validador->obtenerUsuario()->obtenerNombre(), $validador->obtenerUsuario()->obtenerSuscripcion());
-    redireccion::redirigir(SERVIDOR);
+    redireccion::redirigir(MYBLOG);
   }
   else{
-    echo HOLIERROR . " NO SE HA INICIADO SESIÓN";
+    
   }
   conexion::closeConection();
 }

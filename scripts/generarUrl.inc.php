@@ -1,7 +1,7 @@
 <?php
  function stringAleatorio($longitud)
  {
-     $caracteres="0123456789abcdefghijklmnñopqrstuvwxyz";
+     $caracteres="0123456789abcdefghijklmnopqrstuvwxyz";
      $numeroCaracteres=strlen($caracteres);
      $stringAleatorio="";
      for($i=0; $i<$longitud; $i++)
@@ -17,6 +17,7 @@ if(isset($_POST["enviarEmail"]))
     include_once "app/conexion.inc.php";
     include_once "app/repositorioRecuperacionClave.inc.php";
     include_once "app/redireccion.inc.php";
+    include_once "app/enviarCorreo.inc.php";
     conexion::openConection();
     if(repositorioUsuario::emailExiste(conexion::getConection(), $email))
     {
@@ -27,7 +28,9 @@ if(isset($_POST["enviarEmail"]))
         $peticion=repositorioRecuperacionClave::generarPeticion(conexion::getConection(), $usuario->obtenerId(), $urlSecreta);
         if($peticion)
         {
-            redireccion::redirigir(SERVIDOR);
+            $url="www.hard-level-com/recuperacion".$urlSecreta;
+            enviarCorreo::cambiarContraseña($email, CORREO, "www.hard-level.com/recuperar/".$urlSecreta);
+         //   redireccion::redirigir(SERVIDOR);
         }
     }
     conexion::closeConection();

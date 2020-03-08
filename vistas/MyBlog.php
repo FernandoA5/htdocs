@@ -39,7 +39,7 @@ if(!isset($_SESSION["nombre_usuario"]))
               if($usuario->obtenerSuscripcion()!=5 && $usuario->obtenerSuscripcion()!=3)
               {
                 ?>
-                  <h6 class="text-center"><a href="<?php echo CODE; ?>"class="enlace" style="color:#333CFF">¿Eres miembro de openSource?</a></h6>
+                  <h6 class="text-center"><a href="<?php echo CODE; ?>"class="enlace" style="color:#333CFF">Â¿Eres miembro de openSource?</a></h6>
                 <?php
               }
            ?>
@@ -104,7 +104,7 @@ if(!isset($_SESSION["nombre_usuario"]))
             </div>
             <div class="panel-body">
                 <h4>
-                  Clic <a href="<?php echo TESTING;?>" class="enlace">here</a> to do it
+                  Clic <a href="<?php echo TESTING;?>" class="enlace">aquí</a> para hacerlo
                 </h4>
             </div>  
           </div>

@@ -54,7 +54,7 @@ class validadorNuevaClave{
     }
     public function obtenerClave()
     {
-        return $this-> clave;
+        return $this-> clave1;
     }
     public function obtenerErroClave1()
     {

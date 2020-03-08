@@ -16,7 +16,7 @@ class repositorioRecuperacionClave{
                 $peticion=$sentencia->execute();
             }catch(PDOException $ex)
             {
-                print HOLIERRROR.$ex->getMessage();
+                print HOLIERROR.$ex->getMessage();
             }
 
         }
@@ -28,7 +28,7 @@ class repositorioRecuperacionClave{
         if(isset($conection))
         {
             try{
-                $sql=" SELECT * FROM recuperacionClave WHERE urlSecreta=:urlSecreta";
+                $sql=" SELECT * FROM recuperacionclave WHERE urlSecreta=:urlSecreta";
                 $sentencia=$conection->prepare($sql);
                 $sentencia->bindParam(":urlSecreta", $urlSecreta, PDO::PARAM_STR);
                 $sentencia->execute();
@@ -43,6 +43,25 @@ class repositorioRecuperacionClave{
             }
         }
         return $peticion;
+    }
+    public static function eliminarUrl($conection, $urlSecreta)
+    {
+        $eliminada=false;
+        if(isset($conection))
+        {
+            try{
+                $sql="DELETE FROM recuperacionclave WHERE urlSecreta=:urlSecreta";
+                $sentencia=$conection->prepare($sql);
+                $sentencia->bindParam(":urlSecreta", $urlSecreta, PDO::PARAM_STR);
+                if($sentencia->execute())
+                {
+                    $eliminada=true;
+                }
+            }catch(PDOException $ex){
+                print HOLIERROR.$ex->getMessage();
+            }
+        }
+        return $eliminada;
     }
 }
 
